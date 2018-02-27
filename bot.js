@@ -12,6 +12,7 @@ client.on('message', message => {
     if (message.content.substring(0,1) === '!') {
         message.reply('ping');
     }
+})
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
