@@ -11,6 +11,15 @@ client.on('message', message => {
     }
     if (message.content.substring(0,1) === '!') {
         message.reply('ping');
+        var args = message.content.substring(1).split(' ');
+		var cmd = args[0];
+		args = args.splice(1);
+		switch(cmd) {
+			// !ping
+			case 'ping':
+				message.reply('Pong!');
+			break;
+        }
     }
 })
 
