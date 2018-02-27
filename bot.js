@@ -137,7 +137,7 @@ client.on('message', message => {
 					if(ogres > 0){
 						for(var i = 0; i < ogres; i++){
 							grist = ogreGrist(grist);
-							boon = (boon + Math.floor(Math.random() * 50) + 1);
+							boon = ogreBoon(boon);
 							for(var c = 0; c < 2; c++){
 								health = health + Math.floor(Math.random() * 4) + 1;
 							}
@@ -315,10 +315,11 @@ function ogreGrist(grist){
 	for(var z = 0; z < 2; z++){
 		grist = grist + Math.floor(Math.random() * 100) + 1;
 	}
+	return grist;
 }
 
 function ogreBoon(boon){
-	
+	return boon + Math.floor(Math.random() * 50) + 1;
 }
 function ogreHealth(health){
 	
