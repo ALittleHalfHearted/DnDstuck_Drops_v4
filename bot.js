@@ -52,6 +52,26 @@ client.on('message', message => {
 						message.reply('use `!drops [command]` to get info on a specific command\n\n```To get drops:```\n`!imp`\n`!ogre`\n`!basilisk`\n`!lich`\n`!giclops`\n`!titachnid`\n`!archeron`\n`!rook`\n`!multi`\n`!custom`\n\n```Other:```\n`!death`');
 				}
 			break;
+			case 'death':
+				var pass = 0;
+				var fail = 0;
+				while(pass != 3 && fail != 3){
+					var roll = Math.floor(Math.random() * 20) + 1;
+					if(roll >= 10){
+						pass = pass + 1
+					}
+					else{
+						fail = fail + 1
+					}
+				}
+				if(pass == 3){
+					message.reply('Congratulations, you survived! Well, barely. You\'re not in the clear yet. But you\'re alive!')
+				}
+				else{
+					message.reply('We at the Committe for Living Peoples regret to inform you that you are no longer allowed to attend our meetings.' +
+						'We hope your experiences in the dream bubbles will be compensation enough until your papers have been processed.')
+				}
+			break;
 		}
     }
 })
