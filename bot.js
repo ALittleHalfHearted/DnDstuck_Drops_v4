@@ -49,20 +49,10 @@ client.on('message', message => {
 					break;
 					//normal
 					default:
-						message.reply('',
-								embed: {
-  									"color": 3066993,
-  									"fields": [{
-      										"name": "use `!drops [command]` to get info on a specific command",
-      										"value": "```To get drops:```\n`!imp`\n`!ogre`\n`!basilisk`\n`!lich`\n`!giclops`\n`!titachnid`\n`!archer" +
-										"on`\n`!rook`\n`!multi`\n`!custom`\n\n```Other:```\n`!death`"
-    									}]
-								}
-						);
+						message.reply('use `!drops [command]` to get info on a specific command\n\n```To get drops:```\n`!imp`\n`!ogre`\n`!basilisk`\n`!lich`\n`!giclops`\n`!titachnid`\n`!archeron`\n`!rook`\n`!multi`\n`!custom`\n\n```Other:```\n`!death`');
 				}
 			break;
-
-        }
+		}
     }
 })
 
