@@ -16,14 +16,15 @@ client.on('message', message => {
 		args = args.splice(1);
 		
 		var tMod = 0;
-		var T1 = 0;
-		var T2 = 0;
-		var T3 = 0;
-		var T4 = 0;
-		var T5 = 0;
-		var T6 = 0;
-		var T7 = 0;
-		var T8 = 0;
+		var build = 0;
+		var t1 = 0;
+		var t2 = 0;
+		var t3 = 0;
+		var t4 = 0;
+		var t5 = 0;
+		var t6 = 0;
+		var t7 = 0;
+		var t8 = 0;
 		var boon = 0;
 		var imps = 0;
 		var ogres = 0;
@@ -99,24 +100,32 @@ client.on('message', message => {
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
-				var grist = 0
-				var boon = 0
-				var health = 0
 				for(var i = 0; i < x; i++){
-					grist = grist + Math.floor(Math.random() * 100) + 1;
-					boon = boon + Math.floor(Math.random() * 10) + 1;
-					for(var c = 0; c < 2; c++){
-						health = health + Math.floor(Math.random() * 2) + 1;
-					}
+					grist = impGrist(grist);
+					boon = impBoon(boon);
+					health = impHealth(health);
 				}
-				var build = grist * 0.8
-				var t1 = grist * 0.2
+				build = grist * 0.8
+				t1 = grist * 0.2
 				message.reply('```For killing ' + x + ' imps, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
 				'\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```')
 			break;
 		}
 	}
 })
+
+function impGrist(grist){
+	return grist + Math.floor(Math.random() * 100) + 1;
+}
+function impBoon(boon){
+	return boon + Math.floor(Math.random() * 10) + 1;
+}
+function impHealth(health){
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 2) + 1;
+	}
+	return health
+}
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
