@@ -23,6 +23,7 @@ client.on('message', message => {
 			message.reply('Pong!');
 		break;
         }
+    }
 });
 
 // THIS  MUST  BE  THIS  WAY
