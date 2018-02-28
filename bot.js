@@ -112,77 +112,125 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'ogre':
+				var x = message.substring(6)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
 				for(var i = 0; i < x; i++){
 					grist = ogreGrist(grist);
 					boon = ogreBoon(boon);
 					health = ogreHealth(health);
 				}
-				build = build + (grist * 0.6)
-				t1 = t1 + (grist * 0.3)
-				t2 = t2 + (grist * 0.1)
-				grist = 0
+				build = grist * 0.6;
+				t1 = grist * 0.3;
+				t2 = grist * 0.1;
+				message.reply('```For killing ' + x + ' ogres, you have obtained:\nBoon = ' + (boon * 2) + '\nBG = ' + build.toFixed(0) +
+					'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'basilisk':
-						for(var i = 0; i < x; i++){
-							//5d100
-							grist = basiliskGrist(grist);
-							//1d100
-							boon = basiliskBoon(boon);
-							health = basiliskHealth(health);
-						}
-						build = build + (grist * 0.4); 
-						t1 = t1 + (grist * 0.3)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.1)
-						grist = 0
+				var x = message.substring(10)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
+				if(x < 100){
+					for(var i = 0; i < x; i++){
+						//5d100
+						grist = basiliskGrist(grist);
+						//1d100
+						boon = basiliskBoon(boon);
+						health = basiliskHealth(health);
+					}
+					build = grist * 0.4; 
+					t1 = grist * 0.3;
+					t2 = grist * 0.2;
+					t3 = grist * 0.1;
+					message.reply('```For killing ' + x + ' basilisks, you have obtained:\nBoon = ' + (boon * 4) + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
+				}
+				else{
+					overload(message);
+				}
 			break;
 			case 'lich':
-						for(var i = 0; i < x; i++){
-							//10d100
-							grist = lichGrist(grist);
-							//2d100
-							boon = lichBoon(boon);
-							health = lichHealth(health);
-						}
-						build = build + (grist * 0.3)
-						t1 = t1 + (grist * 0.2)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.2)
-						t4 = t4 + (grist * 0.1)
-						grist = 0
+				var x = message.substring(6)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
+				if(x < 100){
+					for(var i = 0; i < x; i++){
+						//10d100
+						grist = lichGrist(grist);
+						//2d100
+						boon = lichBoon(boon);
+						health = lichHealth(health);
+					}
+					build = grist * 0.3;
+					t1 = grist * 0.2;
+					t2 = grist * 0.2;
+					t3 = grist * 0.2;
+					t4 = grist * 0.1;
+					message.reply('```For killing ' + x + ' liches, you have obtained:\nBoon = ' + (boon * 8) + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
+						'\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
+				}
+				else{
+					overload(message);
+				}
 			break;
 			case 'giclops':
-						for(var i = 0; i < x; i++){
-							//15d100
-							grist = giclopsGrist(grist);
-							//4d100
-							boon = giclopsBoon(boon);
-							health = giclopsHealth(health);
-						}
-						build = build + (grist * 0.25)
-						t1 = t1 + (grist * 0.20)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.1)
-						t5 = t5 + (grist * 0.05)
-						grist = 0
+				var x = message.substring(9)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
+				if(x < 100){
+					for(var i = 0; i < x; i++){
+						//15d100
+						grist = giclopsGrist(grist);
+						//4d100
+						boon = giclopsBoon(boon);
+						health = giclopsHealth(health);
+					}
+					build = grist * 0.25;
+					t1 = grist * 0.20;
+					t2 = grist * 0.15;
+					t3 = grist * 0.15;
+					t4 = grist * 0.1;
+					t5 = grist * 0.05;
+					message.reply('```For killing ' + x + ' giclopes, you have obtained:\nBoon = ' + (boon * 16) + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
+						'\nT5 = ' + t5.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
+				}
+				else{
+					overload(message);
+				}
 			break;
 			case 'titachnid':
-						for(var i = 0; i < x; i++){
-							//25d100
-							grist = titachnidGrist(grist);
-							//10d100
-							boon = titachnidBoon(boon);
-							health = titachnidHealth(health);
-						}
-						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.2)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.15)
-						t5 = t5 + (grist * 0.15)
-						t6 = t6 + (grist * 0.15)
-						grist = 0
+				var x = message.substring(11)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
+				if(x < 100){
+					for(var i = 0; i < x; i++){
+						//25d100
+						grist = titachnidGrist(grist);
+						//10d100
+						boon = titachnidBoon(boon);
+						health = titachnidHealth(health);
+					}
+					build = grist * 0.2;
+					t1 = grist * 0.2;
+					t2 = grist * 0.15;
+					t3 = grist * 0.15;
+					t4 = grist * 0.15;
+					t5 = grist * 0.15;
+					t6 = grist * 0.15;
+					message.reply('```For killing ' + x + ' titachnids, you have obtained:\nBoon = ' + (boon * 32) + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
+						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
+				}
+				else{
+					overload(message);
+				}
 			break;
 			case 'archeron':
 				var x = message.substring(10)
