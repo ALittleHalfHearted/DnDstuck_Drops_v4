@@ -28,7 +28,7 @@ client.on('message', message => {
 		var imps = 0;
 		var ogres = 0;
 		var basilisks = 0;
-		var lichs = 0;
+		var liches = 0;
 		var giclopes = 0;
 		var titachnids = 0;
 		var archerons = 0;
@@ -54,8 +54,8 @@ client.on('message', message => {
 					case 'multi':
 						message.reply('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
 						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
-						'= titachnid\nt7 = archeron\ntx = rook/D.A.```\n\n**Format:** `!multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
-						'necessary)`\n\n**examples:**\n`!multi t3 54 tx 3` gets drops from 54 basilisks and 3 rooks\n`!multi t6 20 t2 8` gets drops ' +
+						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `!multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
+						'necessary)`\n\n**examples:**\n`!multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`!multi t6 20 t2 8` gets drops ' +
 						'from 20 titachnids and 8 ogres.');
 					break;
 					//!custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
@@ -112,9 +112,9 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'multi':
-				mod = getMod(mod, message, imps, ogres, basilisks, lichs, giclopes, titachnids, archerons, rooks)				
+				mod = getMod(mod, message, imps, ogres, basilisks, liches, giclopes, titachnids, archerons, rooks)				
 				//don't run if there's no input
-				if(message.content.indexOf('tx') == -1 && message.content.indexOf('t7') == -1 && message.content.indexOf('t6') == -1 && message.content.indexOf('t5') == -1 &&
+				if(message.content.indexOf('t8') == -1 && message.content.indexOf('t7') == -1 && message.content.indexOf('t6') == -1 && message.content.indexOf('t5') == -1 &&
 				message.content.indexOf('t4') == -1 && message.content.indexOf('t3') == -1 && message.content.indexOf('t2') == -1 && message.content.indexOf('t1') == -1){
 					message.reply('why don\'t you have input ~~you little shit~~');
 				}
@@ -122,9 +122,9 @@ client.on('message', message => {
 					//imp drops
 					if(imps > 0){
 						for(var i = 0; i < imps; i++){
-							grist = grist + impGrist(grist);
-							boon = boon + impBoon(boon);
-							health = health + impHealth(health);
+							grist = impGrist(grist);
+							boon = impBoon(boon);
+							health = impHealth(health);
 						}
 						build = build + (grist * 0.8);
 						t1 = t1 + (grist * 0.2);
@@ -137,10 +137,7 @@ client.on('message', message => {
 						for(var i = 0; i < ogres; i++){
 							grist = ogreGrist(grist);
 							boon = ogreBoon(boon);
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 4) + 1;
-							}
-							health = health + 1
+							health = ogreHealth(health);
 						}
 						build = build + (grist * 0.6)
 						t1 = t1 + (grist * 0.3)
@@ -152,15 +149,10 @@ client.on('message', message => {
 					if(basilisks > 0){
 						for(var i = 0; i < basilisks; i++){
 							//5d100
-							for(var z = 0; z < 5; z++){
-								grist = grist + Math.floor(Math.random() * 100) + 1;
-							}
+							grist = basiliskGrist(grist);
 							//1d100
-							boon = (boon + Math.floor(Math.random() * 100) + 1);
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 6) + 1;
-							}
-							health = health + 1
+							boon = basiliskBoon(boon);
+							health = basiliskHealth(health);
 						}
 						build = build + (grist * 0.4); 
 						t1 = t1 + (grist * 0.3)
@@ -170,19 +162,13 @@ client.on('message', message => {
 					}
 				
 					//lich drops
-					if(lichs > 0){
-						for(var i = 0; i < lichs; i++){
+					if(liches > 0){
+						for(var i = 0; i < liches; i++){
 							//10d100
-							for(var z = 0; z < 10; z++){
-								grist = grist + Math.floor(Math.random() * 100) + 1;
-							}
+							grist = lichGrist(grist);
 							//2d100
-							for(var y = 0; y < 2; y++){
-								boon = boon + Math.floor(Math.random() * 100) + 1;
-							}
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 9) + 1;
-							}
+							boon = lichBoon(boon);
+							health = lichHealth(health);
 						}
 						build = build + (grist * 0.3)
 						t1 = t1 + (grist * 0.2)
@@ -196,16 +182,10 @@ client.on('message', message => {
 					if(giclopes > 0){
 						for(var i = 0; i < giclopes; i++){
 							//15d100
-							for(var z = 0; z < 15; z++){
-								grist = grist + Math.floor(Math.random() * 100) + 1;
-							}
+							grist = giclopsGrist(grist);
 							//4d100
-							for(var y = 0; y < 4; y++){
-								boon = boon + Math.floor(Math.random() * 100) + 1;
-							}
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 11) + 1;
-							}
+							boon = giclopsBoon(boon);
+							health = giclopsHealth(health);
 						}
 						build = build + (grist * 0.25)
 						t1 = t1 + (grist * 0.20)
@@ -220,17 +200,10 @@ client.on('message', message => {
 					if(titachnids > 0){
 						for(var i = 0; i < titachnids; i++){
 							//25d100
-							for(var z = 0; z < 25; z++){
-								grist = grist + Math.floor(Math.random() * 100) + 1;
-							}
+							grist = titachnidGrist(grist);
 							//10d100
-							for(var y = 0; y < 10; y++){
-								boon = boon + Math.floor(Math.random() * 100) + 1;
-							}
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 13) + 1;
-							}
-							health = health + 1
+							boon = titachnidBoon(boon);
+							health = titachnidHealth(health);
 						}
 						build = build + (grist * 0.2)
 						t1 = t1 + (grist * 0.2)
@@ -246,10 +219,10 @@ client.on('message', message => {
 					if(archerons > 0){
 						for(var i = 0; i < archerons; i++){
 							//40d100
-							grist = grist + archeronGrist(boon);
+							grist = archeronGrist(boon);
 							//20d100
-							boon = boon + archeronBoon(boon);
-							health = health + archeronHealth(health);
+							boon = archeronBoon(boon);
+							health = archeronHealth(health);
 						}
 						build = build + (grist * 0.2)
 						t1 = t1 + (grist * 0.15)
@@ -311,52 +284,87 @@ function ogreGrist(grist){
 	}
 	return grist;
 }
-
 function ogreBoon(boon){
 	return boon = boon + Math.floor(Math.random() * 50) + 1;
 }
 function ogreHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 4) + 1;
+	}
+	return health = health + 1;
 }
 
 function basiliskGrist(grist){
-	
+	for(var z = 0; z < 5; z++){
+		grist = grist + Math.floor(Math.random() * 100) + 1;
+	}
+	return grist;
 }
 function basiliskBoon(boon){
-	
+	return boon = boon + Math.floor(Math.random() * 100) + 1;
 }
 function basiliskHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 6) + 1;
+	}
+	return health = health + 1;
 }
 
 function lichGrist(grist){
-	
+	for(var z = 0; z < 10; z++){
+		grist = grist + Math.floor(Math.random() * 100) + 1;
+	}
+	return grist;
 }
 function lichBoon(boon){
-	
+	for(var y = 0; y < 2; y++){
+		boon = boon + Math.floor(Math.random() * 100) + 1;
+	}
+	return boon;
 }
 function lichHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 9) + 1;
+	}
+	return health;
 }
 
 function giclopsGrist(grist){
-	
+	for(var z = 0; z < 15; z++){
+		grist = grist + Math.floor(Math.random() * 100) + 1;
+	}
+	return grist;
 }
 function giclopsBoon(boon){
-	
+	for(var y = 0; y < 4; y++){
+		boon = boon + Math.floor(Math.random() * 100) + 1;
+	}
+	return boon;
 }
 function giclopsHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 11) + 1;
+	}
+	return health;
 }
 
 function titachnidGrist(grist){
-	
+	for(var z = 0; z < 25; z++){
+		grist = grist + Math.floor(Math.random() * 100) + 1;
+	}
+	return grist;
 }
 function titachnidBoon(boon){
-	
+	for(var y = 0; y < 10; y++){
+		boon = boon + Math.floor(Math.random() * 100) + 1;
+	}
+	return boon;
 }
 function titachnidHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 13) + 1;
+	}
+	return health = health + 1;
 }
 
 function archeronGrist(grist){
@@ -391,49 +399,49 @@ function rookHealth(health){
 	return health;
 }
 
-function getMod(mod, message, imps, ogres, basilisks, lichs, giclopes, titachnids, archerons, rooks){
+function getMod(mod, message, imps, ogres, basilisks, liches, giclopes, titachnids, archerons, rooks){
 	var highest = 0
 	if(message.content.indexOf('t1') != -1){
-		imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4)
-		highest = 1
-		mod = 1
+		imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4);
+		highest = 1;
+		mod = 1;
 	}
 	if(message.content.indexOf('t2') != -1){
-		ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4)
-		highest = 2
-		mod = 2
+		ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4);
+		highest = 2;
+		mod = 2;
 	}
 	if(message.content.indexOf('t3') != -1){
-		basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4)
-		highest = 3
-		mod = 4
+		basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4);
+		highest = 3;
+		mod = 4;
 	}
 	if(message.content.indexOf('t4') != -1){
-		lichs = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4)
-		highest = 4
-		mod = 8
+		liches = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4);
+		highest = 4;
+		mod = 8;
 	}
 	if(message.content.indexOf('t5') != -1){
-		giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4)
-		highest = 5
-		mod = 16
+		giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4);
+		highest = 5;
+		mod = 16;
 	}
 	if(message.content.indexOf('t6') != -1){
-		titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4)
-		highest = 6
-		mod = 32
+		titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4);
+		highest = 6;
+		mod = 32;
 	}
 	if(message.content.indexOf('t7') != -1){
-		archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4)
-		highest = 7
-		mod = 64
+		archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4);
+		highest = 7;
+		mod = 64;
 	}
 	if(message.content.indexOf('t8') != -1){
-		rooks = message.content.substring(message.content.indexOf('tx') + 2,message.content.indexOf('tx') + 4)
-		highest = 8
-		mod = 128
+		rooks = message.content.substring(message.content.indexOf('t8') + 2,message.content.indexOf('t8') + 4);
+		highest = 8;
+		mod = 128;
 	}
-	return mod
+	return mod;
 }
 
 // THIS  MUST  BE  THIS  WAY
