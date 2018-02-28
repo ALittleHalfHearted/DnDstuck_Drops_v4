@@ -63,8 +63,8 @@ client.on('message', message => {
 					case 'custom':
 						message.reply('**```Use this command to get drops from any number of any enemy that doesn\'t have a command. ' +
 							      'Automatically divides grist and applies multipliers according to the tier.```**\n\n**Format:** `!custom [# ' +
-							      'killed] t[Tier (1-7 (WIP: 8/UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
-							      'value]`\n\n**examples:**\n`!custom 14 2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
+							      'killed] t[Tier (1-7 (UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
+							      'value]`\n\n**examples:**\n`!custom 14 t2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
 							      'and breaks down as if it were an ogre.');
 					break;
 					case 'death':
