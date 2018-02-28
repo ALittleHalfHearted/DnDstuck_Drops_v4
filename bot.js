@@ -24,6 +24,7 @@ client.on('message', message => {
 		var t6 = 0;
 		var t7 = 0;
 		var t8 = 0;
+		var t9 = 0;
 		var boon = 0;
 		var imps = 0;
 		var ogres = 0;
@@ -467,6 +468,111 @@ client.on('message', message => {
 							'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
 				}
 			break;
+			case 'custom':
+				//!custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
+				//!custom 20 9 100d100 100d100
+				var num = message.content.substring(8,10)
+				var tier = message.content.substring(message.indexOf('t',9) + 1,message.indexOf('t',9) + 2)
+				var boonDieVal = message.content.substring(message.indexOf('d') + 1, message.indexOf(' ',message.indexOf('d')))
+				var boonDieNum = message.content.substring(13,message.indexOf('d'))
+				var gristDieVal = message.content.substring(message.lastIndexOf('d') + 1)
+				var gristDieNum = message.content.substring(message.lastIndexOf(' ') + 1,message.lastIndexOf('d'))
+				
+				if(num > 40 || tier > 9 || boonDieVal > 100 || boonDieNum > 1000 || gristDieVal > 100 || gristDieNum > 1000){
+					message.reply('You need to keep this within reason... The most I will work with is:\n`20 t9 1000d100 1000d100`')
+				}
+				else if(num == 0 || tier == 0 || boonDieVal == 0 || boonDieNum == 0 || gristDieVal == 0 || gristDieNum == 0){
+					message.reply('Please for the love of god fill everything in.')
+				}
+				else if(tier > 8){
+					message.reply('Your tier is undefined. Please wait until my creator has figured this out.')
+				}
+				else{
+					for(var i = 0; i < num; i++){
+						for(var z = 0; z < gristDieNum; z++){
+							grist = grist + Math.floor(Math.random() * gristDieVal) + 1;
+						}
+						for(var y = 0; y < boonDieNum; y++){
+							boon = boon + Math.floor(Math.random() * boonDieNum) + 1;
+						}
+					}
+					
+					//20% T0 10% t1 10% T2 10% T3 10% T4 10% T5 10% T6 10% T7 10% T8 
+					if(tier == 8){
+						var build = (grist * 128) * 0.2
+						var t1 = (grist * 128) * 0.1
+						var t2 = (grist * 128) * 0.1
+						var t3 = (grist * 128) * 0.1
+						var t4 = (grist * 128) * 0.1
+						var t5 = (grist * 128) * 0.1
+						var t6 = (grist * 128) * 0.1
+						var t7 = (grist * 128) * 0.1
+						var t8 = (grist * 128) * 0.1
+					}
+					if(tier == 7){
+						var build = (grist * 64) * 0.2
+						var t1 = (grist * 64) * 0.15
+						var t2 = (grist * 64) * 0.15
+						var t3 = (grist * 64) * 0.1
+						var t4 = (grist * 64) * 0.1
+						var t5 = (grist * 64) * 0.1
+						var t6 = (grist * 64) * 0.1
+						var t7 = (grist * 64) * 0.1
+						var boon = boon * 64
+					}
+					if(tier == 6){
+						var build = (grist * 32) * 0.2
+						var t1 = (grist * 32) * 0.2
+						var t2 = (grist * 32) * 0.15
+						var t3 = (grist * 32) * 0.15
+						var t4 = (grist * 32) * 0.15
+						var t5 = (grist * 32) * 0.15
+						var t6 = (grist * 32) * 0.15
+						boon = boon * 32
+					}
+					if(tier == 5){
+						var build = (grist * 16) * 0.25
+						var t1 = (grist * 16) * 0.20
+						var t2 = (grist * 16) * 0.15
+						var t3 = (grist * 16) * 0.15
+						var t4 = (grist * 16) * 0.1
+						var t5 = (grist * 16) * 0.05
+						boon = boon * 16
+					}
+					if(tier == 4){
+						var build = (grist * 8) * 0.3
+						var t1 = (grist * 8) * 0.2
+						var t2 = (grist * 8) * 0.2
+						var t3 = (grist * 8) * 0.2
+						var t4 = (grist * 8) * 0.1
+						boon = boon * 8
+					}
+					if(tier == 3){
+						var build = (grist * 4) * 0.4; 
+						var t1 = (grist * 4) * 0.3
+						var t2 = (grist * 4) * 0.2
+						var t3 = (grist * 4) * 0.1
+						boon = boon * 4
+					}
+					if(tier == 2){
+						var build = (grist * 2) * 0.6
+						var t1 = (grist * 2) * 0.3
+						var t2 = (grist * 2) * 0.1
+						boon = boon * 2
+					}
+					if(tier == 1){
+						var build = grist * 0.8
+						var t1 = grist * 0.2
+					}
+					
+					message.reply('```for killing ' + num + ' enemies of tier ' + tier + ', dropping a total of' + boonDieNum + 'd' + boonDieVal + ' ' +
+						'boon and ' + gristDieNum + 'd' + gristDieVal + ' grist per enemy, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) + '\nT5 = ' +
+						t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nT8 = ' + t8.toFixed(0) + '\nT9 = ' + t9.toFixed(0) + '```');
+				}
+			break;
+			default:
+				message.reply('Use an actual command ~~ya gosh darned cunt~~');
 		}
 	}
 })
