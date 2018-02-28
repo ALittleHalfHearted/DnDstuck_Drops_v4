@@ -10,7 +10,6 @@ client.on('message', message => {
 		message.reply('pong');
 	}
 	if (message.content.substring(0,1) === '!') {
-		message.reply('ping');
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
 		args = args.splice(1);
@@ -123,9 +122,9 @@ client.on('message', message => {
 					//imp drops
 					if(imps > 0){
 						for(var i = 0; i < imps; i++){
-							grist = impGrist(grist);
-							boon = impBoon(boon);
-							health = impHealth(health);
+							grist = grist + impGrist(grist);
+							boon = boon + impBoon(boon);
+							health = health + impHealth(health);
 						}
 						build = build + (grist * 0.8);
 						t1 = t1 + (grist * 0.2);
@@ -247,16 +246,10 @@ client.on('message', message => {
 					if(archerons > 0){
 						for(var i = 0; i < archerons; i++){
 							//40d100
-							for(var z = 0; z < 40; z++){
-								grist = grist + Math.floor(Math.random() * 100) + 1;
-							}
+							grist = grist + archeronGrist(boon);
 							//20d100
-							for(var y = 0; y < 20; y++){
-								boon = boon + Math.floor(Math.random() * 100) + 1;
-							}
-							for(var c = 0; c < 2; c++){
-								health = health + Math.floor(Math.random() * 16) + 1;
-							}
+							boon = boon + archeronBoon(boon);
+							health = health + archeronHealth(health);
 						}
 						build = build + (grist * 0.2)
 						t1 = t1 + (grist * 0.15)
@@ -266,6 +259,7 @@ client.on('message', message => {
 						t5 = t5 + (grist * 0.1)
 						t6 = t6 + (grist * 0.1)
 						t7 = t7 + (grist * 0.1)
+						grist = 0
 					}
 					
 					//rook drops
@@ -278,15 +272,15 @@ client.on('message', message => {
 					}
 				
 					//multiplier!!
-					var boon = boon * mod
-					var build = build * mod
-					var t1 = t1 * mod
-					var t2 = t2 * mod
-					var t3 = t3 * mod
-					var t4 = t4 * mod
-					var t5 = t5 * mod
-					var t6 = t6 * mod
-					var t7 = t7 * mod
+					boon = boon * mod
+					build = build * mod
+					t1 = t1 * mod
+					t2 = t2 * mod
+					t3 = t3 * mod
+					t4 = t4 * mod
+					t5 = t5 * mod
+					t6 = t6 * mod
+					t7 = t7 * mod
 				
 					//display
 					message.reply('```for killing whatever you killed, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
@@ -299,10 +293,10 @@ client.on('message', message => {
 })
 
 function impGrist(grist){
-	return grist + Math.floor(Math.random() * 100) + 1;
+	return grist = grist + Math.floor(Math.random() * 100) + 1;
 }
 function impBoon(boon){
-	return boon + Math.floor(Math.random() * 10) + 1;
+	return boon = boon + Math.floor(Math.random() * 10) + 1;
 }
 function impHealth(health){
 	for(var c = 0; c < 2; c++){
@@ -319,7 +313,7 @@ function ogreGrist(grist){
 }
 
 function ogreBoon(boon){
-	return boon + Math.floor(Math.random() * 50) + 1;
+	return boon = boon + Math.floor(Math.random() * 50) + 1;
 }
 function ogreHealth(health){
 	
@@ -366,13 +360,22 @@ function titachnidHealth(health){
 }
 
 function archeronGrist(grist){
-	
+	for(var z = 0; z < 40; z++){
+		grist = grist + Math.floor(Math.random() * 100) + 1;
+	}
+	return grist;
 }
 function archeronBoon(boon){
-	
+	for(var y = 0; y < 20; y++){
+		boon = boon + Math.floor(Math.random() * 100) + 1;
+	}
+	return boon;
 }
 function archeronHealth(health){
-	
+	for(var c = 0; c < 2; c++){
+		health = health + Math.floor(Math.random() * 16) + 1;
+	}
+	return health;
 }
 
 function rookBoon(boon){
