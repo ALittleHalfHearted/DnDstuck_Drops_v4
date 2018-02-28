@@ -472,11 +472,11 @@ client.on('message', message => {
 				//!custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
 				//!custom 20 9 100d100 100d100
 				var num = message.content.substring(8,10)
-				var tier = message.content.substring(message.indexOf('t',9) + 1,message.indexOf('t',9) + 2)
-				var boonDieVal = message.content.substring(message.indexOf('d') + 1, message.indexOf(' ',message.indexOf('d')))
-				var boonDieNum = message.content.substring(13,message.indexOf('d'))
-				var gristDieVal = message.content.substring(message.lastIndexOf('d') + 1)
-				var gristDieNum = message.content.substring(message.lastIndexOf(' ') + 1,message.lastIndexOf('d'))
+				var tier = message.content.substring(message.content.indexOf('t',9) + 1,message.content.indexOf('t',9) + 2)
+				var boonDieVal = message.content.substring(message.content.indexOf('d') + 1, message.content.indexOf(' ',message.content.indexOf('d')))
+				var boonDieNum = message.content.substring(13,message.content.indexOf('d'))
+				var gristDieVal = message.content.substring(message.content.lastIndexOf('d') + 1)
+				var gristDieNum = message.content.substring(message.content.lastIndexOf(' ') + 1,message.content.lastIndexOf('d'))
 				
 				if(num > 40 || tier > 9 || boonDieVal > 100 || boonDieNum > 1000 || gristDieVal > 100 || gristDieNum > 1000){
 					message.reply('You need to keep this within reason... The most I will work with is:\n`20 t9 1000d100 1000d100`')
