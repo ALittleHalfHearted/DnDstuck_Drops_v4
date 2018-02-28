@@ -217,17 +217,28 @@ client.on('message', message => {
 					t7 = grist * 0.1
 					message.reply('```For killing ' + x + ' archerons, you have obtained:\nBoon = ' + (boon * 64) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
-						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```');
+						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
 				else{
-					message.reply('Try and slow down a bit ~~ya cheeky dickwaffle~~, my code can only handle so much!');
+					overload(message);
+				}
 			break;
 			//rook drops
 			case 'rooks':
-				for(var i = 0; i < rooks; i++){
-					//50d100
-					boon = rookBoon(boon);
-					health = rookHealth(health);
+				var x = message.substring(6)
+				if(x == 0 || isNaN(x) == true) {
+					x = 1
+				}
+				if(x < 100){
+					for(var i = 0; i < rooks; i++){
+						//50d100
+						boon = rookBoon(boon);
+						health = rookHealth(health);
+					}
+					message.reply('```For killing ' + x + ' rooks and/or D.A.s, you have obtained:\nBoon = ' + (boon * 128) + '\nHealth Gel = ' + health + '```');
+				}
+				else{
+					overload(message);
 				}
 			break;
 			case 'multi':
@@ -555,6 +566,10 @@ function rookHealth(health){
 		health = health + Math.floor(Math.random() * 18) + 1;
 	}
 	return health;
+}
+
+function overload(message){
+	message.reply('Try and slow down a bit ~~ya cheeky dickwaffle~~, my code can only handle so much!');
 }
 
 // THIS  MUST  BE  THIS  WAY
