@@ -113,7 +113,7 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'multi':
-				mod = getMod(mod)				
+				mod = getMod(mod, message, imps, ogres, basilisks, lichs, giclopes, titachnids, archerons, rooks)				
 				//don't run if there's no input
 				if(message.indexOf('tx') == -1 && message.indexOf('t7') == -1 && message.indexOf('t6') == -1 && message.indexOf('t5') == -1 &&
 				message.indexOf('t4') == -1 && message.indexOf('t3') == -1 && message.indexOf('t2') == -1 && message.indexOf('t1') == -1){
