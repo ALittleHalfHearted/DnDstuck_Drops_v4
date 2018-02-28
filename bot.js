@@ -65,7 +65,7 @@ client.on('message', message => {
 							      'Automatically divides grist and applies multipliers according to the tier.```**\n\n**Format:** `!custom [# ' +
 							      'killed] t[Tier (1-7 (UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
 							      'value]`\n\n**examples:**\n`!custom 14 t2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
-							      'and breaks down as if it were an ogre.');
+							      'and breaks down as if it were an ogre. You\'ll have to do health drops yourself.');
 					break;
 					case 'death':
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
