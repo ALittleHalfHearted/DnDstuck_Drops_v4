@@ -112,7 +112,7 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'ogre':
-				for(var i = 0; i < ogres; i++){
+				for(var i = 0; i < x; i++){
 					grist = ogreGrist(grist);
 					boon = ogreBoon(boon);
 					health = ogreHealth(health);
@@ -121,11 +121,9 @@ client.on('message', message => {
 				t1 = t1 + (grist * 0.3)
 				t2 = t2 + (grist * 0.1)
 				grist = 0
-					}
-				
-					//basilisk drops
-					if(basilisks > 0){
-						for(var i = 0; i < basilisks; i++){
+			break;
+			case 'basilisk':
+						for(var i = 0; i < x; i++){
 							//5d100
 							grist = basiliskGrist(grist);
 							//1d100
@@ -137,11 +135,9 @@ client.on('message', message => {
 						t2 = t2 + (grist * 0.2)
 						t3 = t3 + (grist * 0.1)
 						grist = 0
-					}
-				
-					//lich drops
-					if(liches > 0){
-						for(var i = 0; i < liches; i++){
+			break;
+			case 'lich':
+						for(var i = 0; i < x; i++){
 							//10d100
 							grist = lichGrist(grist);
 							//2d100
@@ -154,11 +150,9 @@ client.on('message', message => {
 						t3 = t3 + (grist * 0.2)
 						t4 = t4 + (grist * 0.1)
 						grist = 0
-					}
-				
-					//giclops drops
-					if(giclopes > 0){
-						for(var i = 0; i < giclopes; i++){
+			break;
+			case 'giclops':
+						for(var i = 0; i < x; i++){
 							//15d100
 							grist = giclopsGrist(grist);
 							//4d100
@@ -172,11 +166,9 @@ client.on('message', message => {
 						t4 = t4 + (grist * 0.1)
 						t5 = t5 + (grist * 0.05)
 						grist = 0
-					}
-					
-					//titachnid drops
-					if(titachnids > 0){
-						for(var i = 0; i < titachnids; i++){
+			break;
+			case 'titachnid':
+						for(var i = 0; i < x; i++){
 							//25d100
 							grist = titachnidGrist(grist);
 							//10d100
@@ -191,16 +183,14 @@ client.on('message', message => {
 						t5 = t5 + (grist * 0.15)
 						t6 = t6 + (grist * 0.15)
 						grist = 0
-					}
-					
-					//archeron drops
+			break;
 			case 'archeron':
 				var x = message.substring(10)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
 				if(x < 100){
-					for(var i = 0; i < archerons; i++){
+					for(var i = 0; i < x; i++){
 						//40d100
 						grist = archeronGrist(boon);
 						//20d100
@@ -223,7 +213,6 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			//rook drops
 			case 'rooks':
 				var x = message.substring(6)
 				if(x == 0 || isNaN(x) == true) {
