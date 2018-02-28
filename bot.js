@@ -112,10 +112,49 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'multi':
-				mod = getMod(mod, message, imps, ogres, basilisks, liches, giclopes, titachnids, archerons, rooks)				
+				var highest = 0
+				if(message.content.indexOf('t1') != -1){
+					imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4);
+					highest = 1;
+					mod = 1;
+				}
+				if(message.content.indexOf('t2') != -1){
+					ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4);
+					highest = 2;
+					mod = 2;
+				}
+				if(message.content.indexOf('t3') != -1){
+					basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4);
+					highest = 3;
+					mod = 4;
+				}
+				if(message.content.indexOf('t4') != -1){
+					liches = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4);
+					highest = 4;
+					mod = 8;
+				}
+				if(message.content.indexOf('t5') != -1){
+					giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4);
+					highest = 5;
+					mod = 16;
+				}
+				if(message.content.indexOf('t6') != -1){
+					titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4);
+					highest = 6;
+					mod = 32;
+				}
+				if(message.content.indexOf('t7') != -1){
+					archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4);
+					highest = 7;
+					mod = 64;
+				}
+				if(message.content.indexOf('t8') != -1){
+					rooks = message.content.substring(message.content.indexOf('t8') + 2,message.content.indexOf('t8') + 4);
+					highest = 8;
+					mod = 128;
+				}				
 				//don't run if there's no input
-				if(message.content.indexOf('t8') == -1 && message.content.indexOf('t7') == -1 && message.content.indexOf('t6') == -1 && message.content.indexOf('t5') == -1 &&
-				message.content.indexOf('t4') == -1 && message.content.indexOf('t3') == -1 && message.content.indexOf('t2') == -1 && message.content.indexOf('t1') == -1){
+				if(highest == 0){
 					message.reply('why don\'t you have input ~~you little shit~~');
 				}
 				else{
@@ -397,51 +436,6 @@ function rookHealth(health){
 		health = health + Math.floor(Math.random() * 18) + 1;
 	}
 	return health;
-}
-
-function getMod(mod, message, imps, ogres, basilisks, liches, giclopes, titachnids, archerons, rooks){
-	var highest = 0
-	if(message.content.indexOf('t1') != -1){
-		imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4);
-		highest = 1;
-		mod = 1;
-	}
-	if(message.content.indexOf('t2') != -1){
-		ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4);
-		highest = 2;
-		mod = 2;
-	}
-	if(message.content.indexOf('t3') != -1){
-		basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4);
-		highest = 3;
-		mod = 4;
-	}
-	if(message.content.indexOf('t4') != -1){
-		liches = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4);
-		highest = 4;
-		mod = 8;
-	}
-	if(message.content.indexOf('t5') != -1){
-		giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4);
-		highest = 5;
-		mod = 16;
-	}
-	if(message.content.indexOf('t6') != -1){
-		titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4);
-		highest = 6;
-		mod = 32;
-	}
-	if(message.content.indexOf('t7') != -1){
-		archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4);
-		highest = 7;
-		mod = 64;
-	}
-	if(message.content.indexOf('t8') != -1){
-		rooks = message.content.substring(message.content.indexOf('t8') + 2,message.content.indexOf('t8') + 4);
-		highest = 8;
-		mod = 128;
-	}
-	return mod;
 }
 
 // THIS  MUST  BE  THIS  WAY
