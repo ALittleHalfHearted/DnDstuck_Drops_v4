@@ -112,7 +112,7 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'ogre':
-				var x = message.substring(6)
+				var x = message.content.substring(6)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -128,7 +128,7 @@ client.on('message', message => {
 					'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'basilisk':
-				var x = message.substring(10)
+				var x = message.content.substring(10)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -152,7 +152,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'lich':
-				var x = message.substring(6)
+				var x = message.content.substring(6)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -178,7 +178,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'giclops':
-				var x = message.substring(9)
+				var x = message.content.substring(9)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -205,7 +205,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'titachnid':
-				var x = message.substring(11)
+				var x = message.content.substring(11)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -233,7 +233,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'archeron':
-				var x = message.substring(10)
+				var x = message.content.substring(10)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
@@ -262,7 +262,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'rooks':
-				var x = message.substring(6)
+				var x = message.content.substring(6)
 				if(x == 0 || isNaN(x) == true) {
 					x = 1
 				}
