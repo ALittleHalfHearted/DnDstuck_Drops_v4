@@ -116,7 +116,7 @@ client.on('message', message => {
 					mod = message.content.substring(message.content.indexOf('+'))
 					check = check + mod;
 				}
-				message.reply('Your check with modifier of ' + message.content.substring(6) + ' resulted in: ' + check);
+				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
