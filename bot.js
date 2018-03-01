@@ -71,7 +71,7 @@ client.on('message', message => {
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
 					case 'check':
-						message.reply('Makes a skill check (1d20) and explodes as necessary. Will add mod detection and possibly mod dice at later date.');
+						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier. Possibly mod dice at later date. Until then, dice will simply break it');
 					break;
 					//normal
 					default:
@@ -107,6 +107,12 @@ client.on('message', message => {
 				}
 				else if(check == 19 || check == 20){
 					check = check + Math.floor(Math.random() * 20) + 1;
+				}
+				if(message.content.indexOf('-') != -1){
+					check = check - message.content.substring(message.content.indexOf('-') + 1);
+				}
+				else if(message.content.indexOf('+') != -1){
+					check = check + message.content.substring(message.content.indexOf('+') + 1);
 				}
 				message.reply('Your check result is: ' + check);
 			break;
