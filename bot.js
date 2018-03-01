@@ -109,11 +109,11 @@ client.on('message', message => {
 					check = check + Math.floor(Math.random() * 20) + 1;
 				}
 				if(message.content.indexOf('-') != -1){
-					mod = message.content.substring(message.content.indexOf('-'));
-					check = check + mod;
+					mod = message.content.substring(message.content.indexOf('-')+1);
+					check = check - mod;
 				}
 				else if(message.content.indexOf('+') != -1){
-					mod = message.content.substring(message.content.indexOf('+'))
+					mod = message.content.substring(message.content.indexOf('+')+1)
 					check = check + mod;
 				}
 				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check);
