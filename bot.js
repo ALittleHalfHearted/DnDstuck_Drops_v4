@@ -70,6 +70,8 @@ client.on('message', message => {
 					case 'death':
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
+					case 'check':
+						message.reply('Makes a skill check (1d20) and explodes as necessary. Will add mod detection and possibly mod dice at later date.');
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
@@ -96,6 +98,16 @@ client.on('message', message => {
 					message.reply('We at the Committe for Living Peoples regret to inform you that you are no longer allowed to attend our meetings.' +
 						      'We hope your experiences in the dream bubbles will be compensation enough until your papers have been processed.')
 				}
+			break;
+			case 'check':
+				var check = Math.floor(Math.random() * 20) + 1;
+				if(check == 9 || check == 10){
+					check = check + Math.floor(Math.random() * 10) + 1;
+				}
+				else if(check == 19 || check == 20){
+					check = check + Math.floor(Math.random() * 20) + 1;
+				}
+				message.reply('Your check result is:' + check);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
