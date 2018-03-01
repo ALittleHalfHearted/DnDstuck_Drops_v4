@@ -102,21 +102,28 @@ client.on('message', message => {
 			break;
 			case 'check':
 				var check = Math.floor(Math.random() * 20) + 1;
+				var math = check.toString();
 				if(check == 9 || check == 10){
-					check = check + Math.floor(Math.random() * 10) + 1;
+					var explode = Math.floor(Math.random() * 10) + 1;
+					check = check + explode;
+					math = math + "+" + explode;
 				}
 				else if(check == 19 || check == 20){
-					check = check + Math.floor(Math.random() * 20) + 1;
+					var explode = Math.floor(Math.random() * 20) + 1;
+					check = check + explode;
+					math = math + "+" + explode;
 				}
 				if(message.content.indexOf('-') != -1){
 					mod = message.content.substring(message.content.indexOf('-')+1);
 					check = check - parseInt(mod);
+					math = math + "-" + mod;
 				}
 				else if(message.content.indexOf('+') != -1){
 					mod = message.content.substring(message.content.indexOf('+')+1)
 					check = check + parseInt(mod);
+					math = math + "+" + mod;
 				}
-				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check);
+				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check + '\nCheck math: ' + math);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
