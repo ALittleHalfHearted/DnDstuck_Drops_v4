@@ -71,7 +71,7 @@ client.on('message', message => {
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
 					case 'check':
-						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier. Possibly mod dice at later date. Until then, dice will simply break it');
+						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier.\n`%check (+/-)[mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it');
 					break;
 					//normal
 					default:
