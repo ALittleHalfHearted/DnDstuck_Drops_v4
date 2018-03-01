@@ -72,6 +72,7 @@ client.on('message', message => {
 					break;
 					case 'check':
 						message.reply('Makes a skill check (1d20) and explodes as necessary. Will add mod detection and possibly mod dice at later date.');
+					break;
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
@@ -107,7 +108,7 @@ client.on('message', message => {
 				else if(check == 19 || check == 20){
 					check = check + Math.floor(Math.random() * 20) + 1;
 				}
-				message.reply('Your check result is:' + check);
+				message.reply('Your check result is: ' + check);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
