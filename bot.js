@@ -73,11 +73,13 @@ client.on('message', message => {
 					case 'check':
 						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier.\n`%check (+/-)[mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it');
 					break;
+					case 'luck':
+						message.reply('Exploding luck roll. What else?')
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check (WIP)`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`');
 				}
 			break;
 			case 'death':
@@ -99,6 +101,13 @@ client.on('message', message => {
 					message.reply('We at the Committe for Living Peoples regret to inform you that you are no longer allowed to attend our meetings.' +
 						      'We hope your experiences in the dream bubbles will be compensation enough until your papers have been processed.')
 				}
+			break;
+			case 'luck':
+				var luck = Math.floor(Math.random() * 10) + 1;
+				if(luck == 9 || luck == 10){
+					luck = luck + Math.floor(Math.random() * 10) + 1;
+				}
+				message.reply('Your luck roll is: ' + luck);
 			break;
 			case 'check':
 				var check = Math.floor(Math.random() * 20) + 1;
