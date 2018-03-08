@@ -159,6 +159,7 @@ client.on('message', message => {
 					boon = ogreBoon(boon);
 					health = ogreHealth(health);
 				}
+				grist = grist * 2;
 				build = grist * 0.6;
 				t1 = grist * 0.3;
 				t2 = grist * 0.1;
@@ -178,6 +179,7 @@ client.on('message', message => {
 						boon = basiliskBoon(boon);
 						health = basiliskHealth(health);
 					}
+					grist = grist * 4;
 					build = grist * 0.4; 
 					t1 = grist * 0.3;
 					t2 = grist * 0.2;
@@ -202,6 +204,7 @@ client.on('message', message => {
 						boon = lichBoon(boon);
 						health = lichHealth(health);
 					}
+					grist = grist * 8;
 					build = grist * 0.3;
 					t1 = grist * 0.2;
 					t2 = grist * 0.2;
@@ -228,6 +231,7 @@ client.on('message', message => {
 						boon = giclopsBoon(boon);
 						health = giclopsHealth(health);
 					}
+					grist = grist * 16;
 					build = grist * 0.25;
 					t1 = grist * 0.20;
 					t2 = grist * 0.15;
@@ -255,6 +259,7 @@ client.on('message', message => {
 						boon = titachnidBoon(boon);
 						health = titachnidHealth(health);
 					}
+					grist = grist * 32;
 					build = grist * 0.2;
 					t1 = grist * 0.2;
 					t2 = grist * 0.15;
@@ -283,6 +288,7 @@ client.on('message', message => {
 						boon = archeronBoon(boon);
 						health = archeronHealth(health);
 					}
+					grist = grist * 64;
 					build = grist * 0.2
 					t1 = grist * 0.15
 					t2 = grist * 0.15
