@@ -6,6 +6,15 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
+client.user.setGame(game, streamingURL) {
+	if (!game) return this.setPresence({ game: null });
+	return this.setPresence({
+		game: {
+			name: game,
+			url: streamingURL,
+		},
+	});
+}
 
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
