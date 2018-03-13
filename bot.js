@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
 	console.log('I am ready!');
-	client.user.game('%drops for help');
+	client.user.setGame('%drops for help');
 });
 
 
