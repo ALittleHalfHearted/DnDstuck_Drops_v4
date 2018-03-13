@@ -6,7 +6,6 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
-client.user.setGame('%drops for help');
 
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
