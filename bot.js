@@ -170,6 +170,7 @@ client.on('message', message => {
       calculate =  calculate.replace(/=/g, "");
       if (isFinite(eval(calculate))) message.channel.send(eval(calculate));
     }
+				math = math + calculate.toString();
 				check = check + eval(calculate);
 				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check + '\nCheck math: ' + math);
 			break;
