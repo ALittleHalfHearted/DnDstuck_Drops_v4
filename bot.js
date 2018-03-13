@@ -6,6 +6,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+	message.content = message.content.toLowerCase()
 	if (message.content === 'ping') {
 		message.reply('pong');
 	}
@@ -74,7 +75,7 @@ client.on('message', message => {
 						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier.\n`%check (+/-)[mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it');
 					break;
 					case 'luck':
-						message.reply('Exploding luck roll. What else?')
+						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n```%luck [mod]```')
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
@@ -106,6 +107,22 @@ client.on('message', message => {
 				var luck = Math.floor(Math.random() * 10) + 1;
 				if(luck == 9 || luck == 10){
 					luck = luck + Math.floor(Math.random() * 10) + 1;
+				}
+				if(message.content.indexOf('adv') != -1){
+					adv(luck);
+				}
+				if(message.content.indexOf('bless') != -1){
+					for(var i = 0; i < 2; i++){
+						adv(luck);
+					}
+				}
+				if(message.content.indexOf('dis') != -1){
+					dis(luck);
+				}
+				if(message.content.indexOf('curse') != -1){
+					for(var i = 0; i < 2; i++){
+						dis(luck);
+					}
 				}
 				message.reply('Your luck roll is: ' + luck);
 			break;
@@ -619,6 +636,25 @@ client.on('message', message => {
 		}
 	}
 })
+
+function adv(luck){
+	var altLuck = Math.floor(Math.random() * 10) + 1;
+	if(altLuck == 9 || altLuck == 10){
+		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
+	}
+	if(altLuck > luck){
+		luck = altLuck;
+	}
+}
+function dis(luck){
+	var altLuck = Math.floor(Math.random() * 10) + 1;
+	if(altLuck == 9 || altLuck == 10){
+		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
+	}
+	if(altLuck < luck){
+		luck = altLuck;
+	}
+}
 
 function impGrist(grist){
 	return grist = grist + Math.floor(Math.random() * 100) + 1;
