@@ -75,7 +75,8 @@ client.on('message', message => {
 						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier.\n`%check (+/-)[mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it');
 					break;
 					case 'luck':
-						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n```%luck [mod]```')
+						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n```%luck [mod]```');
+					break;
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
