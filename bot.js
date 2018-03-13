@@ -74,7 +74,7 @@ client.on('message', message => {
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
 					case 'check':
-						message.reply('Makes a skill check (1d20) and explodes as necessary. Detects a single added or subtracted modifier.\n`%check (+/-)[mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it');
+						message.reply('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
 					break;
 					case 'luck':
 						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n```%luck [mod]```');
