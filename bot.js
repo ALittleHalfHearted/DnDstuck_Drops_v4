@@ -651,6 +651,7 @@ function luckAdv(luck){
 	if(altLuck == 9 || altLuck == 10){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
 	}
+	message.reply(altLuck);
 	if(altLuck > luck){
 		return altLuck;
 	}
@@ -663,6 +664,7 @@ function luckDis(luck){
 	if(altLuck == 9 || altLuck == 10){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
 	}
+	message.reply(altLuck);
 	if(altLuck < luck){
 		return altLuck;
 	}
