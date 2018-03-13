@@ -1,15 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-// Create a new webhook
-const hook = new Discord.WebhookClient('webhook id', 'webhook token');
-
-// Send a message using the webhook
-hook.send('I am now alive!');
 
 client.on('ready', () => {
 	console.log('I am ready!');
 });
+
+
+client.user.setGame('%drops for help')
 
 
 client.on('message', message => {
