@@ -650,7 +650,7 @@ function adv(luck){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
 	}
 	if(altLuck > luck){
-		luck = altLuck;
+		return luck = altLuck;
 	}
 }
 function dis(luck){
@@ -659,7 +659,7 @@ function dis(luck){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
 	}
 	if(altLuck < luck){
-		luck = altLuck;
+		return luck = altLuck;
 	}
 }
 
