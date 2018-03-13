@@ -112,22 +112,22 @@ client.on('message', message => {
 					luck = luck + Math.floor(Math.random() * 10) + 1;
 				}
 				else if(message.content.indexOf('adv') != -1){
-					luck = luckAdv(luck);
+					luck = luckAdv(luck,message);
 					message.reply('Your luck roll at advantage is: ' + luck);
 				}
 				else if(message.content.indexOf('bless') != -1){
 					for(var i = 0; i < 2; i++){
-						luck = luckAdv(luck);
+						luck = luckAdv(luck,message);
 					}
 					message.reply('Your luck roll at blessed advantage is: ' + luck);
 				}
 				else if(message.content.indexOf('dis') != -1){
-					luck = luckDis(luck);
+					luck = luckDis(luck,message);
 					message.reply('Your luck roll at disadvantage is: ' + luck);
 				}
 				else if(message.content.indexOf('curse') != -1){
 					for(var i = 0; i < 2; i++){
-						luck = luckDis(luck);
+						luck = luckDis(luck,message);
 					}
 					message.reply('Your luck roll at cursed disadvantage is: ' + luck);
 				}
@@ -646,7 +646,7 @@ client.on('message', message => {
 	}
 })
 
-function luckAdv(luck){
+function luckAdv(luck,message){
 	var altLuck = Math.floor(Math.random() * 10) + 1;
 	if(altLuck == 9 || altLuck == 10){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
@@ -659,7 +659,7 @@ function luckAdv(luck){
 		return luck;
 	}
 }
-function luckDis(luck){
+function luckDis(luck,message){
 	var altLuck = Math.floor(Math.random() * 10) + 1;
 	if(altLuck == 9 || altLuck == 10){
 		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
