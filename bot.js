@@ -172,7 +172,7 @@ client.on('message', message => {
 				}
 				math = math + calculate.toString();
 				check = check + eval(calculate);
-				message.reply('Your check with modifier of ' + mod + ' resulted in: ' + check + '\nCheck math: ' + math);
+				message.reply('Your check resulted in: ' + check + '\nCheck math: ' + math);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
