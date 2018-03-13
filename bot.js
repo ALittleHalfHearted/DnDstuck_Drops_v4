@@ -7,7 +7,7 @@ client.on('ready', () => {
 });
 
 
-client.user.setGame('%drops for help')
+bot.user.setPresence({ status: 'online', game: { name: '%drops for help' } });
 
 
 client.on('message', message => {
