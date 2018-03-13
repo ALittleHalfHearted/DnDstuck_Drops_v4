@@ -111,21 +111,25 @@ client.on('message', message => {
 				if(luck == 9 || luck == 10){
 					luck = luck + Math.floor(Math.random() * 10) + 1;
 				}
-				else if(message.content.indexOf('adv') != -1){
+				if(message.content.indexOf('adv') != -1){
+					message.reply(luck);
 					luck = luckAdv(luck,message);
 					message.reply('Your luck roll at advantage is: ' + luck);
 				}
 				else if(message.content.indexOf('bless') != -1){
+					message.reply(luck);
 					for(var i = 0; i < 2; i++){
 						luck = luckAdv(luck,message);
 					}
 					message.reply('Your luck roll at blessed advantage is: ' + luck);
 				}
 				else if(message.content.indexOf('dis') != -1){
+					message.reply(luck);
 					luck = luckDis(luck,message);
 					message.reply('Your luck roll at disadvantage is: ' + luck);
 				}
 				else if(message.content.indexOf('curse') != -1){
+					message.reply(luck);
 					for(var i = 0; i < 2; i++){
 						luck = luckDis(luck,message);
 					}
