@@ -7,6 +7,15 @@ client.on('ready', () => {
 	client.user.setPresence({ game: { name: '%drops for help' }, status: 'online' })
 		.then(console.log)
 		.catch(console.error);
+	if (data.game) {
+		var game = data.game;
+		game.type = game.url && typeof game.type === 'undefined' ? 1 : game.type || 0;
+		if (typeof game.type === 'string') {
+			game.type = Constants.ActivityTypes.indexOf(game.type.toUpperCase());
+		}
+	} else if (typeof data.game !== 'undefined') {
+		game = null;
+	}
 });
 
 
