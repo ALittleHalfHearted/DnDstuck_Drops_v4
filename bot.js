@@ -7,9 +7,10 @@ client.on('ready', () => {
 });
 
 
-client.error('ready', () => {
-	message.channel.send('error! rebooting...');
-})
+client.on('debug', console.log);
+
+client.on('error', m => console.log('debug', new Error(m).stack));
+client.on('reconnecting', m => console.log('reconnecting', m));
 
 
 client.on('message', message => {
