@@ -191,6 +191,7 @@ client.on('message', message => {
 				message.reply('Your check resulted in: ' + math + check);
 			break;
 			case 'hit':
+				var x = args.substring(1);
 				var check = Math.floor(Math.random() * 10) + 1;
 				var math = check.toString();
 				if(check == 9 || check == 10){
@@ -201,9 +202,8 @@ client.on('message', message => {
 				message.reply('Your roll to hit: ' + math + check);
 			break;
 			case 'imp':
-				var x = message.content.substring(5);
-				if(x == 0 || isNaN(x) == true) {
-					x = 1;
+				if(args == 0 || isNaN(args) == true) {
+					args = 1;
 				}
 				for(var i = 0; i < x; i++){
 					grist = impGrist(grist);
