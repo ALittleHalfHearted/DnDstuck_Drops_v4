@@ -52,8 +52,7 @@ client.on('message', message => {
 				message.reply('Pong!');
 			break;
 			case 'drops':
-				var command = message.content.substring(7);
-				switch(command){
+				switch(args){
 					//%[enemy] [#killed]
 					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'rook':
 						message.reply('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
@@ -80,16 +79,19 @@ client.on('message', message => {
 						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
 					case 'check':
-						message.reply('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [mod]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
+						message.reply('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
 					break;
 					case 'luck':
-						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n```%luck [mod]```');
+						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n`%luck [mods]`');
 					break;
+					case 'hit':
+						message.reply('Exploding roll to hit! Good luck. Don\'t break anything.\n`%hit t[x] [mods]`');
+					break:
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%hit` (WIP)');
 				}
 			break;
 			case 'death':
@@ -187,6 +189,16 @@ client.on('message', message => {
 					check = eval(calculate);
 				}
 				message.reply('Your check resulted in: ' + math + check);
+			break;
+			case 'hit':
+				var check = Math.floor(Math.random() * 10) + 1;
+				var math = check.toString();
+				if(check == 9 || check == 10){
+					var explode = Math.floor(Math.random() * 10) + 1;
+					check = check + explode;
+					math = math + "+" + explode;
+				}
+				message.reply('Your roll to hit: ' + math + check);
 			break;
 			case 'imp':
 				var x = message.content.substring(5);
