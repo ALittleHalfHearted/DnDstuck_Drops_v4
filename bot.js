@@ -7,6 +7,11 @@ client.on('ready', () => {
 });
 
 
+client.error('ready', () => {
+	message.channel.send('error! rebooting...');
+})
+
+
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content === 'ping') {
