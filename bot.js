@@ -7,12 +7,6 @@ client.on('ready', () => {
 });
 
 
-client.on('debug', console.log);
-
-client.on('error', m => console.log('debug', new Error(m).stack));
-client.on('reconnecting', m => console.log('reconnecting', m));
-
-
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content === 'ping') {
@@ -212,7 +206,7 @@ client.on('message', message => {
 				}
 				build = grist * 0.8;
 				t1 = grist * 0.2;
-				message.reply('```For killing ' + x + ' imps, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
+				message.reply('```For killing ' + args + ' imps, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'ogre':
