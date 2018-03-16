@@ -86,7 +86,7 @@ client.on('message', message => {
 					break;
 					case 'hit':
 						message.reply('Exploding roll to hit! Good luck. Don\'t break anything.\n`%hit t[x] [mods]`');
-					break:
+					break;
 					//normal
 					default:
 						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
