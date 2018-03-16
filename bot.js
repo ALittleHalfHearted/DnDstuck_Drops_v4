@@ -9,14 +9,15 @@ client.on('ready', () => {
 
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
-	if (message.content === 'ping') {
-		message.reply('pong');
-	}
 	if (message.content.substring(0,1) === '%') {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
 		args = args.splice(1);
 		
+		var check = 0;
+		var check2 = 0;
+		var check3 = 0;
+		var math = "";
 		var mod = 0;
 		var build = 0;
 		var t1 = 0;
@@ -45,17 +46,20 @@ client.on('message', message => {
 			case 'ping':
 				message.reply('Pong!');
 			break;
+			case 'pong':
+				message.reply('Ping!');
+			break;
 			case 'drops':
 				switch(args){
 					//%[enemy] [#killed]
 					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'rook':
-						message.reply('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
 							      'and applies multipliers.```**\n\n**Format:** `%[enemy name] [# killed]`\n\n**examples:**\n`%ogre 45` gets drops from 45 ' +
 							      'ogres\n`%rook 22` gets drops from 22 rooks.');
 					break;
 					//%multi t[#] [#killed] t[#] [# killed](Repeat as necessary)
 					case 'multi':
-						message.reply('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
+						message.channel.send('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
 						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
 						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
 						'necessary)`\n\n**examples:**\n`%multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`%multi t6 20 t2 8` gets drops ' +
@@ -63,29 +67,34 @@ client.on('message', message => {
 					break;
 					//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
 					case 'custom':
-						message.reply('**```Use this command to get drops from any number of any enemy that doesn\'t have a command. ' +
+						message.channel.send('**```Use this command to get drops from any number of any enemy that doesn\'t have a command. ' +
 							      'Automatically divides grist and applies multipliers according to the tier.```**\n\n**Format:** `%custom [# ' +
 							      'killed] t[Tier (1-7 (UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
 							      'value]`\n\n**examples:**\n`%custom 14 t2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
 							      'and breaks down as if it were an ogre. You\'ll have to do health drops yourself.');
 					break;
 					case 'death':
-						message.reply('Rolls death saves until a result is determined and informs you of your fate.');
+						message.channel.send('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
 					case 'check':
-						message.reply('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
+						message.channel.send('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
 					break;
 					case 'luck':
-						message.reply('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n`%luck [mods]`');
+						message.channel.send('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n`%luck [adv/dis/bless/curse]`');
 					break;
-					case 'hit':
-						message.reply('Exploding roll to hit! Good luck. Don\'t break anything.\n`%hit t[x] [mods]`');
+					case 'tohit':
+						message.channel.send('Exploding roll to hit! Now with mods! Good luck. Don\'t break anything.\n`%tohit t[x][adv/dis/bless/curse][mods]`');
 					break;
+					case 'ping': case 'pong':
+						message.channel.send('Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!');
+					break;
+					case 'damage':
+						message.channel.send('This one isn\'t functional at all yet. You will be notified when it is.')
 					//normal
 					default:
-						message.reply('use `%drops [command]` to get info on a specific command\n\n```To get' +
+						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%hit` (WIP)');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%tohit`\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'death':
@@ -109,91 +118,191 @@ client.on('message', message => {
 				}
 			break;
 			case 'luck':
-				var luck = Math.floor(Math.random() * 10) + 1;
-				if(luck == 9 || luck == 10){
-					luck = luck + Math.floor(Math.random() * 10) + 1;
-				}
-				if(message.content.indexOf('adv') != -1){
-					message.reply(luck);
-					luck = luckAdv(luck,message);
-					message.reply('Your luck roll at advantage is: ' + luck);
-				}
-				else if(message.content.indexOf('bless') != -1){
-					message.reply(luck);
-					for(var i = 0; i < 2; i++){
-						luck = luckAdv(luck,message);
+				check = d10();
+				if(args = 'adv'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					if(check2 > check){
+						check = check2;
 					}
-					message.reply('Your luck roll at blessed advantage is: ' + luck);
+					message.reply('Your luck roll at advantage is: ' + check);
 				}
-				else if(message.content.indexOf('dis') != -1){
-					message.reply(luck);
-					luck = luckDis(luck,message);
-					message.reply('Your luck roll at disadvantage is: ' + luck);
-				}
-				else if(message.content.indexOf('curse') != -1){
-					message.reply(luck);
-					for(var i = 0; i < 2; i++){
-						luck = luckDis(luck,message);
+				else if(args = 'bless'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					check3 = d10();
+					message.channel.send(check3);
+					if(check2 > check && check2 > check3){
+						check = check2;
 					}
-					message.reply('Your luck roll at cursed disadvantage is: ' + luck);
+					else if(check3 > check && check3 > check2){
+						check = check3;
+					}
+					message.reply('Your luck roll at blessed advantage is: ' + check);
+				}
+				else if(args = 'dis'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					if(check2 < check){
+						check = check2;
+					}
+					message.reply('Your luck roll at disadvantage is: ' + check);
+				}
+				else if(args = 'curse'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					check3 = d10();
+					message.channel.send(check3);
+					if(check2 < check && check2 < check3){
+						check = check2;
+					}
+					else if(check3 < check && check3 < check2){
+						check = check3;
+					}
+					message.reply('Your luck roll at cursed disadvantage is: ' + check);
 				}
 				else{
-					message.reply('Your luck roll is: ' + luck);
+					message.reply('Your luck roll is: ' + check);
 				}
 			break;
 			case 'check':
-				var check = Math.floor(Math.random() * 20) + 1;
-				var math = check.toString();
-				if(check == 9 || check == 10){
-					var explode = Math.floor(Math.random() * 10) + 1;
-					check = check + explode;
-					math = math + "+" + explode;
+				check = d20();
+				if(args.indexOf('adv') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					if(check2 > check){
+						check = check2;
+					}
+					args = args.replace("adv","");
 				}
-				else if(check == 19 || check == 20){
-					var explode = Math.floor(Math.random() * 20) + 1;
-					check = check + explode;
-					math = math + "+" + explode;
+				else if(args.indexOf('bless') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					check3 = d20();
+					message.channel.send(check3);
+					if(check2 > check && check2 > check3){
+						check = check2;
+					}
+					else if(check3 > check && check3 > check2){
+						check = check3;
+					}
+					args = args.replace("bless","");
 				}
-				if(message.content !== '%check'){
-					if(isNaN(message.content.substr(7,8)) == false){
+				else if(args.indexOf('dis') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					if(check2 < check){
+						check = check2;
+					}
+					args = args.replace("dis","");
+				}
+				else if(args.indexOf('curse') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					check3 = d20();
+					message.channel.send(check3);
+					if(check2 < check && check2 < check3){
+						check = check2;
+					}
+					else if(check3 < check && check3 < check2){
+						check = check3;
+					}
+					args = args.replace("curse","");
+				}
+				math = check.toString();
+				if(args != ""){
+					if(isNaN(args.substr(0,1)) == false){
 						var op = "+"
 					}
 					else{
 						var op = ""
 					}
-					let calculate = "=" + math + op + message.content.toLowerCase().substring('%check '.length);
+					let calculate = "=" + math + op + args.toLowerCase();
 					math = calculate.replace("=","") + "=";
-					if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
-						calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
-						if (calculate.replace(/[^%]/g, "").length > 0) {
-							for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
-								while ((calculate[calculate.indexOf("%", i+1) + 1] == "+" || calculate[calculate.indexOf("%", i+1) + 1] == "-" || calculate[calculate.indexOf("%", i+1) + 1] == "*" || calculate[calculate.indexOf("%", i+1) + 1] == "/" || calculate[calculate.indexOf("%", i+1) + 1] == "(" || calculate[calculate.indexOf("%", i+1) + 1] == ")" || calculate[calculate.indexOf("%", i+1) + 1] == "," || calculate.indexOf("%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
-									for (let j = calculate.indexOf("%", i+1); j > -1; j--) {
-										if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
-											calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, calculate.indexOf("%", i+1))/100) + calculate.substring(calculate.indexOf("%", i+1)+1, calculate.length);
-											break;
-										}
-									}
-								}
-							}
-						}
-						calculate =  calculate.replace(/=/g, "");
-						if (isFinite(eval(calculate))) message.channel.send(eval(calculate));
-					}
-					check = eval(calculate);
+					check = modding(calculate);
 				}
 				message.reply('Your check resulted in: ' + math + check);
 			break;
-			case 'hit':
-				var x = message.content.substring(1);
-				var check = Math.floor(Math.random() * 10) + 1;
-				var math = check.toString();
-				if(check == 9 || check == 10){
-					var explode = Math.floor(Math.random() * 10) + 1;
-					check = check + explode;
-					math = math + "+" + explode;
+			case 'tohit':
+				var x = args.substring(1,2);
+				if(x == 0 || isNaN(x) == true){
+					x = 1;
+				}
+				for(var i = 0; i < x; i++){
+					check = check + d10();
+				}
+				if(args.indexOf('adv') != -1){
+					for(var i = 0; i < x; i++){
+						check2 = check2 + d10();
+					}
+					if(check2 > check){
+						check = check2;
+					}
+					args = args.replace("adv","");
+				}
+				else if(args.indexOf('dis') != -1){
+					for(var i = 0; i < x; i++){
+						check2 = check2 + d10();
+					}
+					if(check2 < check){
+						check = check2;
+					}
+					args = args.replace("dis","");
+				}
+				else if(args.indexOf('bless') != -1){
+					for(var i = 0; i < x; i++){
+						check2 = check2 + d10();
+					}
+					for(var i = 0; i < x; i++){
+						check3 = check3 + d10();
+					}
+					if(check2 > check && check2 > check3){
+						check = check2;
+					}
+					else if(check3 > check && check3 > check2){
+						check = check3;
+					}
+					args = args.replace("bless","");
+				}
+				else if(args.indexOf('curse') != -1){
+					for(var i = 0; i < x; i++){
+						check2 = check2 + d10();
+					}
+					for(var i = 0; i < x; i++){
+						check3 = check3 + d10();
+					}
+					if(check2 < check && check2 < check3){
+						check = check2;
+					}
+					else if(check3 < check && check3 < check2){
+						check = check3;
+					}
+					args = args.replace("curse","");
+				}
+				math = check.toString();
+				if(args.substring(2) != ""){
+					if(isNaN(args.substr(2,3)) == false){
+						var op = "+"
+					}
+					else{
+						var op = ""
+					}
+					let calculate = "=" + math + op + args.substring(2).toLowerCase();
+					math = calculate.replace("=","") + "=";
+					check = modding(calculate);
 				}
 				message.reply('Your roll to hit: ' + math + check);
+			break;
+			case 'damage':
+				message.reply('Oh dear, looks like something\'s gone wrong. Come back later and maybe we\'ll be ready for you then!');
 			break;
 			case 'imp':
 				if(args == 0 || isNaN(args) == true) {
@@ -210,11 +319,10 @@ client.on('message', message => {
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'ogre':
-				var x = message.content.substring(6)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
-				for(var i = 0; i < x; i++){
+				for(var i = 0; i < args; i++){
 					grist = ogreGrist(grist);
 					boon = ogreBoon(boon);
 					health = ogreHealth(health);
@@ -223,16 +331,15 @@ client.on('message', message => {
 				build = grist * 0.6;
 				t1 = grist * 0.3;
 				t2 = grist * 0.1;
-				message.reply('```For killing ' + x + ' ogres, you have obtained:\nBoon = ' + (boon * 2) + '\nBG = ' + build.toFixed(0) +
+				message.reply('```For killing ' + args + ' ogres, you have obtained:\nBoon = ' + (boon * 2) + '\nBG = ' + build.toFixed(0) +
 					'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
 			case 'basilisk':
-				var x = message.content.substring(10)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
-				if(x < 100){
-					for(var i = 0; i < x; i++){
+				if(args < 100){
+					for(var i = 0; i < args; i++){
 						//5d100
 						grist = basiliskGrist(grist);
 						//1d100
@@ -244,7 +351,7 @@ client.on('message', message => {
 					t1 = grist * 0.3;
 					t2 = grist * 0.2;
 					t3 = grist * 0.1;
-					message.reply('```For killing ' + x + ' basilisks, you have obtained:\nBoon = ' + (boon * 4) + '\nBG = ' + build.toFixed(0) +
+					message.reply('```For killing ' + args + ' basilisks, you have obtained:\nBoon = ' + (boon * 4) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
 				else{
@@ -252,12 +359,11 @@ client.on('message', message => {
 				}
 			break;
 			case 'lich':
-				var x = message.content.substring(6)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
 				if(x < 100){
-					for(var i = 0; i < x; i++){
+					for(var i = 0; i < args; i++){
 						//10d100
 						grist = lichGrist(grist);
 						//2d100
@@ -270,7 +376,7 @@ client.on('message', message => {
 					t2 = grist * 0.2;
 					t3 = grist * 0.2;
 					t4 = grist * 0.1;
-					message.reply('```For killing ' + x + ' liches, you have obtained:\nBoon = ' + (boon * 8) + '\nBG = ' + build.toFixed(0) +
+					message.reply('```For killing ' + args + ' liches, you have obtained:\nBoon = ' + (boon * 8) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 						'\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
@@ -279,12 +385,11 @@ client.on('message', message => {
 				}
 			break;
 			case 'giclops':
-				var x = message.content.substring(9)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
 				if(x < 100){
-					for(var i = 0; i < x; i++){
+					for(var i = 0; i < args; i++){
 						//15d100
 						grist = giclopsGrist(grist);
 						//4d100
@@ -298,7 +403,7 @@ client.on('message', message => {
 					t3 = grist * 0.15;
 					t4 = grist * 0.1;
 					t5 = grist * 0.05;
-					message.reply('```For killing ' + x + ' giclopes, you have obtained:\nBoon = ' + (boon * 16) + '\nBG = ' + build.toFixed(0) +
+					message.reply('```For killing ' + args + ' giclopes, you have obtained:\nBoon = ' + (boon * 16) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 						'\nT5 = ' + t5.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
@@ -307,12 +412,11 @@ client.on('message', message => {
 				}
 			break;
 			case 'titachnid':
-				var x = message.content.substring(11)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
-				if(x < 100){
-					for(var i = 0; i < x; i++){
+				if(args < 100){
+					for(var i = 0; i < args; i++){
 						//25d100
 						grist = titachnidGrist(grist);
 						//10d100
@@ -327,7 +431,7 @@ client.on('message', message => {
 					t4 = grist * 0.15;
 					t5 = grist * 0.15;
 					t6 = grist * 0.15;
-					message.reply('```For killing ' + x + ' titachnids, you have obtained:\nBoon = ' + (boon * 32) + '\nBG = ' + build.toFixed(0) +
+					message.reply('```For killing ' + args + ' titachnids, you have obtained:\nBoon = ' + (boon * 32) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
@@ -336,12 +440,11 @@ client.on('message', message => {
 				}
 			break;
 			case 'archeron':
-				var x = message.content.substring(10)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
-				if(x < 100){
-					for(var i = 0; i < x; i++){
+				if(args < 100){
+					for(var i = 0; i < args; i++){
 						//40d100
 						grist = archeronGrist(boon);
 						//20d100
@@ -357,7 +460,7 @@ client.on('message', message => {
 					t5 = grist * 0.1
 					t6 = grist * 0.1
 					t7 = grist * 0.1
-					message.reply('```For killing ' + x + ' archerons, you have obtained:\nBoon = ' + (boon * 64) + '\nBG = ' + build.toFixed(0) +
+					message.reply('```For killing ' + args + ' archerons, you have obtained:\nBoon = ' + (boon * 64) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 				}
@@ -366,17 +469,16 @@ client.on('message', message => {
 				}
 			break;
 			case 'rooks':
-				var x = message.content.substring(6)
-				if(x == 0 || isNaN(x) == true) {
-					x = 1
+				if(args == 0 || isNaN(args) == true) {
+					args = 1
 				}
-				if(x < 100){
+				if(args < 100){
 					for(var i = 0; i < rooks; i++){
 						//50d100
 						boon = rookBoon(boon);
 						health = rookHealth(health);
 					}
-					message.reply('```For killing ' + x + ' rooks and/or D.A.s, you have obtained:\nBoon = ' + (boon * 128) + '\nHealth Gel = ' + health + '```');
+					message.reply('```For killing ' + args + ' rooks and/or D.A.s, you have obtained:\nBoon = ' + (boon * 128) + '\nHealth Gel = ' + health + '```');
 				}
 				else{
 					overload(message);
@@ -384,43 +486,43 @@ client.on('message', message => {
 			break;
 			case 'multi':
 				var highest = 0
-				if(message.content.indexOf('t1') != -1){
-					imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4);
+				if(args.indexOf('t1') != -1){
+					imps = args.substring(args.indexOf('t1') + 2,args.indexOf('t1') + 4);
 					highest = 1;
 					mod = 1;
 				}
-				if(message.content.indexOf('t2') != -1){
-					ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4);
+				if(args.indexOf('t2') != -1){
+					ogres = args.substring(args.indexOf('t2') + 2,args.indexOf('t2') + 4);
 					highest = 2;
 					mod = 2;
 				}
-				if(message.content.indexOf('t3') != -1){
-					basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4);
+				if(args.indexOf('t3') != -1){
+					basilisks = args.substring(args.indexOf('t3') + 2,args.indexOf('t3') + 4);
 					highest = 3;
 					mod = 4;
 				}
-				if(message.content.indexOf('t4') != -1){
-					liches = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4);
+				if(args.indexOf('t4') != -1){
+					liches = args.substring(args.indexOf('t4') + 2,args.indexOf('t4') + 4);
 					highest = 4;
 					mod = 8;
 				}
-				if(message.content.indexOf('t5') != -1){
-					giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4);
+				if(args.indexOf('t5') != -1){
+					giclopes = args.substring(args.indexOf('t5') + 2,args.indexOf('t5') + 4);
 					highest = 5;
 					mod = 16;
 				}
-				if(message.content.indexOf('t6') != -1){
-					titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4);
+				if(args.indexOf('t6') != -1){
+					titachnids = args.substring(args.indexOf('t6') + 2,args.indexOf('t6') + 4);
 					highest = 6;
 					mod = 32;
 				}
-				if(message.content.indexOf('t7') != -1){
-					archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4);
+				if(args.indexOf('t7') != -1){
+					archerons = args.substring(args.indexOf('t7') + 2,args.indexOf('t7') + 4);
 					highest = 7;
 					mod = 64;
 				}
-				if(message.content.indexOf('t8') != -1){
-					rooks = message.content.substring(message.content.indexOf('t8') + 2,message.content.indexOf('t8') + 4);
+				if(args.indexOf('t8') != -1){
+					rooks = args.substring(args.indexOf('t8') + 2,args.indexOf('t8') + 4);
 					highest = 8;
 					mod = 128;
 				}				
@@ -680,33 +782,48 @@ client.on('message', message => {
 	}
 })
 
-function luckAdv(luck,message){
-	var altLuck = Math.floor(Math.random() * 10) + 1;
-	if(altLuck == 9 || altLuck == 10){
-		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
+//Main dice
+function d10(){
+	var check = Math.floor(Math.random() * 10) + 1;
+	if(check == 9 || check == 10){
+		check = check + Math.floor(Math.random() * 10) + 1;
 	}
-	message.reply(altLuck);
-	if(altLuck > luck){
-		return altLuck;
-	}
-	else{
-		return luck;
-	}
+	return check;
 }
-function luckDis(luck,message){
-	var altLuck = Math.floor(Math.random() * 10) + 1;
-	if(altLuck == 9 || altLuck == 10){
-		altLuck = altLuck + Math.floor(Math.random() * 10) + 1;
+function d20(){
+	var check = Math.floor(Math.random() * 20) + 1;
+	if(check == 9 || check == 10){
+		var explode = Math.floor(Math.random() * 10) + 1;
+		check = check + explode;
 	}
-	message.reply(altLuck);
-	if(altLuck < luck){
-		return altLuck;
+	else if(check == 19 || check == 20){
+		var explode = Math.floor(Math.random() * 20) + 1;
+		check = check + explode;
 	}
-	else{
-		return luck;
-	}
+	return check;
 }
 
+function modding(calculate){
+	if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
+		calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
+		if (calculate.replace(/[^%]/g, "").length > 0) {
+			for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
+				while ((calculate[calculate.indexOf("%", i+1) + 1] == "+" || calculate[calculate.indexOf("%", i+1) + 1] == "-" || calculate[calculate.indexOf("%", i+1) + 1] == "*" || calculate[calculate.indexOf("%", i+1) + 1] == "/" || calculate[calculate.indexOf("%", i+1) + 1] == "(" || calculate[calculate.indexOf("%", i+1) + 1] == ")" || calculate[calculate.indexOf("%", i+1) + 1] == "," || calculate.indexOf("%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
+					for (let j = calculate.indexOf("%", i+1); j > -1; j--) {
+						if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
+							calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, calculate.indexOf("%", i+1))/100) + calculate.substring(calculate.indexOf("%", i+1)+1, calculate.length);
+							break;
+						}
+					}
+				}
+			}
+		}
+		calculate =  calculate.replace(/=/g, "");
+	}
+	return eval(calculate);
+}
+
+//Enemy drops
 function impGrist(grist){
 	return grist = grist + Math.floor(Math.random() * 100) + 1;
 }
