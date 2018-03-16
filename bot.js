@@ -191,7 +191,7 @@ client.on('message', message => {
 				message.reply('Your check resulted in: ' + math + check);
 			break;
 			case 'hit':
-				var x = args.substring(1);
+				var x = message.content.substring(1);
 				var check = Math.floor(Math.random() * 10) + 1;
 				var math = check.toString();
 				if(check == 9 || check == 10){
@@ -205,7 +205,7 @@ client.on('message', message => {
 				if(args == 0 || isNaN(args) == true) {
 					args = 1;
 				}
-				for(var i = 0; i < x; i++){
+				for(var i = 0; i < args; i++){
 					grist = impGrist(grist);
 					boon = impBoon(boon);
 					health = impHealth(health);
