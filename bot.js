@@ -425,12 +425,12 @@ client.on('message', message => {
 					}
 					grist = grist * 32;
 					build = grist * 0.2;
-					t1 = grist * 0.2;
+					t1 = grist * 0.15;
 					t2 = grist * 0.15;
 					t3 = grist * 0.15;
 					t4 = grist * 0.15;
-					t5 = grist * 0.15;
-					t6 = grist * 0.15;
+					t5 = grist * 0.1;
+					t6 = grist * 0.1;
 					message.reply('```For killing ' + args + ' titachnids, you have obtained:\nBoon = ' + (boon * 32) + '\nBG = ' + build.toFixed(0) +
 						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 						'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
