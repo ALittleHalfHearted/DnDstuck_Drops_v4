@@ -119,7 +119,7 @@ client.on('message', message => {
 			break;
 			case 'luck':
 				check = d10();
-				if(args = 'adv'){
+				if(args == 'adv'){
 					message.channel.send(check);
 					check2 = d10();
 					message.channel.send(check2);
@@ -128,7 +128,7 @@ client.on('message', message => {
 					}
 					message.reply('Your luck roll at advantage is: ' + check);
 				}
-				else if(args = 'bless'){
+				else if(args == 'bless'){
 					message.channel.send(check);
 					check2 = d10();
 					message.channel.send(check2);
@@ -142,7 +142,7 @@ client.on('message', message => {
 					}
 					message.reply('Your luck roll at blessed advantage is: ' + check);
 				}
-				else if(args = 'dis'){
+				else if(args == 'dis'){
 					message.channel.send(check);
 					check2 = d10();
 					message.channel.send(check2);
@@ -151,7 +151,7 @@ client.on('message', message => {
 					}
 					message.reply('Your luck roll at disadvantage is: ' + check);
 				}
-				else if(args = 'curse'){
+				else if(args == 'curse'){
 					message.channel.send(check);
 					check2 = d10();
 					message.channel.send(check2);
