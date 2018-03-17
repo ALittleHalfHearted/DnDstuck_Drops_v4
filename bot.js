@@ -226,10 +226,10 @@ client.on('message', message => {
 						var op = ""
 					}
 					let calculate = "=" + math + op + args;
-					math = calculate.replace("=","") + "=";
+					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
-				message.reply('Your check resulted in: ' + math + check);
+				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
 			case 'tohit':
 				var x = args.substring(1,2);
