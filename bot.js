@@ -219,7 +219,7 @@ client.on('message', message => {
 				}
 				math = check.toString();
 				if(args != ""){
-					if(isNaN(args.substr(0,1)) == false){
+					if(isNaN(args.substring(0,1)) == false){
 						var op = "+"
 					}
 					else{
