@@ -225,7 +225,7 @@ client.on('message', message => {
 					else{
 						var op = ""
 					}
-					let calculate = "=" + math + op + args.toLowerCase();
+					let calculate = "=" + math + op + args;
 					math = calculate.replace("=","") + "=";
 					check = modding(calculate);
 				}
