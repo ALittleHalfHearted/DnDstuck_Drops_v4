@@ -94,7 +94,7 @@ client.on('message', message => {
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%tohit`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%tohit`\n~~`%damage`~~\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'death':
@@ -219,20 +219,19 @@ client.on('message', message => {
 				}
 				math = check.toString();
 				if(args != ""){
-					if(isNaN(message.content.substring(cmd.length + 2,cmd.length + 3)) == false){
-						var op = "+"
+					if(isNaN(args.slice(0,1)) == false){
+						let calculate = "=" + math + "+" + args;
 					}
 					else{
-						var op = ""
+						let calculate = "=" + math + args;
 					}
-					let calculate = "=" + math + op + args;
 					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
 			case 'tohit':
-				var x = args.substring(1,2);
+				var x = args.slice(1,2);
 				if(x == 0 || isNaN(x) == true){
 					x = 1;
 				}
