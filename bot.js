@@ -97,12 +97,16 @@ client.on('message', message => {
 							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%tohit`\n~~`%damage`~~\n`%ping`\t`%pong`');
 				}
 			break;
+			case 'd10':
+				check = d10();
+				message.channel.send(check);
+			break;
 			case 'death':
 				var pass = 0;
 				var fail = 0;
 				while(pass != 3 && fail != 3){
-					var roll = Math.floor(Math.random() * 20) + 1;
-					if(roll >= 10){
+					check = d20();
+					if(check >= 10){
 						pass = pass + 1;
 					}
 					else{
