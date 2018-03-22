@@ -99,6 +99,14 @@ client.on('message', message => {
 			break;
 			case 'd10':
 				check = d10();
+				if(args.indexOf(adv) != -1){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					if(check2 > check){
+						check = check2;
+					}
+				}
 				message.channel.send(check);
 			break;
 			case 'death':
