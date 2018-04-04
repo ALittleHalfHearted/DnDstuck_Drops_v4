@@ -89,7 +89,8 @@ client.on('message', message => {
 						message.channel.send('Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!');
 					break;
 					case 'damage':
-						message.channel.send('This one isn\'t functional at all yet. You will be notified when it is.')
+						message.channel.send('This one isn\'t functional at all yet. You will be notified when it is.');
+					break;
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
