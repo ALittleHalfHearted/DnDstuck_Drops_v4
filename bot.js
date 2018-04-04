@@ -43,6 +43,12 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
+			case 'embed':
+				message.channel.send({embed: {
+					color: 3447003,
+					description: "A very simple Embed!"
+				}});
+			break;
 			// %ping
 			case 'ping':
 				message.reply('Pong!');
