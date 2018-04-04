@@ -98,7 +98,7 @@ client.on('message', message => {
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%luck`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'percent':
