@@ -330,10 +330,10 @@ client.on('message', message => {
 						var op = "";
 					}
 					var calculate = "=" + math + op + args.substring(2).toLowerCase();
-					math = calculate.replace("=","") + "=";
+					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
-				message.reply('You dealt ' + math + check + ' damage');
+				message.reply('You dealt ' + math + '=' + check + ' damage');
 			break;
 			case 'imp':
 				if(args == 0 || isNaN(args) == true) {
