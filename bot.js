@@ -834,7 +834,7 @@ function modding(calculate){
 		}
 		calculate =  calculate.replace(/=/g, "");
 	}
-	return eval(calculate);
+	return eval(calculate).toString();
 }
 
 //Enemy drops
