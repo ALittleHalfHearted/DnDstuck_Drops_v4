@@ -77,11 +77,11 @@ client.on('message', message => {
 					case 'death':
 						message.channel.send('Rolls death saves until a result is determined and informs you of your fate.');
 					break;
-					case 'check':
-						message.channel.send('Makes a skill check (1d20) and explodes as necessary. Allows for most modifiers. Just keep it simple.\n`%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
+					case 'd20':
+						message.channel.send('Rolls 1d20 and explodes as necessary. Allows for most modifiers, just keep it simple.\n`%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
 					break;
-					case 'luck':
-						message.channel.send('Exploding luck roll. Allows selection of `adv`, `dis`, `bless`, or `curse` modifiers.\n`%luck [adv/dis/bless/curse]`');
+					case 'd10':
+						message.channel.send('Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.\n`%check [adv/dis/bless/curse][mods]`');
 					break;
 					case 'tohit':
 						message.channel.send('Exploding roll to hit! Now with mods! Good luck. Don\'t break anything.\n`%tohit t[x][adv/dis/bless/curse][mods]`');
@@ -96,21 +96,69 @@ client.on('message', message => {
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%check` (WIP)\n`%luck`\n`%tohit`\n~~`%damage`~~\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%luck`\n`%tohit`\n~~`%damage`~~\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'd10':
 				check = d10();
-				if(args.indexOf('adv') != -1){
+				if(args == 'adv'){
 					message.channel.send(check);
 					check2 = d10();
 					message.channel.send(check2);
 					if(check2 > check){
 						check = check2;
 					}
+					args = args.replace('adv','');
 				}
-				args = args.replace('adv','');
-				message.channel.send(check);
+				else if(args == 'bless'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					check3 = d10();
+					message.channel.send(check3);
+					if(check2 > check && check2 > check3){
+						check = check2;
+					}
+					else if(check3 > check && check3 > check2){
+						check = check3;
+					}
+					args = args.replace('bless','');
+				}
+				else if(args == 'dis'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					if(check2 < check){
+						check = check2;
+					}
+					args = args.replace('dis','');
+				}
+				else if(args == 'curse'){
+					message.channel.send(check);
+					check2 = d10();
+					message.channel.send(check2);
+					check3 = d10();
+					message.channel.send(check3);
+					if(check2 < check && check2 < check3){
+						check = check2;
+					}
+					else if(check3 < check && check3 < check2){
+						check = check3;
+					}
+					args = args.replace('curse','');
+				}
+				math = check.toString();
+				if(args != ""){
+					if(isNaN(args.slice(0,1)) == false){
+						var calculate = "=" + math + "+" + args;
+					}
+					else{
+						var calculate = "=" + math + args;
+					}
+					math = calculate.replace("=","");
+					check = modding(calculate);
+				}
+				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
 			case 'death':
 				var pass = 0;
@@ -132,59 +180,7 @@ client.on('message', message => {
 						      'We hope your experiences in the dream bubbles will be compensation enough until your papers have been processed.')
 				}
 			break;
-			case 'luck':
-				check = d10();
-				if(args == 'adv'){
-					message.channel.send(check);
-					check2 = d10();
-					message.channel.send(check2);
-					if(check2 > check){
-						check = check2;
-					}
-					message.reply('Your luck roll at advantage is: ' + check);
-				}
-				else if(args == 'bless'){
-					message.channel.send(check);
-					check2 = d10();
-					message.channel.send(check2);
-					check3 = d10();
-					message.channel.send(check3);
-					if(check2 > check && check2 > check3){
-						check = check2;
-					}
-					else if(check3 > check && check3 > check2){
-						check = check3;
-					}
-					message.reply('Your luck roll at blessed advantage is: ' + check);
-				}
-				else if(args == 'dis'){
-					message.channel.send(check);
-					check2 = d10();
-					message.channel.send(check2);
-					if(check2 < check){
-						check = check2;
-					}
-					message.reply('Your luck roll at disadvantage is: ' + check);
-				}
-				else if(args == 'curse'){
-					message.channel.send(check);
-					check2 = d10();
-					message.channel.send(check2);
-					check3 = d10();
-					message.channel.send(check3);
-					if(check2 < check && check2 < check3){
-						check = check2;
-					}
-					else if(check3 < check && check3 < check2){
-						check = check3;
-					}
-					message.reply('Your luck roll at cursed disadvantage is: ' + check);
-				}
-				else{
-					message.reply('Your luck roll is: ' + check);
-				}
-			break;
-			case 'check':
+			case 'd20':
 				check = d20();
 				if(message.content.indexOf('adv') != -1){
 					message.channel.send(check);
