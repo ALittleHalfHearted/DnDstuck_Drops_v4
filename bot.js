@@ -321,6 +321,7 @@ client.on('message', message => {
 					check = check + Math.floor(Math.random() * num) + 1;
 				}
 				math = check;
+				args = args.replace(tier,'').replace(num,'').replace(/ /g,'');
 				if(args.slice(args.lastIndexOf(' ')).indexOf('d') == -1){
 					mod = args.slice(args.lastIndexOf(' '));
 					if(isNaN(mod) == false){
