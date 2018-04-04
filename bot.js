@@ -192,7 +192,8 @@ client.on('message', message => {
 					if(check2 > check){
 						check = check2;
 					}
-					args = args.replace("adv","");
+					args = message.content.substring(1).split(' ').replace("adv","");
+					args = args.splice(1);
 				}
 				else if(message.content.indexOf('bless') != -1){
 					message.channel.send(check);
