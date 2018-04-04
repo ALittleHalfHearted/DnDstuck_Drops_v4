@@ -374,7 +374,7 @@ client.on('message', message => {
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
-				if(x < 100){
+				if(args < 100){
 					for(var i = 0; i < args; i++){
 						//10d100
 						grist = lichGrist(grist);
@@ -400,7 +400,7 @@ client.on('message', message => {
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
-				if(x < 100){
+				if(args < 100){
 					for(var i = 0; i < args; i++){
 						//15d100
 						grist = giclopsGrist(grist);
@@ -480,7 +480,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'rooks':
+			case 'rook':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
