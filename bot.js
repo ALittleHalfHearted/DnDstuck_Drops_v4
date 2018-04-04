@@ -15,6 +15,7 @@ client.on('message', message => {
 		args = args.splice(1).toString();
 		args = args.replace(/,/g,' ');
 		
+		var tier = 0;
 		var check = 0;
 		var check2 = 0;
 		var check3 = 0;
@@ -299,20 +300,37 @@ client.on('message', message => {
 				}
 				math = check.toString();
 				if(args.substring(2) != ""){
-					if(isNaN(args.substr(2,3)) == false){
-						var op = "+"
+					if(isNaN(args.substring(0,1)) == false){
+						var op = "+";
 					}
 					else{
-						var op = ""
+						var op = "";
 					}
-					let calculate = "=" + math + op + args.substring(2).toLowerCase();
+					var calculate = "=" + math + op + args.substring(2).toLowerCase();
 					math = calculate.replace("=","") + "=";
 					check = modding(calculate);
 				}
 				message.reply('Your roll to hit: ' + math + check);
 			break;
 			case 'damage':
-				message.reply('Oh dear, looks like something\'s gone wrong. Come back later and maybe we\'ll be ready for you then!');
+				message.reply('Sorry, this isn\'t a thing yet. Come back later and maybe we\'ll be ready for you then!');
+				//%damage t[tier] [sides of dice] [mods]
+				tier = args.substring(args.indexOf('t'),args.indexOf('t') + 1);
+				var num = args.substring(args.indexOf(' '),args.indexOf(' ') + 1);
+				for(var c = 0; c < tier; c++){
+					math = math + Math.floor(Math.random() * num) + 1;
+				}
+				mod = args.slice(args.lastIndexOf(' '));
+				if(isNaN(mod) == false){
+					var op = "+";
+				}
+				else{
+					var op = "";
+				}
+				var calculate = "=" + math + op + args.substring(2).toLowerCase();
+				math = calculate.replace("=","") + "=";
+				check = modding(calculate);
+				message.reply('You dealt ' + math + check + ' damage');
 			break;
 			case 'imp':
 				if(args == 0 || isNaN(args) == true) {
