@@ -75,23 +75,25 @@ client.on('message', message => {
 							      'and breaks down as if it were an ogre. You\'ll have to do health drops yourself.');
 					break;
 					case 'death':
-						message.channel.send('Rolls death saves until a result is determined and informs you of your fate.');
+						message.channel.send('**```Rolls death saves until a result is determined and informs you of your fate.```**');
 					break;
 					case 'd20':
-						message.channel.send('Rolls 1d20 and explodes as necessary. Allows for most modifiers, just keep it simple.\n`%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
+						message.channel.send('**```Rolls 1d20 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
 					break;
 					case 'd10':
-						message.channel.send('Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.\n`%check [adv/dis/bless/curse][mods]`');
+						message.channel.send('**```Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`');
 					break;
 					case 'tohit':
-						message.channel.send('Exploding roll to hit! Now with mods! Good luck. Don\'t break anything.\n`%tohit t[x][adv/dis/bless/curse][mods]`');
+						message.channel.send('**```Exploding roll to hit! Now with mods! Good luck. Don\'t break anything.```**\n\n**Format:** `%tohit t[x][adv/dis/bless/curse][mods]`');
 					break;
 					case 'ping': case 'pong':
-						message.channel.send('Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!');
+						message.channel.send('**```Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!```**');
 					break;
 					case 'damage':
-						message.channel.send('Rolling your damage with whatever sides and whatever mods. Have fun! ```%damage t[tier] d[sides] [mods]```');
+						message.channel.send('**```Rolling your damage with whatever sides and whatever mods. Have fun!```**\n\n**Format:** `%damage t[tier] d[sides] [mods]`');
 					break;
+					case 'percent':
+						message.channel.send('**```Rolls Xd100. You can specify how many times it rolls, but if you don\'t it just rolls until you hit at least 100% total.```**\n\n**Format:** `%damage [turns]`')
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n\n```To get' +
