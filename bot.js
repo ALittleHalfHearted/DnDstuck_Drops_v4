@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const embed = new Discord.RichEmbed()
-	.setTitle("__```Commands List```__")
-	.setDescription("use `%drops [command]` to get info on a specific command")
-	.setColor(65299)
-	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
-	.addField("Enemy Drops",
-	"`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`")
-	.addField("```Other Commands```",
-	"`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`");
+//const embed = new Discord.RichEmbed()
+//	.setTitle("__```Commands List```__")
+//	.setDescription("use `%drops [command]` to get info on a specific command")
+//	.setColor(65299)
+//	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
+//	.addField("Enemy Drops",
+//	"`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`")
+//	.addField("```Other Commands```",
+//	"`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`");
 
 
 client.on('ready', () => {
@@ -52,9 +52,9 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
-			case 'embed':
-				message.channel.send({embed});
-			break;
+			//case 'embed':
+			//	message.channel.send({embed});
+			//break;
 			// %ping
 			case 'ping':
 				message.reply('Pong!');
