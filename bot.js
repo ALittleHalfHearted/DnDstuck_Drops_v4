@@ -91,7 +91,7 @@ client.on('message', message => {
 						message.channel.send('Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!');
 					break;
 					case 'damage':
-						message.channel.send('This one isn\'t functional at all yet. You will be notified when it is.');
+						message.channel.send('Rolling your damage with whatever sides and whatever mods. Have fun! ```%damage t[tier] d[sides] [mods]```');
 					break;
 					//normal
 					default:
@@ -313,7 +313,6 @@ client.on('message', message => {
 				message.reply('Your roll to hit: ' + math + check);
 			break;
 			case 'damage':
-				message.reply('Sorry, this isn\'t a thing yet. Come back later and maybe we\'ll be ready for you then!');
 				//%damage t[tier] d[sides] [mods]
 				tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
 				var num = args.substring(args.indexOf('d') + 1,args.indexOf('d') + 2);
@@ -322,7 +321,7 @@ client.on('message', message => {
 				}
 				math = check;
 				args = args.replace(tier,'').replace(num,'').replace(/ /g,'');
-				if(args.slice(args.lastIndexOf(' ')).indexOf('d') == -1){
+				if(args != ''){
 					mod = args.slice(args.lastIndexOf(' '));
 					if(isNaN(mod) == false){
 						var op = "+";
