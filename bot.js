@@ -185,7 +185,7 @@ client.on('message', message => {
 			break;
 			case 'check':
 				check = d20();
-				if(args.indexOf('adv') != -1){
+				if(message.content.indexOf('adv') != -1){
 					message.channel.send(check);
 					check2 = d20();
 					message.channel.send(check2);
@@ -194,7 +194,7 @@ client.on('message', message => {
 					}
 					args = args.replace("adv","");
 				}
-				else if(args.indexOf('bless') != -1){
+				else if(message.content.indexOf('bless') != -1){
 					message.channel.send(check);
 					check2 = d20();
 					message.channel.send(check2);
@@ -208,7 +208,7 @@ client.on('message', message => {
 					}
 					args = args.replace("bless","");
 				}
-				else if(args.indexOf('dis') != -1){
+				else if(message.content.indexOf('dis') != -1){
 					message.channel.send(check);
 					check2 = d20();
 					message.channel.send(check2);
@@ -217,7 +217,7 @@ client.on('message', message => {
 					}
 					args = args.replace("dis","");
 				}
-				else if(args.indexOf('curse') != -1){
+				else if(message.content.indexOf('curse') != -1){
 					message.channel.send(check);
 					check2 = d20();
 					message.channel.send(check2);
