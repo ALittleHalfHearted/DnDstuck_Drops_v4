@@ -314,22 +314,25 @@ client.on('message', message => {
 			break;
 			case 'damage':
 				message.reply('Sorry, this isn\'t a thing yet. Come back later and maybe we\'ll be ready for you then!');
-				//%damage t[tier] [sides of dice] [mods]
+				//%damage t[tier] d[sides] [mods]
 				tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
-				var num = args.substring(args.indexOf(' ') + 1,args.indexOf(' ') + 2);
+				var num = args.substring(args.indexOf('d') + 1,args.indexOf('d') + 2);
 				for(var c = 0; c < tier; c++){
-					math = math + Math.floor(Math.random() * num) + 1;
+					check = check + Math.floor(Math.random() * num) + 1;
 				}
-				mod = args.slice(args.lastIndexOf(' '));
-				if(isNaN(mod) == false){
-					var op = "+";
+				math = check;
+				if(args.slice(args.lastIndexOf(' ')).indexOf('d') != -1){
+					mod = args.slice(args.lastIndexOf(' '));
+					if(isNaN(mod) == false){
+						var op = "+";
+					}
+					else{
+						var op = "";
+					}
+					var calculate = "=" + math + op + args.substring(2).toLowerCase();
+					math = calculate.replace("=","") + "=";
+					check = modding(calculate);
 				}
-				else{
-					var op = "";
-				}
-				var calculate = "=" + math + op + args.substring(2).toLowerCase();
-				math = calculate.replace("=","") + "=";
-				check = modding(calculate);
 				message.reply('You dealt ' + math + check + ' damage');
 			break;
 			case 'imp':
