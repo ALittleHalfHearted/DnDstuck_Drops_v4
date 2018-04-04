@@ -193,8 +193,7 @@ client.on('message', message => {
 					if(check2 > check){
 						check = check2;
 					}
-					var a = args.replace("bless","");
-					args = a;
+					args = args.replace("bless","");
 				}
 				else if(message.content.indexOf('bless') != -1){
 					message.channel.send(check);
@@ -236,10 +235,10 @@ client.on('message', message => {
 				math = check.toString();
 				if(args != ""){
 					if(isNaN(args.slice(0,1)) == false){
-						let calculate = "=" + math + "+" + args;
+						var calculate = "=" + math + "+" + args;
 					}
 					else{
-						let calculate = "=" + math + args;
+						var calculate = "=" + math + args;
 					}
 					math = calculate.replace("=","");
 					check = modding(calculate);
