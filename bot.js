@@ -12,8 +12,7 @@ client.on('message', message => {
 	if (message.content.substring(0,1) === '%') {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
-		args = args.splice(1).toString();
-		args = args.replace(/,/g,' ');
+		args = args.splice(1).toString().replace(/,/g,' ');
 		
 		var tier = 0;
 		var check = 0;
@@ -99,6 +98,29 @@ client.on('message', message => {
 							      ' drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
 							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%luck`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
+			break;
+			case 'percent':
+				check = Math.floor(Math.random() * 100) + 1;
+				message.channel.send(check);
+				var count = 1;
+				math = check;
+				if(args == ''){
+					while(check < 100){
+						var hold = Math.floor(Math.random() * 100) + 1;
+						math = math + '+' + hold;
+						check = check + hold;
+						count = count++;
+					}
+				}
+				else{
+					while(count < args){
+						var hold = Math.floor(Math.random() * 100) + 1;
+						math = math + '+' + hold;
+						check = check + hold;
+						count = count++;
+					}
+				}
+				message.reply('after ' + count + ' turns, you have gotten ' + check + '% of the way to your destination.\n' + math);
 			break;
 			case 'd10':
 				check = d10();
@@ -314,26 +336,31 @@ client.on('message', message => {
 			break;
 			case 'damage':
 				//%damage t[tier] d[sides] [mods]
-				tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
-				var num = args.substring(args.indexOf('d') + 1,args.indexOf('d') + 2);
-				for(var c = 0; c < tier; c++){
-					check = check + Math.floor(Math.random() * num) + 1;
+				if(args == ''){
+					message.reply('Where\'s your input mate?');
 				}
-				math = check;
-				args = args.replace(tier,'').replace(num,'').replace(/ /g,'');
-				if(args != ''){
-					mod = args.slice(args.lastIndexOf(' '));
-					if(isNaN(mod) == false){
-						var op = "+";
+				else{
+					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
+					var num = args.substring(args.indexOf('d') + 1,args.indexOf('d') + 2);
+					for(var c = 0; c < tier; c++){
+						check = check + Math.floor(Math.random() * num) + 1;
 					}
-					else{
-						var op = "";
+					math = check;
+					args = args.replace(tier,'').replace(num,'').replace(/ /g,'');
+					if(args != ''){
+						mod = args.slice(args.lastIndexOf(' '));
+						if(isNaN(mod) == false){
+							var op = "+";
+						}
+						else{
+							var op = "";
+						}
+						var calculate = "=" + math + op + args.substring(2).toLowerCase();
+						math = calculate.replace("=","");
+						check = modding(calculate);
 					}
-					var calculate = "=" + math + op + args.substring(2).toLowerCase();
-					math = calculate.replace("=","");
-					check = modding(calculate);
+					message.reply('You dealt ' + math + '=' + check + ' damage');
 				}
-				message.reply('You dealt ' + math + '=' + check + ' damage');
 			break;
 			case 'imp':
 				if(args == 0 || isNaN(args) == true) {
