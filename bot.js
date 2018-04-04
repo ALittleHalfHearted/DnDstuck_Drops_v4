@@ -13,6 +13,7 @@ client.on('message', message => {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
 		args = args.splice(1);
+		args = args.toString();
 		
 		var check = 0;
 		var check2 = 0;
@@ -192,6 +193,8 @@ client.on('message', message => {
 					if(check2 > check){
 						check = check2;
 					}
+					var a = args.replace("bless","");
+					args = a;
 				}
 				else if(message.content.indexOf('bless') != -1){
 					message.channel.send(check);
