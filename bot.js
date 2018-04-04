@@ -315,8 +315,8 @@ client.on('message', message => {
 			case 'damage':
 				message.reply('Sorry, this isn\'t a thing yet. Come back later and maybe we\'ll be ready for you then!');
 				//%damage t[tier] [sides of dice] [mods]
-				tier = args.substring(args.indexOf('t'),args.indexOf('t') + 1);
-				var num = args.substring(args.indexOf(' '),args.indexOf(' ') + 1);
+				tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
+				var num = args.substring(args.indexOf(' ') + 1,args.indexOf(' ') + 2);
 				for(var c = 0; c < tier; c++){
 					math = math + Math.floor(Math.random() * num) + 1;
 				}
