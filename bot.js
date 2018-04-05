@@ -112,7 +112,6 @@ client.on('message', message => {
 			break;
 			case 'percent':
 				check = Math.floor(Math.random() * 100) + 1;
-				message.channel.send(check);
 				var count = 1;
 				math = check;
 				if(args == ''){
@@ -120,7 +119,7 @@ client.on('message', message => {
 						var hold = Math.floor(Math.random() * 100) + 1;
 						math = math + '+' + hold;
 						check = check + hold;
-						count = count++;
+						count++;
 					}
 				}
 				else{
@@ -128,7 +127,7 @@ client.on('message', message => {
 						var hold = Math.floor(Math.random() * 100) + 1;
 						math = math + '+' + hold;
 						check = check + hold;
-						count = count++;
+						count++;
 					}
 				}
 				message.reply('after ' + count + ' turns, you have gotten ' + check + '% of the way to your destination.\n' + math);
