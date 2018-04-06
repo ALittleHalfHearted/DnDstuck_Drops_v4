@@ -21,6 +21,9 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
+		var EnemyAC = [5,10,15,20,25,30,35,35];
+
+		var ac = '';
 		var tier = 0;
 		var check = 0;
 		var check2 = 0;
@@ -94,10 +97,10 @@ client.on('message', message => {
 						message.channel.send('**```Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`');
 					break;
 					case 'tohit':
-						message.channel.send('**```Exploding roll to hit! Now with mods! Good luck. Don\'t break anything.```**\n\n**Format:** `%tohit t[x][adv/dis/bless/curse][mods]`');
+						message.channel.send('**```Exploding roll to hit! Now with mods! Also, if you specify the enemy\s armor or tier it will inform you if you crit. (For e[y], y = base enemy tier. For a[y], y = custom AC.) Good luck. Don\'t break anything ~~important~~.```**\n\n**Format:** `%tohit t[x][adv/dis/bless/curse][mods](e/a)[y]`');
 					break;
 					case 'ping': case 'pong':
-						message.channel.send('**```Ping! Pong! Ping! Pong! Use this if the bot is working! Ping! Pong! Ping! Pong!```**');
+						message.channel.send('**```Ping! Pong! Ping! Pong! Use this to see if the bot is working! Ping! Pong! Ping! Pong!\nSeriously though, this serves no real purpose other than to make sure the bot is online.```**');
 					break;
 					case 'damage':
 						message.channel.send('**```Rolling your damage with whatever sides and whatever mods. Have fun!```**\n\n**Format:** `%damage t[tier] d[sides] [mods]`');
@@ -275,7 +278,8 @@ client.on('message', message => {
 				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
 			case 'tohit':
-				var x = args.slice(1,2);
+				//%tohit t[x][adv/dis/bless/curse][mods](e/a)[y]
+				var x = args.substring(args.indexOf('t') + 1, args.indexOf('t') + 2);
 				if(x == 0 || isNaN(x) == true){
 					x = 1;
 				}
@@ -331,7 +335,18 @@ client.on('message', message => {
 					args = args.replace("curse","");
 				}
 				math = check.toString();
-				if(args.substring(2) != ""){
+				if(args.indexOf('e') != -1){
+					ac = EnemyAC[args.substring(args.indexOf('e') + 1,args.indexOf('e') + 2).parseInt() - 1];
+					args = args.replace(args.substring(args.indexOf('e'),args.indexOf('e') + 2),'');
+				}
+				else if(args.indexOf('a') != -1){
+					ac = args.substring(args.indexOf('a') + 1,args.indexOf('a') + 2).parseInt();
+					args = args.replace(args.substring(args.indexOf('a'),args.indexOf('a') + 2),'');
+				}
+				if(args.indexOf(' ') != -1){
+					args.replace(/ /g,'');
+				}
+				if(args != ""){
 					if(isNaN(args.substring(0,1)) == false){
 						var op = "+";
 					}
@@ -342,7 +357,12 @@ client.on('message', message => {
 					math = calculate.replace("=","") + "=";
 					check = modding(calculate);
 				}
-				message.reply('Your roll to hit: ' + math + check);
+				if(ac == '' || check < ac.parseInt() + 5){
+					message.reply('Your roll to hit: ' + math + check);
+				}
+				else if(check >= ac.parseInt() + 5){
+					message.reply('Your roll to hit: ' + math + check + '\n**Critical Hit!!**');
+				}
 			break;
 			case 'damage':
 				//%damage t[tier] d[sides] [mods]
