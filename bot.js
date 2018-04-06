@@ -354,14 +354,14 @@ client.on('message', message => {
 						var op = "";
 					}
 					var calculate = "=" + math + op + args.substring(2).toLowerCase();
-					math = calculate.replace("=","") + "=";
+					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
 				if(ac == '' || check < ac.parseInt() + 5){
-					message.reply('Your roll to hit: ' + math + check);
+					message.reply('Your roll to hit: ' + math + '=' + check);
 				}
 				else if(check >= ac.parseInt() + 5){
-					message.reply('Your roll to hit: ' + math + check + '\n**Critical Hit!!**');
+					message.reply('Your roll to hit: ' + math + '=' + check + '\n**Critical Hit!!**');
 				}
 			break;
 			case 'damage':
