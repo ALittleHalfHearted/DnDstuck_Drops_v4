@@ -340,7 +340,7 @@ client.on('message', message => {
 					args = args.replace(args.substring(args.indexOf('e'),args.indexOf('e') + 2),'');
 				}
 				else if(args.indexOf('a') != -1){
-					ac = args.substring(args.indexOf('a') + 1,args.indexOf('a') + 2).parseInt();
+					ac = args.substring(args.indexOf('a') + 1,args.indexOf('a') + 2);
 					args = args.replace(args.substring(args.indexOf('a'),args.indexOf('a') + 2),'');
 				}
 				if(args.indexOf(' ') != -1){
@@ -357,10 +357,10 @@ client.on('message', message => {
 					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
-				if(ac == '' || check < ac.parseInt() + 10){
+				if(ac == '' || check < ac + 10){
 					message.reply('Your roll to hit: ' + math + '=' + check);
 				}
-				else if(check >= ac.parseInt() + 10){
+				else if(check >= ac + 10){
 					message.reply('Your roll to hit: ' + math + '=' + check + '\n**Critical Hit!!**');
 				}
 			break;
