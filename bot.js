@@ -33,7 +33,8 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
-		var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12 = {ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};
+		//var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11
+		var Player12 = {ID:Player12.ID, Dex:Player12.Dex, Str:Player12.Str, Wis:Player12.Wis, Con:Player12.Con, Int:Player12.Int, Cha:Player12.Cha};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
 
 		var ac = '';
