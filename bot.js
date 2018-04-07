@@ -69,7 +69,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'store':
-				var Player12 = {ID:message.author, Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+				Player12 = {ID:message.author, Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
 				message.reply('You have successfully been registered. Have a nice day!')
 			break;
 			case 'testing':
