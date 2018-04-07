@@ -33,7 +33,7 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
-		var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12 = {ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};
+		var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12 = /*{ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};*/{firstName:"John", lastName:"Doe", age:46};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
 
 		var ac = '';
@@ -67,7 +67,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'testing':
-				message.channel.send(Player1.Dex);
+				message.channel.send(Player1.firstName);
 			break;
 			case 'embed':
 				message.channel.send({embed});
