@@ -19,7 +19,6 @@ var player9 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
 var player10 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
 var player11 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
 var player12 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};*/
-var player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,player12 = {ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};
 
 
 client.on('ready', () => {
@@ -34,6 +33,7 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
+		var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12 = {ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
 
 		var ac = '';
@@ -67,7 +67,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'testing':
-				message.channel.send(player1.Dex);
+				message.channel.send(Player1.Dex);
 			break;
 			case 'embed':
 				message.channel.send({embed});
