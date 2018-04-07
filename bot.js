@@ -34,7 +34,7 @@ client.on('message', message => {
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
 		//var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11
-		var Player12 = {ID:Player12.ID, Dex:Player12.Dex, Str:Player12.Str, Wis:Player12.Wis, Con:Player12.Con, Int:Player12.Int, Cha:Player12.Cha};
+		//var Player12 = {ID:Player12.ID, Dex:Player12.Dex, Str:Player12.Str, Wis:Player12.Wis, Con:Player12.Con, Int:Player12.Int, Cha:Player12.Cha};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
 
 		var ac = '';
@@ -68,6 +68,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'testing':
+				var Player12 = {ID:message.author, Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
 				if(args != ''){
 					Player12.Dex = args;
 				}
