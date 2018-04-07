@@ -9,7 +9,7 @@ const embed = new Discord.RichEmbed()
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
 var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12;
 Player1 = Player2 = Player3 = Player4 = Player5 = Player6 = Player7 = Player8 = Player9 = Player10 = Player11 = Player12 = {};
-const PlayerList = {Player1{},Player2{},Player3{},Player4{},Player5{},Player6{},Player7{},Player8{},Player9{},Player10{},Player11{},Player12{}}
+const PlayerList = {Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12};
 
 
 client.on('ready', () => {
