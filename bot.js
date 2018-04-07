@@ -357,12 +357,12 @@ client.on('message', message => {
 					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
-				math = math.replace(' ','');
+				math = math.replace(/ /g,'');
 				if(ac == '' || check < ac + 10){
 					message.reply('Your roll to hit: ' + math + '=' + check);
 				}
 				else if(check >= ac + 10){
-					message.reply('Your roll to hit: ' + math + '=' + check + '\n**Critical Hit!!**');
+					message.reply('Your roll to hit: ' + math + '=' + check + '\n**Critical Hit!! Effect roll: ' + (Math.floor(Math.random() * 20) + 1) + '**');
 				}
 			break;
 			case 'damage':
