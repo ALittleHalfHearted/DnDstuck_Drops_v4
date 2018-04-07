@@ -7,6 +7,19 @@ const embed = new Discord.RichEmbed()
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
+/*var player1 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player2 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player3 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player4 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player5 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player6 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player7 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player8 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player9 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player10 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player11 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+var player12 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};*/
+var player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,player12 = {ID:'yolo', Dex:'hi', Str:'bluh', Wis:'eh', Con:'sup', Int:'bleh', Cha:'meh'};
 
 
 client.on('ready', () => {
