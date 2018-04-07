@@ -357,6 +357,7 @@ client.on('message', message => {
 					math = calculate.replace("=","");
 					check = modding(calculate);
 				}
+				math = math.replace(' ','');
 				if(ac == '' || check < ac + 10){
 					message.reply('Your roll to hit: ' + math + '=' + check);
 				}
