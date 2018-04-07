@@ -60,7 +60,8 @@ client.on('message', message => {
 		switch(cmd) {
 			case 'store':
 				Player12.ID = message.author;
-				message.reply('You have successfully been registered. Have a nice day!')
+				message.reply('You have successfully been registered. Have a nice day!');
+				console.log(Player12.ID);
 			break;
 			case 'testing':
 				if(args != ''){
