@@ -36,7 +36,8 @@ client.on('message', message => {
 		//var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11
 		//var Player12 = {ID:Player12.ID, Dex:Player12.Dex, Str:Player12.Str, Wis:Player12.Wis, Con:Player12.Con, Int:Player12.Int, Cha:Player12.Cha};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
-
+		var Player12;
+		
 		var ac = '';
 		var tier = 0;
 		var check = 0;
