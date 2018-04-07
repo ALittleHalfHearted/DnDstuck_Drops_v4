@@ -60,8 +60,14 @@ client.on('message', message => {
 		switch(cmd) {
 			case 'store':
 				Player12.ID = message.author;
+				Player12.Str = 0;
+				Player12.Dex = 0;
+				Player12.Wis = 0;
+				Player12.Int = 0;
+				Player12.Cha = 0;
+				Player12.Con = 0;
 				message.reply('You have successfully been registered. Have a nice day!');
-				console.log(Player12.ID);
+				console.log('New Player' + Player12.ID + ', ' + Player12.Str + ', ' + Player12.Dex + ', ' + Player12.Wis + ', ' + Player12.Int + ', ' + Player12.Cha + ', ' + Player12.Con);
 			break;
 			case 'testing':
 				if(args != ''){
