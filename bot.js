@@ -67,8 +67,10 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
-			case 'testing':
+			case 'store':
 				var Player12 = {ID:message.author, Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+			break;
+			case 'testing':
 				if(args != ''){
 					Player12.Dex = args;
 				}
