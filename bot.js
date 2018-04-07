@@ -67,7 +67,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'testing':
-				message.channel.send(Player12.firstDex);
+				message.channel.send(Player12.Dex);
 			break;
 			case 'embed':
 				message.channel.send({embed});
