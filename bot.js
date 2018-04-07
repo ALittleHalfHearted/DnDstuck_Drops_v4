@@ -66,6 +66,9 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
+			case 'testing':
+				message.channel.send(player1.Dex);
+			break;
 			case 'embed':
 				message.channel.send({embed});
 			break;
