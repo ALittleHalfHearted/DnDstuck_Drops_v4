@@ -7,18 +7,9 @@ const embed = new Discord.RichEmbed()
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
-/*var player1 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player2 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player3 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player4 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player5 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player6 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player7 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player8 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player9 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player10 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player11 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
-var player12 = {Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};*/
+var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12;
+Player1 = Player2 = Player3 = Player4 = Player5 = Player6 = Player7 = Player8 = Player9 = Player10 = Player11 = Player12 = {};
+const PlayerList = {Player1{},Player2{},Player3{},Player4{},Player5{},Player6{},Player7{},Player8{},Player9{},Player10{},Player11{},Player12{}}
 
 
 client.on('ready', () => {
@@ -33,10 +24,10 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
-		//var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11
+		//var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12
 		//var Player12 = {ID:Player12.ID, Dex:Player12.Dex, Str:Player12.Str, Wis:Player12.Wis, Con:Player12.Con, Int:Player12.Int, Cha:Player12.Cha};
 		var EnemyAC = [5,10,15,20,25,30,35,35];
-		var Player12;
+		var Player12{};
 		
 		var ac = '';
 		var tier = 0;
@@ -69,14 +60,15 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'store':
-				Player12 = {ID:message.author, Dex:'', Str:'', Wis:'', Con:'', Int:'', Cha:''};
+				Player12.ID = message.author;
 				message.reply('You have successfully been registered. Have a nice day!')
 			break;
 			case 'testing':
 				if(args != ''){
 					Player12.Dex = args;
+					message.channel.send(Player12.Dex);
 				}
-				message.channel.send(Player12.Dex);
+				message.channel.send(Player12.ID);
 			break;
 			case 'embed':
 				message.channel.send({embed});
