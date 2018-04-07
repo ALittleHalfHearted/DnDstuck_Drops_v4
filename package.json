@@ -1,6 +1,6 @@
 {
-  "name": "Test",
-  "description": "Test",
+  "name": "DnDstuck V4 Dice Bot",
+  "description": "Dice and enemy drops",
   "version": "0.0.0",
   "main": "bot.js",
   "scripts": {
