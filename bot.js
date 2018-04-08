@@ -386,6 +386,7 @@ client.on('message', message => {
 				}
 				if(found == true){
 					if(args != ''){
+						args = args.replace(' ','');
 						switch(args){
 							case 'cha':
 								check = check + parseInt(playerStats[i * 7 + 1].substring(5));
@@ -415,7 +416,7 @@ client.on('message', message => {
 								var i = 0
 								var found = false
 								while(i < substats.length && found == false){
-									if(substats[i] == message.author + ' ' + args.substring(0,args.lastIndexOf(' '))){
+									if(substats[i] == message.author + ' ' + args){
 										check = check + parseInt(substats[i + 1]);
 										math = math + '+' + substats[i + 1];
 									}
