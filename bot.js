@@ -19,7 +19,7 @@ client.on('ready', () => {
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%') {
-		const PlayerList = {Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player};
+		const PlayerList = {Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player[0]};
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -60,21 +60,13 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'store':
-				
-				/*Player12.ID = message.author;
-				Player12.Str = 0;
-				Player12.Dex = 0;
-				Player12.Wis = 0;
-				Player12.Int = 0;
-				Player12.Cha = 0;
-				Player12.Con = 0;*/
-				Player[0] = message.author;
-				Player[1] = 0;
-				Player[2] = 0;
-				Player[3] = 0;
-				Player[4] = 0;
-				Player[5] = 0;
-				Player[6] = 0;
+				/*ID*/ Player[0] = message.author;
+				/*CHA*/ Player[1] = 0;
+				/*DEX*/ Player[2] = 0;
+				/*STR*/ Player[3] = 0;
+				/*CON*/ Player[4] = 0;
+				/*INT*/ Player[5] = 0;
+				/*WIS*/ Player[6] = 0;
 				message.reply('You have successfully been registered. Have a nice day!');
 				console.log('New Player' + Player /*Player12.ID + ', ' + Player12.Str + ', ' + Player12.Dex + ', ' + Player12.Wis + ', ' + Player12.Int + ', ' + Player12.Cha + ', ' + Player12.Con*/);
 			break;
@@ -84,6 +76,7 @@ client.on('message', message => {
 					message.channel.send(Player[2]);
 				}
 				message.channel.send('Player Data: ' + Player);
+				message.channel.send('All players: ' + PlayerData);
 			break;
 			case 'embed':
 				message.channel.send({embed});
