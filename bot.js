@@ -100,13 +100,13 @@ client.on('message', message => {
 				if(found == true && dupe == false){
 					/*ID*/ playerStats[i * 7] = message.author;
 					/*CHA*/ playerStats[i * 7 + 1] = 'CHA: 0';
-					/*DEX*/ playerStats[i * 7 - 2] = 'DEX: 0';
+					/*DEX*/ playerStats[i * 7 + 2] = 'DEX: 0';
 					/*STR*/ playerStats[i * 7 + 3] = 'STR: 0';
 					/*CON*/ playerStats[i * 7 + 4] = 'CON: 0';
 					/*INT*/ playerStats[i * 7 + 5] = 'INT: 0';
 					/*WIS*/ playerStats[i * 7 + 6] = 'WIS: 0';
 					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
-					console.log('New Player: ' + playerStats[i * 7 - 7] + '\n' + playerStats[i * 7 - 6] + '\n' + playerStats[i * 7 - 5] + '\n' + playerStats[i * 7 - 4] + '\n' + playerStats[i * 7 - 3] + '\n' + playerStats[i * 7 - 2] + '\n' + playerStats[i * 7 - 1]);
+					console.log('New Player: ' + playerStats[i * 7] + '\n' + playerStats[i * 7 + 1] + '\n' + playerStats[i * 7 + 2] + '\n' + playerStats[i * 7 + 3] + '\n' + playerStats[i * 7 + 4] + '\n' + playerStats[i * 7 + 5] + '\n' + playerStats[i * 7 + 6]);
 				}
 				else{
 					message.reply('Unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
