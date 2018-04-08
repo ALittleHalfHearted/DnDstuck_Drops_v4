@@ -6,7 +6,8 @@ const embed = new Discord.RichEmbed()
 	.setDescription("use `%drops [command]` to get info on a specific command")
 	.setColor(65299)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
-	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
+	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`")
+	.addField("Stored", "`%register`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
@@ -71,6 +72,84 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
+			// Ping Pong
+			case 'ping':
+				message.reply('Pong!');
+			break;
+			case 'pong':
+				message.reply('Ping!');
+			break;
+			case 'embed':
+				message.channel.send({embed});
+			break;
+			case 'drops':
+				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
+				//COPY: message.channel.send('**``` ```**\n\n**Format:** `%`');
+				switch(args){
+					//%[enemy] [#killed]
+					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'rook':
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
+							      'and applies multipliers.```**\n\n**Format:** `%[enemy name] [# killed]`\n\n**examples:**\n`%ogre 45` gets drops from 45 ' +
+							      'ogres\n`%rook 22` gets drops from 22 rooks.');
+					break;
+					//%multi t[#] [#killed] t[#] [# killed](Repeat as necessary)
+					case 'multi':
+						message.channel.send('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
+						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
+						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
+						'necessary)`\n\n**examples:**\n`%multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`%multi t6 20 t2 8` gets drops ' +
+						'from 20 titachnids and 8 ogres.');
+					break;
+					//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
+					case 'custom':
+						message.channel.send('**```Use this command to get drops from any number of any enemy that doesn\'t have a command. ' +
+							      'Automatically divides grist and applies multipliers according to the tier.```**\n\n**Format:** `%custom [# ' +
+							      'killed] t[Tier (1-7 (UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
+							      'value]`\n\n**examples:**\n`%custom 14 t2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
+							      'and breaks down as if it were an ogre. You\'ll have to do health drops yourself.');
+					break;
+					case 'death':
+						message.channel.send('**```Rolls death saves until a result is determined and informs you of your fate.```**');
+					break;
+					case 'd20':
+						message.channel.send('**```Rolls 1d20 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
+					break;
+					case 'd10':
+						message.channel.send('**```Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`');
+					break;
+					case 'tohit':
+						message.channel.send('**```Exploding roll to hit! Now with mods! Also, if you specify the enemy\s armor or tier it will inform you if you crit. (For e[y], y = base enemy tier. For a[y], y = custom AC.) Good luck. Don\'t break anything ~~important~~.```**\n\n**Format:** `%tohit t[x][adv/dis/bless/curse][mods](e/a)[y]`');
+					break;
+					case 'ping': case 'pong':
+						message.channel.send('**```Ping! Pong! Ping! Pong! Use this to see if the bot is working! Ping! Pong! Ping! Pong!\nSeriously though, this serves no real purpose other than to make sure the bot is online.```**');
+					break;
+					case 'damage':
+						message.channel.send('**```Rolling your damage with whatever sides and whatever mods. Have fun!```**\n\n**Format:** `%damage t[tier] d[sides] [mods]`');
+					break;
+					case 'percent':
+						message.channel.send('**```Rolls Xd100. You can specify how many times it rolls, but if you don\'t it just rolls until you hit at least 100% total.```**\n\n**Format:** `%damage [turns]`');
+					break;
+					case 'register':
+						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
+					break;
+					case 'set':
+						message.channel.send('**```Allows you to set a stat to modify rolls.```**\n\n**Format:** `%set [stat]`');
+					break;
+					case 'me':
+						message.channel.send('**```Lets you check your stats.```**\n\n**Format:** `%me`');
+					break;
+					case 'list':
+						message.channel.send('**```Allows you to see a list of everyone registered so far. Add \'stats\' after the command to see everyone and their stats.```**\n\n**Format:** `%list (stats)`');
+					break;
+					case 'check':
+						message.channel.send('**```Makes an exploding d20 check. If you are registered, you can add your set stat for any category. (Currently working on substats and conditional stats.) Also allows for adv/dis rolls.```**\n\n**Format:** `%check [stat][adv/dis/bless/curse]`');
+					break;
+					//normal
+					default:
+						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+				}
+			break;
 			case 'resetstats':
 				if(message.author == '<@220176861379035137>'){
 					for(var i = 0; i < 84; i++){
@@ -112,7 +191,6 @@ client.on('message', message => {
 					/*WIS*/ playerStats[i * 7 + 6] = 'WIS: 0';
 					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
 					console.log('New Player: ' + playerStats[i * 7]);
-					console.log('Current list: ' + PlayerNames);
 				}
 				else{
 					message.reply('Unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
@@ -276,66 +354,6 @@ client.on('message', message => {
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
-			break;
-			case 'embed':
-				message.channel.send({embed});
-			break;
-			// %ping
-			case 'ping':
-				message.reply('Pong!');
-			break;
-			case 'pong':
-				message.reply('Ping!');
-			break;
-			case 'drops':
-				switch(args){
-					//%[enemy] [#killed]
-					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'rook':
-						message.channel.send('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
-							      'and applies multipliers.```**\n\n**Format:** `%[enemy name] [# killed]`\n\n**examples:**\n`%ogre 45` gets drops from 45 ' +
-							      'ogres\n`%rook 22` gets drops from 22 rooks.');
-					break;
-					//%multi t[#] [#killed] t[#] [# killed](Repeat as necessary)
-					case 'multi':
-						message.channel.send('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
-						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
-						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
-						'necessary)`\n\n**examples:**\n`%multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`%multi t6 20 t2 8` gets drops ' +
-						'from 20 titachnids and 8 ogres.');
-					break;
-					//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
-					case 'custom':
-						message.channel.send('**```Use this command to get drops from any number of any enemy that doesn\'t have a command. ' +
-							      'Automatically divides grist and applies multipliers according to the tier.```**\n\n**Format:** `%custom [# ' +
-							      'killed] t[Tier (1-7 (UNDEFINED: 9))] [# of boon dice]d[dice value] [# of grist dice]d[dice ' +
-							      'value]`\n\n**examples:**\n`%custom 14 t2 200d40 88d94` rolls 200d40 for boon and 88d94 for grist, then multiplies ' +
-							      'and breaks down as if it were an ogre. You\'ll have to do health drops yourself.');
-					break;
-					case 'death':
-						message.channel.send('**```Rolls death saves until a result is determined and informs you of your fate.```**');
-					break;
-					case 'd20':
-						message.channel.send('**```Rolls 1d20 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`\n\nPossibly adding mod dice at later date. Until then, dice will simply break it.');
-					break;
-					case 'd10':
-						message.channel.send('**```Rolls 1d10 and explodes as necessary. Allows for most modifiers, just keep it simple.```**\n\n**Format:** `%check [adv/dis/bless/curse][mods]`');
-					break;
-					case 'tohit':
-						message.channel.send('**```Exploding roll to hit! Now with mods! Also, if you specify the enemy\s armor or tier it will inform you if you crit. (For e[y], y = base enemy tier. For a[y], y = custom AC.) Good luck. Don\'t break anything ~~important~~.```**\n\n**Format:** `%tohit t[x][adv/dis/bless/curse][mods](e/a)[y]`');
-					break;
-					case 'ping': case 'pong':
-						message.channel.send('**```Ping! Pong! Ping! Pong! Use this to see if the bot is working! Ping! Pong! Ping! Pong!\nSeriously though, this serves no real purpose other than to make sure the bot is online.```**');
-					break;
-					case 'damage':
-						message.channel.send('**```Rolling your damage with whatever sides and whatever mods. Have fun!```**\n\n**Format:** `%damage t[tier] d[sides] [mods]`');
-					break;
-					case 'percent':
-						message.channel.send('**```Rolls Xd100. You can specify how many times it rolls, but if you don\'t it just rolls until you hit at least 100% total.```**\n\n**Format:** `%damage [turns]`')
-					//normal
-					default:
-						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Storage:```\n`%register`\n`%list`\n`%me`\n`%set [stat]` one at a time\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
-				}
 			break;
 			case 'percent':
 				check = Math.floor(Math.random() * 100) + 1;
