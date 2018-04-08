@@ -1193,6 +1193,12 @@ client.on('message', message => {
 	}
 })
 
+
+client.disconnect('error', () => {
+	console.log('Bot down!');
+})
+
+
 //Main dice
 function d10(){
 	var check = Math.floor(Math.random() * 10) + 1;
