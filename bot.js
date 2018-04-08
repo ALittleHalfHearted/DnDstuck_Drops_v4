@@ -33,7 +33,7 @@ client.on('message', message => {
 		const Player11 = [playerStats[70],playerStats[71],playerStats[72],playerStats[73],playerStats[74],playerStats[75],playerStats[76]];
 		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
-		const PlayerList = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];
+		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -81,10 +81,10 @@ client.on('message', message => {
 				var found = false;
 				var dupe = false;
 				while(i < 12 || found == false || dupe == false){
-					if(PlayerList[i] == ''){
+					if(PlayerNames[i] == ''){
 						found = true;
 					}
-					if(PlayerList[i] == message.author){
+					if(PlayerNames[i] == message.author){
 						dupe = true;
 					}
 					i++;
@@ -106,28 +106,24 @@ client.on('message', message => {
 			break;
 			case 'list':
 				if(args == 'stats'){
-					message.channel.send('All players: ' + PlayerList);
+					message.channel.send('All players: ' + PlayerSort);
 				}
 				else{
-					message.channel.send('All players: ' + PlayerSort);
+					message.channel.send('All players: ' + PlayerNames);
 				}
 			break;
 			case 'stats':
 				var i = 0;
 				var found = false;
 				while(i < 12 || found == false){
-					if(PlayerIDs[i] == ''){
+					if(PlayerNames[i] == ''){
 						found = true;
 					}
 					else{
 						i++;
 					}
 				}
-				if(args != ''){
-					Player1[2] = args;
-					message.channel.send(Player1[2]);
-				}
-				message.channel.send('Player Data: ' + Player1);
+				message.channel.send('Player Data: ' + PlayerSort[i]);
 			break;
 			case 'embed':
 				message.channel.send({embed});
