@@ -229,8 +229,8 @@ client.on('message', message => {
 				}
 				/*if(found == true && sub == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i] + others);
-				}*/
-				else if(found == true){
+				}
+				else */if(found == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 				}
 				else{
