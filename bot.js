@@ -233,27 +233,27 @@ client.on('message', message => {
 				}
 				switch(args){
 					case 'cha':
-						check = check + playerStats[i * 7 + 1].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 1].substring(4));
 						math = math + '+' + playerStats[i * 7 + 1].substring(4);
 					break;
 					case 'dex':
-						check = check + playerStats[i * 7 + 2].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 2].substring(4));
 						math = math + '+' + playerStats[i * 7 + 2].substring(4);
 					break;
 					case 'str':
-						check = check + playerStats[i * 7 + 3].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 3].substring(4));
 						math = math + '+' + playerStats[i * 7 + 3].substring(4);
 					break;
 					case 'con':
-						check = check + playerStats[i * 7 + 4].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 4].substring(4));
 						math = math + '+' + playerStats[i * 7 + 4].substring(4);
 					break;
 					case 'int':
-						check = check + playerStats[i * 7 + 5].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 5].substring(4));
 						math = math + '+' + playerStats[i * 7 + 5].substring(4);
 					break;
 					case 'wis':
-						check = check + playerStats[i * 7 + 6].substring(4).parseInt();
+						check = check + parseInt(playerStats[i * 7 + 6].substring(4));
 						math = math + '+' + playerStats[i * 7 + 6].substring(4);
 					break;
 				}
