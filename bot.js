@@ -111,7 +111,8 @@ client.on('message', message => {
 					/*INT*/ playerStats[i * 7 + 5] = 'INT: 0';
 					/*WIS*/ playerStats[i * 7 + 6] = 'WIS: 0';
 					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
-					console.log('New Player: ' + playerStats[i * 7] + '\n' + playerStats[i * 7 + 1] + '\n' + playerStats[i * 7 + 2] + '\n' + playerStats[i * 7 + 3] + '\n' + playerStats[i * 7 + 4] + '\n' + playerStats[i * 7 + 5] + '\n' + playerStats[i * 7 + 6]);
+					console.log('New Player: ' + playerStats[i * 7]);
+					console.log('Current list: ' + PlayerNames);
 				}
 				else{
 					message.reply('Unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
@@ -172,6 +173,7 @@ client.on('message', message => {
 					break;
 				}
 				message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7] + ', ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+				console.log('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7] + ', ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 			break;
 			case 'check':
 				check = d20();
@@ -233,28 +235,28 @@ client.on('message', message => {
 				}
 				switch(args){
 					case 'cha':
-						check = check + parseInt(playerStats[i * 7 + 1].substring(4));
-						math = math + '+' + playerStats[i * 7 + 1].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 1].substring(5));
+						math = math + '+' + playerStats[i * 7 + 1].substring(5);
 					break;
 					case 'dex':
-						check = check + parseInt(playerStats[i * 7 + 2].substring(4));
-						math = math + '+' + playerStats[i * 7 + 2].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 2].substring(5));
+						math = math + '+' + playerStats[i * 7 + 2].substring(5);
 					break;
 					case 'str':
-						check = check + parseInt(playerStats[i * 7 + 3].substring(4));
-						math = math + '+' + playerStats[i * 7 + 3].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 3].substring(5));
+						math = math + '+' + playerStats[i * 7 + 3].substring(5);
 					break;
 					case 'con':
-						check = check + parseInt(playerStats[i * 7 + 4].substring(4));
-						math = math + '+' + playerStats[i * 7 + 4].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 4].substring(5));
+						math = math + '+' + playerStats[i * 7 + 4].substring(5);
 					break;
 					case 'int':
-						check = check + parseInt(playerStats[i * 7 + 5].substring(4));
-						math = math + '+' + playerStats[i * 7 + 5].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 5].substring(5));
+						math = math + '+' + playerStats[i * 7 + 5].substring(5);
 					break;
 					case 'wis':
-						check = check + parseInt(playerStats[i * 7 + 6].substring(4));
-						math = math + '+' + playerStats[i * 7 + 6].substring(4);
+						check = check + parseInt(playerStats[i * 7 + 6].substring(5));
+						math = math + '+' + playerStats[i * 7 + 6].substring(5);
 					break;
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
