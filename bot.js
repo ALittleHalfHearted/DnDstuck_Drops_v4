@@ -138,7 +138,12 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+				if(found == true){
+					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+				}
+				else{
+					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
+				}
 			break;
 			case 'set':
 				var stat = args.substring(0,3);
@@ -152,28 +157,33 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				switch(stat){
-					case 'cha':
-						playerStats[i * 7 + 1] = 'CHA: ' + args;
-					break;
-					case 'dex':
-						playerStats[i * 7 + 2] = 'DEX: ' + args;
-					break;
-					case 'str':
-						playerStats[i * 7 + 3] = 'STR: ' + args;
-					break;
-					case 'con':
-						playerStats[i * 7 + 4] = 'CON: ' + args;
-					break;
-					case 'int':
-						playerStats[i * 7 + 5] = 'INT: ' + args;
-					break;
-					case 'wis':
-						playerStats[i * 7 + 6] = 'WIS: ' + args;
-					break;
+				if(found == true){
+					switch(stat){
+						case 'cha':
+							playerStats[i * 7 + 1] = 'CHA: ' + args;
+						break;
+						case 'dex':
+							playerStats[i * 7 + 2] = 'DEX: ' + args;
+						break;
+						case 'str':
+							playerStats[i * 7 + 3] = 'STR: ' + args;
+						break;
+						case 'con':
+							playerStats[i * 7 + 4] = 'CON: ' + args;
+						break;
+						case 'int':
+							playerStats[i * 7 + 5] = 'INT: ' + args;
+						break;
+						case 'wis':
+							playerStats[i * 7 + 6] = 'WIS: ' + args;
+						break;
+					}
+					message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+					console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 				}
-				message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-				console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+				else{
+					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
+				}
 			break;
 			case 'check':
 				check = d20();
@@ -233,31 +243,36 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				switch(args){
-					case 'cha':
-						check = check + parseInt(playerStats[i * 7 + 1].substring(5));
-						math = math + '+' + playerStats[i * 7 + 1].substring(5);
-					break;
-					case 'dex':
-						check = check + parseInt(playerStats[i * 7 + 2].substring(5));
-						math = math + '+' + playerStats[i * 7 + 2].substring(5);
-					break;
-					case 'str':
-						check = check + parseInt(playerStats[i * 7 + 3].substring(5));
-						math = math + '+' + playerStats[i * 7 + 3].substring(5);
-					break;
-					case 'con':
-						check = check + parseInt(playerStats[i * 7 + 4].substring(5));
-						math = math + '+' + playerStats[i * 7 + 4].substring(5);
-					break;
-					case 'int':
-						check = check + parseInt(playerStats[i * 7 + 5].substring(5));
-						math = math + '+' + playerStats[i * 7 + 5].substring(5);
-					break;
-					case 'wis':
-						check = check + parseInt(playerStats[i * 7 + 6].substring(5));
-						math = math + '+' + playerStats[i * 7 + 6].substring(5);
-					break;
+				if(found == true){
+					switch(args){
+						case 'cha':
+							check = check + parseInt(playerStats[i * 7 + 1].substring(5));
+							math = math + '+' + playerStats[i * 7 + 1].substring(5);
+						break;
+						case 'dex':
+							check = check + parseInt(playerStats[i * 7 + 2].substring(5));
+							math = math + '+' + playerStats[i * 7 + 2].substring(5);
+						break;
+						case 'str':
+							check = check + parseInt(playerStats[i * 7 + 3].substring(5));
+							math = math + '+' + playerStats[i * 7 + 3].substring(5);
+						break;
+						case 'con':
+							check = check + parseInt(playerStats[i * 7 + 4].substring(5));
+							math = math + '+' + playerStats[i * 7 + 4].substring(5);
+						break;
+						case 'int':
+							check = check + parseInt(playerStats[i * 7 + 5].substring(5));
+							math = math + '+' + playerStats[i * 7 + 5].substring(5);
+						break;
+						case 'wis':
+							check = check + parseInt(playerStats[i * 7 + 6].substring(5));
+							math = math + '+' + playerStats[i * 7 + 6].substring(5);
+						break;
+					}
+				}
+				else{
+					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
