@@ -9,7 +9,7 @@ const embed = new Discord.RichEmbed()
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("Storage", "`%register`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	.addBlankField()
-	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`");
+	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
 var substats = [' ',' ']
@@ -135,7 +135,7 @@ client.on('message', message => {
 						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
 					break;
 					case 'set':
-						message.channel.send('**```Allows you to set a stat to modify rolls.```**\n\n**Format:** `%set [stat]`');
+						message.channel.send('**```Allows you to set a stat to modify rolls. DO NOT DO ANYTHING WITH A "NEW" STAT!```**\n\n**Format:** `%set [stat]`');
 					break;
 					case 'me':
 						message.channel.send('**```Lets you check your stats.```**\n\n**Format:** `%me`');
