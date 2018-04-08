@@ -171,7 +171,7 @@ client.on('message', message => {
 						playerStats[i * 7 + 6] = 'WIS: ' + args;
 					break;
 				}
-				message.channel.send('Updated player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+				message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7] + ', ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 			break;
 			case 'embed':
 				message.channel.send({embed});
