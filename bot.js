@@ -1193,11 +1193,12 @@ client.on('message', message => {
 	}
 })
 
-
-client.on('error', disconnect => {
-	console.log('Bot down!');
+client.on('error', error => {
+	console.log('bot down! ' + error);
+	message.channel.send('I\'m going down now, thanks for that.');
+	client.destroy();
+	const client = new Discord.Client();
 })
-
 
 //Main dice
 function d10(){
