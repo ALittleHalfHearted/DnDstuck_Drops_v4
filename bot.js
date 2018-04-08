@@ -73,7 +73,7 @@ client.on('message', message => {
 		switch(cmd) {
 			case 'resetallthefuckinthings':
 				for(var i = 0; i < 84; i++){
-					playerStats[i] = 'Empty';
+					playerStats[i] = ' ';
 				}
 				console.log('Player data reset');
 				message.channel.send('Data reset successfully! ' + playerStats);
@@ -84,7 +84,7 @@ client.on('message', message => {
 				var dupe = false;
 				console.log(message.author + ' is registering...');
 				while(i < 12 && found == false && dupe == false){
-					if(playerStats[i * 7] == 'Empty'){
+					if(playerStats[i * 7] == ' '){
 						found = true;
 						console.log('Registration successful!');
 					}
