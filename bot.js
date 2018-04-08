@@ -84,11 +84,11 @@ client.on('message', message => {
 				var dupe = false;
 				console.log(message.author + ' is registering...');
 				while(i < 12 && found == false && dupe == false){
-					if(playerStats[i * 7] == ' '){
+					if(PlayerNames[i] == ' '){
 						found = true;
 						console.log('Registration successful!');
 					}
-					else if(playerStats[i * 7] == message.author){
+					else if(PlayerNames[i] == message.author){
 						dupe = true;
 						console.log('Player is already in system.');
 					}
@@ -121,11 +121,11 @@ client.on('message', message => {
 					message.channel.send('All players: ' + PlayerNames);
 				}
 			break;
-			case 'stats':
+			case 'me':
 				var i = 0;
 				var found = false;
-				while(i < 12 || found == false){
-					if(PlayerNames[i] == ''){
+				while(i < 12 && found == false){
+					if(PlayerNames[i] == message.author){
 						found = true;
 					}
 					else{
