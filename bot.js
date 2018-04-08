@@ -142,7 +142,7 @@ client.on('message', message => {
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 				}
 				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
+					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
 			break;
 			case 'set':
@@ -182,7 +182,7 @@ client.on('message', message => {
 					console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 				}
 				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
+					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
 			break;
 			case 'check':
@@ -272,7 +272,7 @@ client.on('message', message => {
 					}
 				}
 				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\t full yet, please use `%register` to do so.');
+					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
 			break;
