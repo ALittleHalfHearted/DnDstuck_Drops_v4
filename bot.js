@@ -94,6 +94,7 @@ client.on('message', message => {
 					}
 					else{
 						i = i + 1;
+						console.log('space ' + i + ' taken');
 					}
 				}
 				if(found == true && dupe == false){
