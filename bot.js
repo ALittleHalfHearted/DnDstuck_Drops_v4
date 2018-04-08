@@ -157,6 +157,7 @@ client.on('message', message => {
 					for(var i = 0; i < 84; i++){
 						playerStats[i] = ' ';
 					}
+					substats = [' ',' '];
 					console.log('Player data reset');
 					message.channel.send('Data reset successfully!');
 				}
@@ -289,7 +290,7 @@ client.on('message', message => {
 								substats[k] = message.author + ' ' + args.substring(0,args.lastIndexOf(' '));
 								substats[k + 1] = args.substring(args.lastIndexOf(' '));
 							}
-							message.channel.send('New mod: ' + message.author + ' ' + args.substring(0,args.lastIndexOf(' ')) + '=' + args.substring(args.lastIndexOf(' ')));
+							message.channel.send('New mod: ' + message.author + ' ' + args.substring(0,args.lastIndexOf(' ')) + ' =' + args.substring(args.lastIndexOf(' ')));
 							var custom = true;
 						break;
 						default:
@@ -316,8 +317,8 @@ client.on('message', message => {
 						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 					}
 					else{
-						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + ', ' + substats[k + 1]);
-						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + ', ' + substats[k + 1]);
+						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
+						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
 					}
 				}
 				else{
@@ -414,7 +415,7 @@ client.on('message', message => {
 								var i = 0
 								var found = false
 								while(i < substats.length && found == false){
-									if(substats[i] == toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '))){
+									if(substats[i] == message.author + ' ' + args.substring(0,args.lastIndexOf(' '))){
 										check = check + parseInt(substats[i + 1]);
 										math = math + '+' + substats[i + 1];
 									}
