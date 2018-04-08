@@ -139,6 +139,40 @@ client.on('message', message => {
 				}
 				message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 			break;
+			case 'set':
+				var stat = args.substring(0,3);
+				args = args.replace(stat,'').replace(/ /g,'');
+				var i = 0;
+				while(i < 12 && found == false){
+					if(PlayerNames[i] == message.author){
+						found = true;
+					}
+					else{
+						i++;
+					}
+				}
+				switch(stat){
+					case 'cha':
+						playerStats[i * 7 + 1] = 'CHA: ' + args;
+					break;
+					case 'dex':
+						playerStats[i * 7 + 2] = 'DEX: ' + args;
+					break;
+					case 'str':
+						playerStats[i * 7 + 3] = 'STR: ' + args;
+					break;
+					case 'con':
+						playerStats[i * 7 + 4] = 'CON: ' + args;
+					break;
+					case 'int':
+						playerStats[i * 7 + 5] = 'INT: ' + args;
+					break;
+					case 'wis':
+						playerStats[i * 7 + 6] = 'WIS: ' + args;
+					break;
+				}
+				message.channel.send('Updated player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+			break;
 			case 'embed':
 				message.channel.send({embed});
 			break;
@@ -196,7 +230,7 @@ client.on('message', message => {
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Storage:```\n`%register`\n`%list`\n`%me`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Storage:```\n`%register`\n`%list`\n`%me`\n`%set [stat]` one at a time\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'percent':
