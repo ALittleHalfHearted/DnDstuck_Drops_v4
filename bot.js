@@ -92,7 +92,7 @@ client.on('message', message => {
 						dupe = true;
 						console.log('Player already in system.');
 					}
-					i++;
+					i = i + 1;
 				}
 				if(found == true && dupe == false){
 					/*ID*/ playerStats[i * 7 - 7] = message.author;
@@ -126,7 +126,7 @@ client.on('message', message => {
 						found = true;
 					}
 					else{
-						i++;
+						i = i + 1;
 					}
 				}
 				message.channel.send('Player Data: ' + PlayerSort[i]);
