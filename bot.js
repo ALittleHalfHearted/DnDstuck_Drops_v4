@@ -71,12 +71,17 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
-			case 'resetallthefuckinthings':
-				for(var i = 0; i < 84; i++){
-					playerStats[i] = ' ';
+			case 'resetstats':
+				if(message.author == '<@220176861379035137>'){
+					for(var i = 0; i < 84; i++){
+						playerStats[i] = ' ';
+					}
+					console.log('Player data reset');
+					message.channel.send('Data reset successfully!');
 				}
-				console.log('Player data reset');
-				message.channel.send('Data reset successfully! ' + playerStats);
+				else{
+					message.channel.send('You don\'t have permission to do that.');
+				}
 			break;
 			case 'register':
 				var i = 0;
