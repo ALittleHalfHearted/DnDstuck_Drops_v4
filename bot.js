@@ -174,6 +174,7 @@ client.on('message', message => {
 				message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7] + ', ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 			break;
 			case 'check':
+				check = d20();
 				if(message.content.indexOf('adv') != -1){
 					message.channel.send(check);
 					check2 = d20();
