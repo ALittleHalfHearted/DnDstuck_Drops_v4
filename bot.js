@@ -1194,7 +1194,7 @@ client.on('message', message => {
 })
 
 
-client.disconnect('error', () => {
+client.off('error', disconnect => {
 	console.log('Bot down!');
 })
 
