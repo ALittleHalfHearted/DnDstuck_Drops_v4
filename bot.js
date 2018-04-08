@@ -234,6 +234,7 @@ client.on('message', message => {
 					args = args.replace("curse","");
 				}
 				math = check.toString();
+				var found = false;
 				var i = 0;
 				while(i < 12 && found == false){
 					if(PlayerNames[i] == message.author){
