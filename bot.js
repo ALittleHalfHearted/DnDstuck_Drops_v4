@@ -233,28 +233,28 @@ client.on('message', message => {
 				}
 				switch(args){
 					case 'cha':
-						check = check + playerStats[i * 7 + 1];
-						math = math + '+' + playerStats[i * 7 + 1];
+						check = check + playerStats[i * 7 + 1].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 1].substring(4);
 					break;
 					case 'dex':
-						check = check + playerStats[i * 7 + 2];
-						math = math + '+' + playerStats[i * 7 + 2];
+						check = check + playerStats[i * 7 + 2].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 2].substring(4);
 					break;
 					case 'str':
-						check = check + playerStats[i * 7 + 3];
-						math = math + '+' + playerStats[i * 7 + 3];
+						check = check + playerStats[i * 7 + 3].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 3].substring(4);
 					break;
 					case 'con':
-						check = check + playerStats[i * 7 + 4];
-						math = math + '+' + playerStats[i * 7 + 4];
+						check = check + playerStats[i * 7 + 4].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 4].substring(4);
 					break;
 					case 'int':
-						check = check + playerStats[i * 7 + 5];
-						math = math + '+' + playerStats[i * 7 + 5];
+						check = check + playerStats[i * 7 + 5].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 5].substring(4);
 					break;
 					case 'wis':
-						check = check + playerStats[i * 7 + 6];
-						math = math + '+' + playerStats[i * 7 + 6];
+						check = check + playerStats[i * 7 + 6].substring(4).parseInt();
+						math = math + '+' + playerStats[i * 7 + 6].substring(4);
 					break;
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
