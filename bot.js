@@ -12,7 +12,7 @@ const embed = new Discord.RichEmbed()
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
-var substats = [' ',' ']
+//var substats = [' ',' ']
 
 
 client.on('ready', () => {
@@ -135,7 +135,7 @@ client.on('message', message => {
 						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
 					break;
 					case 'set':
-						message.channel.send('**```Allows you to set a stat to modify rolls. DO NOT DO ANYTHING WITH A "NEW" STAT!```**\n\n**Format:** `%set [stat]`');
+						message.channel.send('**```Allows you to set a stat to modify rolls.```**\n\n**Format:** `%set [stat]`'); //DO NOT DO ANYTHING WITH A "NEW" STAT!
 					break;
 					case 'me':
 						message.channel.send('**```Lets you check your stats.```**\n\n**Format:** `%me`');
@@ -157,7 +157,7 @@ client.on('message', message => {
 					for(var i = 0; i < 84; i++){
 						playerStats[i] = ' ';
 					}
-					substats = [' ',' '];
+					//substats = [' ',' '];
 					console.log('Player data reset');
 					message.channel.send('Data reset successfully!');
 				}
@@ -213,12 +213,12 @@ client.on('message', message => {
 				var i = 0;
 				var found = false;
 				var sub = false;
-				for(var n = 0; n < substats.length; n + 2){
+				/*for(var n = 0; n < substats.length; n + 2){
 					if(substats[n].indexOf(message.author) != -1){
 						others = others + ', ' + substats[n] + substats[n + 1];
 						sub = true;
 					}
-				}
+				}*/
 				while(i < 12 && found == false){
 					if(PlayerNames[i] == message.author){
 						found = true;
@@ -227,9 +227,9 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				if(found == true && sub == true){
+				/*if(found == true && sub == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i] + others);
-				}
+				}*/
 				else if(found == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 				}
@@ -238,7 +238,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'set':
-				var custom = false;
+				//var custom = false;
 				var stat = args.substring(0,3);
 				args = args.replace(stat,'').replace(' ','');
 				var found = false;
@@ -271,7 +271,7 @@ client.on('message', message => {
 						case 'wis':
 							playerStats[i * 7 + 6] = 'WIS: ' + args;
 						break;
-						case 'new':
+						/*case 'new':
 							var k = 0;
 							var seen = false;
 							while(k < substats.length && seen == false){
@@ -310,16 +310,16 @@ client.on('message', message => {
 							else{
 								substats[k + 1] = args.substring(args.lastIndexOf(' '));
 							}
-							var custom = true;
+							var custom = true;*/
 					}
-					if(custom == false){
+					/*if(custom == false){
 						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 					}
-					else{
+					else{*/
 						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
 						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
-					}
+					//}
 				}
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
@@ -412,7 +412,7 @@ client.on('message', message => {
 								check = check + parseInt(playerStats[i * 7 + 6].substring(5));
 								math = math + '+' + playerStats[i * 7 + 6].substring(5);
 							break;
-							default:
+							/*default:
 								var i = 0
 								var found = false
 								while(i < substats.length && found == false){
@@ -426,7 +426,7 @@ client.on('message', message => {
 								}
 								if(i == substats.length && found == false){
 									message.channel.send('Sorry, we couldn\'t find a mod for ' + args.substring(0,args.lastIndexOf(' ')) + ' from ' + message.author + 'in our datbase. Please try again after using the `%set [new]` command.');
-								}									
+								}*/
 						}
 					}
 				}
