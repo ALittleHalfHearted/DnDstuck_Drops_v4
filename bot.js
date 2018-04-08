@@ -7,8 +7,18 @@ const embed = new Discord.RichEmbed()
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
-var Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12;
-Player1 = Player2 = Player3 = Player4 = Player5 = Player6 = Player7 = Player8 = Player9 = Player10 = Player11 = Player12 = new Array(7);
+var Player1 = new Array(7);
+var Player2 = new Array(7);
+var Player3 = new Array(7);
+var Player4 = new Array(7);
+var Player5 = new Array(7);
+var Player6 = new Array(7);
+var Player7 = new Array(7);
+var Player8 = new Array(7);
+var Player9 = new Array(7);
+var Player10 = new Array(7);
+var Player11 = new Array(7);
+var Player12 = new Array(7);
 
 
 client.on('ready', () => {
@@ -19,7 +29,8 @@ client.on('ready', () => {
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%') {
-		const PlayerList = [Player1[0],Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
+		const PlayerList = {Player1:Player1[0],Player2:Player2[0],Player3:Player3[0],Player4:Player4[0],Player5:Player5[0],Player6:Player6[0],Player7:Player7[0],Player8:Player8[0],Player9:Player9[0],Player10:Player10[0],Player11:Player11[0],Player12:Player12[0]};
+		var playerTemp = ['ID','CHA','DEX','STR','CON','INT','WIS'];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -58,15 +69,28 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'store':
-				/*ID*/ Player1[0] = message.author;
-				/*CHA*/ Player1[1] = 0;
-				/*DEX*/ Player1[2] = 0;
-				/*STR*/ Player1[3] = 0;
-				/*CON*/ Player1[4] = 0;
-				/*INT*/ Player1[5] = 0;
-				/*WIS*/ Player1[6] = 0;
-				message.reply('You have successfully been registered. Have a nice day!');
-				console.log('New Player' + Player1);
+				var i = 0;
+				var found = false;
+				while(i < 12 || found == false){
+					if(PlayerList[i] == ''){
+						found = true;
+					}
+					else{
+						i++;
+					}
+				}
+				/*ID*/ playerTemp[0] = message.author;
+				/*CHA*/ playerTemp[1] = 'CHA: 0';
+				/*DEX*/ playerTemp[2] = 'DEX: 0';
+				/*STR*/ playerTemp[3] = 'STR: 0';
+				/*CON*/ playerTemp[4] = 'CON: 0';
+				/*INT*/ playerTemp[5] = 'INT: 0';
+				/*WIS*/ playerTemp[6] = 'WIS: 0';
+				message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
+				console.log('New Player' + playerTemp);
+			break;
+			case 'list':
+				message.channel.send('All players: ' + PlayerList);
 			break;
 			case 'testing':
 				if(args != ''){
