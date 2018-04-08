@@ -82,7 +82,7 @@ client.on('message', message => {
 				var i = 0;
 				var found = false;
 				var dupe = false;
-				console.log('registering...');
+				console.log(message.author + ' is registering...');
 				while(i < 12 && found == false && dupe == false){
 					if(playerStats[i * 7] == ''){
 						found = true;
