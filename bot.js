@@ -12,6 +12,7 @@ const embed = new Discord.RichEmbed()
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`");
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
+var substats = [' ',' ']
 
 
 client.on('ready', () => {
@@ -225,8 +226,10 @@ client.on('message', message => {
 				}
 			break;
 			case 'set':
+				var custom = false;
 				var stat = args.substring(0,3);
-				args = args.replace(stat,'').replace(/ /g,'');
+				args = args.replace(stat,'').replace(' ','');
+				var found = false;
 				var i = 0;
 				while(i < 12 && found == false){
 					if(PlayerNames[i] == message.author){
@@ -256,9 +259,55 @@ client.on('message', message => {
 						case 'wis':
 							playerStats[i * 7 + 6] = 'WIS: ' + args;
 						break;
+						case 'new':
+							var k = 0;
+							var seen = false;
+							while(k < substats.length && seen == false){
+								if(substats[k] == ' '){
+									seen = true;
+								}
+								else{
+									k = k + 2;
+								}
+							}
+							if(k == substats.length && seen == false){
+								substats[substats.length] = toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '));
+								substats[substats.length] = args.substring(args.lastIndexOf(' '));
+							}
+							else{
+								substats[k] = toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '));
+								substats[k + 1] = args.substring(args.lastIndexOf(' '));
+							}
+							message.channel.send('New mod: ' + toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' ')) + '=' + args.substring(args.lastIndexOf(' ')));
+							var custom = true;
+						break;
+						default:
+							var k = 0;
+							var seen = false;
+							while(k < substats.length && seen == false){
+								if(substats[k].indexOf(args.substring(0,args.lastIndexOf(' '))) != -1 && substats[k].indexOf(toString(message.author)) != -1){
+									seen = true;
+								}
+								else{
+									k = k + 2;
+								}
+							}
+							if(seen == false){
+								message.channel.send('Sorry, we couldn\'t find a mod for ' + args.substring(0,args.lastIndexOf(' ')) + ' from ' + message.author + 'in our datbase. Please try starting with the \'new\' declaration next time.');
+							}
+							else{
+								substats[k + 1] = args.substring(args.lastIndexOf(' '));
+							}
+							var custom = true;
 					}
-					message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-					console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+					if(custom == false;){
+						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+					}
+					else{
+						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + substats[k + 1]);
+						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + substats[k + 1]);
+					}
 				}
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
@@ -324,31 +373,48 @@ client.on('message', message => {
 					}
 				}
 				if(found == true){
-					switch(args){
-						case 'cha':
-							check = check + parseInt(playerStats[i * 7 + 1].substring(5));
-							math = math + '+' + playerStats[i * 7 + 1].substring(5);
-						break;
-						case 'dex':
-							check = check + parseInt(playerStats[i * 7 + 2].substring(5));
-							math = math + '+' + playerStats[i * 7 + 2].substring(5);
-						break;
-						case 'str':
-							check = check + parseInt(playerStats[i * 7 + 3].substring(5));
-							math = math + '+' + playerStats[i * 7 + 3].substring(5);
-						break;
-						case 'con':
-							check = check + parseInt(playerStats[i * 7 + 4].substring(5));
-							math = math + '+' + playerStats[i * 7 + 4].substring(5);
-						break;
-						case 'int':
-							check = check + parseInt(playerStats[i * 7 + 5].substring(5));
-							math = math + '+' + playerStats[i * 7 + 5].substring(5);
-						break;
-						case 'wis':
-							check = check + parseInt(playerStats[i * 7 + 6].substring(5));
-							math = math + '+' + playerStats[i * 7 + 6].substring(5);
-						break;
+					if(args != ''){
+						switch(args){
+							case 'cha':
+								check = check + parseInt(playerStats[i * 7 + 1].substring(5));
+								math = math + '+' + playerStats[i * 7 + 1].substring(5);
+							break;
+							case 'dex':
+								check = check + parseInt(playerStats[i * 7 + 2].substring(5));
+								math = math + '+' + playerStats[i * 7 + 2].substring(5);
+							break;
+							case 'str':
+								check = check + parseInt(playerStats[i * 7 + 3].substring(5));
+								math = math + '+' + playerStats[i * 7 + 3].substring(5);
+							break;
+							case 'con':
+								check = check + parseInt(playerStats[i * 7 + 4].substring(5));
+								math = math + '+' + playerStats[i * 7 + 4].substring(5);
+							break;
+							case 'int':
+								check = check + parseInt(playerStats[i * 7 + 5].substring(5));
+								math = math + '+' + playerStats[i * 7 + 5].substring(5);
+							break;
+							case 'wis':
+								check = check + parseInt(playerStats[i * 7 + 6].substring(5));
+								math = math + '+' + playerStats[i * 7 + 6].substring(5);
+							break;
+							default:
+								var i = 0
+								var found = false
+								while(i < substats.length && found == false){
+									if(substats[i] == toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '))){
+										check = check + parseInt(substats[i + 1]);
+										math = math + '+' + substats[i + 1];
+									}
+									else{
+										i = i + 2;
+									}
+								}
+								if(i == substats.length && found == false){
+									message.channel.send('Sorry, we couldn\'t find a mod for ' + args.substring(0,args.lastIndexOf(' ')) + ' from ' + message.author + 'in our datbase. Please try again after using the `%set [new]` command.');
+								}									
+						}
 					}
 				}
 				else{
