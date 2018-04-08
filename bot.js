@@ -83,7 +83,7 @@ client.on('message', message => {
 				var found = false;
 				var dupe = false;
 				console.log('registering...');
-				for(i = 0;i < 12 || found == false || dupe == false;i++){
+				for(i < 12 && found == false && dupe == false){
 					if(PlayerNames[i] == ''){
 						found = true;
 						console.log('Player registering: ' + message.author);
@@ -93,6 +93,7 @@ client.on('message', message => {
 						console.log('Player already in system.');
 					}
 					else{
+						i++;
 						console.log('space ' + i + ' taken');
 					}
 				}
@@ -128,7 +129,7 @@ client.on('message', message => {
 						found = true;
 					}
 					else{
-						i = i + 1;
+						i++;
 					}
 				}
 				message.channel.send('Player Data: ' + PlayerSort[i]);
