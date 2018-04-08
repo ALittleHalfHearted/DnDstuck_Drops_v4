@@ -88,11 +88,13 @@ client.on('message', message => {
 						found = true;
 						console.log('Player registering: ' + message.author);
 					}
-					if(PlayerNames[i] == message.author){
+					else if(PlayerNames[i] == message.author){
 						dupe = true;
 						console.log('Player already in system.');
 					}
-					i = i + 1;
+					else{
+						i = i + 1;
+					}
 				}
 				if(found == true && dupe == false){
 					/*ID*/ playerStats[i * 7 - 7] = message.author;
