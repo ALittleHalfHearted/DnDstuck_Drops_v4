@@ -173,6 +173,91 @@ client.on('message', message => {
 				}
 				message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7] + ', ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 			break;
+			case 'check':
+				if(message.content.indexOf('adv') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					if(check2 > check){
+						check = check2;
+					}
+					args = args.replace("adv","");
+				}
+				else if(message.content.indexOf('bless') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					check3 = d20();
+					message.channel.send(check3);
+					if(check2 > check && check2 > check3){
+						check = check2;
+					}
+					else if(check3 > check && check3 > check2){
+						check = check3;
+					}
+					args = args.replace("bless","");
+				}
+				else if(message.content.indexOf('dis') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					if(check2 < check){
+						check = check2;
+					}
+					args = args.replace("dis","");
+				}
+				else if(message.content.indexOf('curse') != -1){
+					message.channel.send(check);
+					check2 = d20();
+					message.channel.send(check2);
+					check3 = d20();
+					message.channel.send(check3);
+					if(check2 < check && check2 < check3){
+						check = check2;
+					}
+					else if(check3 < check && check3 < check2){
+						check = check3;
+					}
+					args = args.replace("curse","");
+				}
+				math = check.toString();
+				var i = 0;
+				while(i < 12 && found == false){
+					if(PlayerNames[i] == message.author){
+						found = true;
+					}
+					else{
+						i++;
+					}
+				}
+				switch(args){
+					case 'cha':
+						check = check + playerStats[i * 7 + 1];
+						math = math + '+' + playerStats[i * 7 + 1];
+					break;
+					case 'dex':
+						check = check + playerStats[i * 7 + 2];
+						math = math + '+' + playerStats[i * 7 + 2];
+					break;
+					case 'str':
+						check = check + playerStats[i * 7 + 3];
+						math = math + '+' + playerStats[i * 7 + 3];
+					break;
+					case 'con':
+						check = check + playerStats[i * 7 + 4];
+						math = math + '+' + playerStats[i * 7 + 4];
+					break;
+					case 'int':
+						check = check + playerStats[i * 7 + 5];
+						math = math + '+' + playerStats[i * 7 + 5];
+					break;
+					case 'wis':
+						check = check + playerStats[i * 7 + 6];
+						math = math + '+' + playerStats[i * 7 + 6];
+					break;
+				}
+				message.reply('Your check resulted in: ' + math + "=" + check);
+			break;
 			case 'embed':
 				message.channel.send({embed});
 			break;
