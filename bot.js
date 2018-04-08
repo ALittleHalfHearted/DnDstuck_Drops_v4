@@ -83,7 +83,7 @@ client.on('message', message => {
 				var found = false;
 				var dupe = false;
 				console.log('registering...');
-				for(i < 12 && found == false && dupe == false){
+				while(i < 12 && found == false && dupe == false){
 					if(PlayerNames[i] == ''){
 						found = true;
 						console.log('Player registering: ' + message.author);
