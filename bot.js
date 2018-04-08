@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
 const embed = new Discord.RichEmbed()
 	.setTitle("__```Commands List```__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -7,18 +8,8 @@ const embed = new Discord.RichEmbed()
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`", true);
-var Player1 = new Array(7);
-var Player2 = new Array(7);
-var Player3 = new Array(7);
-var Player4 = new Array(7);
-var Player5 = new Array(7);
-var Player6 = new Array(7);
-var Player7 = new Array(7);
-var Player8 = new Array(7);
-var Player9 = new Array(7);
-var Player10 = new Array(7);
-var Player11 = new Array(7);
-var Player12 = new Array(7);
+
+var playerStats = new Array(84);
 
 
 client.on('ready', () => {
@@ -29,8 +20,20 @@ client.on('ready', () => {
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%') {
-		const PlayerList = {Player1:Player1[0],Player2:Player2[0],Player3:Player3[0],Player4:Player4[0],Player5:Player5[0],Player6:Player6[0],Player7:Player7[0],Player8:Player8[0],Player9:Player9[0],Player10:Player10[0],Player11:Player11[0],Player12:Player12[0]};
-		var playerTemp = ['ID','CHA','DEX','STR','CON','INT','WIS'];
+		const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
+		const Player2 = [playerStats[7],playerStats[8],playerStats[9],playerStats[10],playerStats[11],playerStats[12],playerStats[13]];
+		const Player3 = [playerStats[14],playerStats[15],playerStats[16],playerStats[17],playerStats[18],playerStats[19],playerStats[20]];
+		const Player4 = [playerStats[21],playerStats[22],playerStats[23],playerStats[24],playerStats[25],playerStats[26],playerStats[27]];
+		const Player5 = [playerStats[28],playerStats[29],playerStats[30],playerStats[31],playerStats[32],playerStats[33],playerStats[34]];
+		const Player6 = [playerStats[35],playerStats[36],playerStats[37],playerStats[38],playerStats[39],playerStats[40],playerStats[41]];
+		const Player7 = [playerStats[42],playerStats[43],playerStats[44],playerStats[45],playerStats[46],playerStats[47],playerStats[48]];
+		const Player8 = [playerStats[49],playerStats[50],playerStats[51],playerStats[52],playerStats[53],playerStats[54],playerStats[55]];
+		const Player9 = [playerStats[56],playerStats[57],playerStats[58],playerStats[59],playerStats[60],playerStats[61],playerStats[62]];
+		const Player10 = [playerStats[63],playerStats[64],playerStats[65],playerStats[66],playerStats[67],playerStats[68],playerStats[69]];
+		const Player11 = [playerStats[70],playerStats[71],playerStats[72],playerStats[73],playerStats[74],playerStats[75],playerStats[76]];
+		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
+		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
+		const PlayerList = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -68,37 +71,50 @@ client.on('message', message => {
 		var health = 0;
 		
 		switch(cmd) {
+			case 'resetallthefuckinthings':
+				for(var i = 0; i < 84; i++){
+					playerStats[i] = '';
+				}
+			break;
 			case 'store':
-				var i = 1;
+				var i = 0;
 				var found = false;
-				while(i <= 12 || found == false){
-					if(PlayerList.('Player' + i) == ''){
+				while(i < 12 || found == false){
+					if(PlayerList[i] == ''){
+						found = true;
+					}
+					i++;
+				}
+				if(found == true)
+				/*ID*/ playerStats[i * 7 - 7] = message.author;
+				/*CHA*/ playerStats[i * 7 - 6] = 'CHA: 0';
+				/*DEX*/ playerStats[i * 7 - 5] = 'DEX: 0';
+				/*STR*/ playerStats[i * 7 - 4] = 'STR: 0';
+				/*CON*/ playerStats[i * 7 - 3] = 'CON: 0';
+				/*INT*/ playerStats[i * 7 - 2] = 'INT: 0';
+				/*WIS*/ playerStats[i * 7 - 1] = 'WIS: 0';
+				message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
+				console.log('New Player: ' + playerStats[i * 7 - 7] + '\n' + playerStats[i * 7 - 6] + '\n' + playerStats[i * 7 - 5] + '\n' + playerStats[i * 7 - 4] + '\n' + playerStats[i * 7 - 3] + '\n' + playerStats[i * 7 - 2] + '\n' + playerStats[i * 7 - 1]);
+			break;
+			case 'list':
+				message.channel.send('All players: ' + PlayerList);
+			break;
+			case 'stats':
+				var i = 0;
+				var found = false;
+				while(i < 12 || found == false){
+					if(PlayerIDs[i] == ''){
 						found = true;
 					}
 					else{
 						i++;
 					}
 				}
-				/*ID*/ playerTemp[0] = message.author;
-				/*CHA*/ playerTemp[1] = 'CHA: 0';
-				/*DEX*/ playerTemp[2] = 'DEX: 0';
-				/*STR*/ playerTemp[3] = 'STR: 0';
-				/*CON*/ playerTemp[4] = 'CON: 0';
-				/*INT*/ playerTemp[5] = 'INT: 0';
-				/*WIS*/ playerTemp[6] = 'WIS: 0';
-				message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
-				console.log('New Player' + playerTemp);
-			break;
-			case 'list':
-				message.channel.send('All players: ' + PlayerList);
-			break;
-			case 'testing':
 				if(args != ''){
 					Player1[2] = args;
 					message.channel.send(Player1[2]);
 				}
 				message.channel.send('Player Data: ' + Player1);
-				message.channel.send('All players: ' + PlayerList);
 			break;
 			case 'embed':
 				message.channel.send({embed});
