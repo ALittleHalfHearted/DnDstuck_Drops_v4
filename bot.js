@@ -76,25 +76,33 @@ client.on('message', message => {
 					playerStats[i] = '';
 				}
 			break;
-			case 'store':
+			case 'register':
 				var i = 0;
 				var found = false;
-				while(i < 12 || found == false){
+				var dupe = false;
+				while(i < 12 || found == false || dupe == false){
 					if(PlayerList[i] == ''){
 						found = true;
 					}
+					if(PlayerList[i] == message.author){
+						dupe = true;
+					}
 					i++;
 				}
-				if(found == true)
-				/*ID*/ playerStats[i * 7 - 7] = message.author;
-				/*CHA*/ playerStats[i * 7 - 6] = 'CHA: 0';
-				/*DEX*/ playerStats[i * 7 - 5] = 'DEX: 0';
-				/*STR*/ playerStats[i * 7 - 4] = 'STR: 0';
-				/*CON*/ playerStats[i * 7 - 3] = 'CON: 0';
-				/*INT*/ playerStats[i * 7 - 2] = 'INT: 0';
-				/*WIS*/ playerStats[i * 7 - 1] = 'WIS: 0';
-				message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
-				console.log('New Player: ' + playerStats[i * 7 - 7] + '\n' + playerStats[i * 7 - 6] + '\n' + playerStats[i * 7 - 5] + '\n' + playerStats[i * 7 - 4] + '\n' + playerStats[i * 7 - 3] + '\n' + playerStats[i * 7 - 2] + '\n' + playerStats[i * 7 - 1]);
+				if(found == true && dupe == false){
+					/*ID*/ playerStats[i * 7 - 7] = message.author;
+					/*CHA*/ playerStats[i * 7 - 6] = 'CHA: 0';
+					/*DEX*/ playerStats[i * 7 - 5] = 'DEX: 0';
+					/*STR*/ playerStats[i * 7 - 4] = 'STR: 0';
+					/*CON*/ playerStats[i * 7 - 3] = 'CON: 0';
+					/*INT*/ playerStats[i * 7 - 2] = 'INT: 0';
+					/*WIS*/ playerStats[i * 7 - 1] = 'WIS: 0';
+					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
+					console.log('New Player: ' + playerStats[i * 7 - 7] + '\n' + playerStats[i * 7 - 6] + '\n' + playerStats[i * 7 - 5] + '\n' + playerStats[i * 7 - 4] + '\n' + playerStats[i * 7 - 3] + '\n' + playerStats[i * 7 - 2] + '\n' + playerStats[i * 7 - 1]);
+				}
+				else{
+					message.reply('unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
+				}
 			break;
 			case 'list':
 				message.channel.send('All players: ' + PlayerList);
