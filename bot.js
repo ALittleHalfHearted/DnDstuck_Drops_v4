@@ -231,6 +231,7 @@ client.on('message', message => {
 				}
 				else if(found == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+				}
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
