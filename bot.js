@@ -75,17 +75,22 @@ client.on('message', message => {
 				for(var i = 0; i < 84; i++){
 					playerStats[i] = '';
 				}
+				console.log('Player data reset');
+				message.channel.send('Data reset successfully! ' + playerStats);
 			break;
 			case 'register':
 				var i = 0;
 				var found = false;
 				var dupe = false;
+				console.log('registering...');
 				while(i < 12 || found == false || dupe == false){
 					if(PlayerNames[i] == ''){
 						found = true;
+						console.log('Player registering: ' + message.author);
 					}
 					if(PlayerNames[i] == message.author){
 						dupe = true;
+						console.log('Player already in system.');
 					}
 					i++;
 				}
@@ -101,7 +106,8 @@ client.on('message', message => {
 					console.log('New Player: ' + playerStats[i * 7 - 7] + '\n' + playerStats[i * 7 - 6] + '\n' + playerStats[i * 7 - 5] + '\n' + playerStats[i * 7 - 4] + '\n' + playerStats[i * 7 - 3] + '\n' + playerStats[i * 7 - 2] + '\n' + playerStats[i * 7 - 1]);
 				}
 				else{
-					message.reply('unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
+					message.reply('Unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
+					console.log('Player registration failed.');
 				}
 			break;
 			case 'list':
