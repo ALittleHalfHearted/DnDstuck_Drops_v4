@@ -69,10 +69,10 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			case 'store':
-				var i = 0;
+				var i = 1;
 				var found = false;
-				while(i < 12 || found == false){
-					if(PlayerList[i] == ''){
+				while(i <= 12 || found == false){
+					if(PlayerList.('Player' + i) == ''){
 						found = true;
 					}
 					else{
