@@ -74,7 +74,7 @@ client.on('message', message => {
 					message.channel.send(Player1[2]);
 				}
 				message.channel.send('Player Data: ' + Player1);
-				message.channel.send('All players: ' + PlayerData);
+				message.channel.send('All players: ' + PlayerList);
 			break;
 			case 'embed':
 				message.channel.send({embed});
