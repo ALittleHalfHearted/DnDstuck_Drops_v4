@@ -105,7 +105,12 @@ client.on('message', message => {
 				}
 			break;
 			case 'list':
-				message.channel.send('All players: ' + PlayerList);
+				if(args == 'stats'){
+					message.channel.send('All players: ' + PlayerList);
+				}
+				else{
+					message.channel.send('All players: ' + PlayerSort);
+				}
 			break;
 			case 'stats':
 				var i = 0;
