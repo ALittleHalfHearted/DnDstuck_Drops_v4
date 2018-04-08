@@ -84,17 +84,17 @@ client.on('message', message => {
 				var dupe = false;
 				console.log(message.author + ' is registering...');
 				while(i < 12 && found == false && dupe == false){
-					if(playerStats[i * 7] == ''){
+					if(playerStats[i * 7].indexOf('@') == -1){
 						found = true;
-						console.log('Player registering: ' + message.author);
+						console.log('Registration successful!');
 					}
 					else if(playerStats[i * 7] == message.author){
 						dupe = true;
-						console.log('Player already in system.');
+						console.log('Player is already in system.');
 					}
 					else{
 						i++;
-						console.log('space ' + i + ' taken');
+						console.log('Space ' + i + ' taken.');
 					}
 				}
 				if(found == true && dupe == false){
