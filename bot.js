@@ -83,7 +83,7 @@ client.on('message', message => {
 				var found = false;
 				var dupe = false;
 				console.log('registering...');
-				while(i < 12 || found == false || dupe == false){
+				for(i = 0;i < 12 || found == false || dupe == false;i++){
 					if(PlayerNames[i] == ''){
 						found = true;
 						console.log('Player registering: ' + message.author);
@@ -93,7 +93,6 @@ client.on('message', message => {
 						console.log('Player already in system.');
 					}
 					else{
-						i = i + 1;
 						console.log('space ' + i + ' taken');
 					}
 				}
