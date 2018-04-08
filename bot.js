@@ -271,21 +271,21 @@ client.on('message', message => {
 								}
 							}
 							if(k == substats.length && seen == false){
-								substats[substats.length] = toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '));
+								substats[substats.length] = message.author + ' ' + args.substring(0,args.lastIndexOf(' '));
 								substats[substats.length] = args.substring(args.lastIndexOf(' '));
 							}
 							else{
-								substats[k] = toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' '));
+								substats[k] = message.author + ' ' + args.substring(0,args.lastIndexOf(' '));
 								substats[k + 1] = args.substring(args.lastIndexOf(' '));
 							}
-							message.channel.send('New mod: ' + toString(message.author) + ' ' + args.substring(0,args.lastIndexOf(' ')) + '=' + args.substring(args.lastIndexOf(' ')));
+							message.channel.send('New mod: ' + message.author + ' ' + args.substring(0,args.lastIndexOf(' ')) + '=' + args.substring(args.lastIndexOf(' ')));
 							var custom = true;
 						break;
 						default:
 							var k = 0;
 							var seen = false;
 							while(k < substats.length && seen == false){
-								if(substats[k].indexOf(args.substring(0,args.lastIndexOf(' '))) != -1 && substats[k].indexOf(toString(message.author)) != -1){
+								if(substats[k].indexOf(args.substring(0,args.lastIndexOf(' '))) != -1 && substats[k].indexOf(message.author) != -1){
 									seen = true;
 								}
 								else{
