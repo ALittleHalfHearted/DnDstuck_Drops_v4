@@ -208,8 +208,16 @@ client.on('message', message => {
 				}
 			break;
 			case 'me':
+				var others = '';
 				var i = 0;
 				var found = false;
+				var sub = false;
+				for(var n = 0; n < substats.length; n + 2){
+					if(substats[n].indexOf(message.author) != -1){
+						others = others + ', ' + substats[n] + substats[n + 1];
+						sub = true;
+					}
+				}
 				while(i < 12 && found == false){
 					if(PlayerNames[i] == message.author){
 						found = true;
@@ -218,9 +226,11 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				if(found == true){
-					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
+				if(found == true && sub == true){
+					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i] + others);
 				}
+				else if(found == true){
+					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
@@ -305,8 +315,8 @@ client.on('message', message => {
 						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 					}
 					else{
-						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + substats[k + 1]);
-						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + substats[k + 1]);
+						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + ', ' + substats[k + 1]);
+						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + substats[k] + ', ' + substats[k + 1]);
 					}
 				}
 				else{
