@@ -132,7 +132,7 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				message.channel.send('Player Data: ' + PlayerSort[i]);
+				message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 			break;
 			case 'embed':
 				message.channel.send({embed});
