@@ -16,7 +16,8 @@ var alchemy = {input:'',output:''};
 
 
 client.on('ready', () => {
-	const activated = new Date();
+	var d = new Date();
+	const activated = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 	console.log('Online at ' + activated);
 });
 
