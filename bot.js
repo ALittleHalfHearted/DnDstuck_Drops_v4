@@ -22,7 +22,7 @@ client.on('ready', () => {
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
 	if (message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1/* && message.channel*/){
-		console.log(message.channel);
+		console.log(message.channel.name);
 	}
 	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
 		const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
