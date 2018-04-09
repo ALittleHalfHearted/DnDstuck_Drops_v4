@@ -12,8 +12,7 @@ const embed = new Discord.RichEmbed()
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
-//var substats = [' ',' ']
-
+var alchemy = '';
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -22,7 +21,10 @@ client.on('ready', () => {
 
 client.on('message', message => {
 	message.content = message.content.toLowerCase()
-	if (message.content.substring(0,1) === '%') {
+	if (message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1/* && message.channel*/){
+		console.log(message.channel);
+	}
+	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
 		const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
 		const Player2 = [playerStats[7],playerStats[8],playerStats[9],playerStats[10],playerStats[11],playerStats[12],playerStats[13]];
 		const Player3 = [playerStats[14],playerStats[15],playerStats[16],playerStats[17],playerStats[18],playerStats[19],playerStats[20]];
@@ -152,6 +154,9 @@ client.on('message', message => {
 							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
+			case 'listalchemy':
+				message.channel.send('Current list of alchemy that has yet to be completed:\n' + alchemy);
+			break;
 			case 'resetstats':
 				if(message.author == '<@220176861379035137>'){
 					for(var i = 0; i < 84; i++){
@@ -212,13 +217,6 @@ client.on('message', message => {
 				var others = '';
 				var i = 0;
 				var found = false;
-				var sub = false;
-				/*for(var n = 0; n < substats.length; n + 2){
-					if(substats[n].indexOf(message.author) != -1){
-						others = others + ', ' + substats[n] + substats[n + 1];
-						sub = true;
-					}
-				}*/
 				while(i < 12 && found == false){
 					if(PlayerNames[i] == message.author){
 						found = true;
@@ -227,10 +225,7 @@ client.on('message', message => {
 						i++;
 					}
 				}
-				/*if(found == true && sub == true){
-					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i] + others);
-				}
-				else */if(found == true){
+				if(found == true){
 					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
 				}
 				else{
@@ -238,7 +233,6 @@ client.on('message', message => {
 				}
 			break;
 			case 'set':
-				//var custom = false;
 				var stat = args.substring(0,3);
 				args = args.replace(stat,'').replace(' ','');
 				var found = false;
@@ -271,55 +265,11 @@ client.on('message', message => {
 						case 'wis':
 							playerStats[i * 7 + 6] = 'WIS: ' + args;
 						break;
-						/*case 'new':
-							var k = 0;
-							var seen = false;
-							while(k < substats.length && seen == false){
-								if(substats[k] == ' '){
-									seen = true;
-								}
-								else{
-									k = k + 2;
-								}
-							}
-							if(k == substats.length && seen == false){
-								substats[substats.length] = message.author + ' ' + args.substring(0,args.lastIndexOf(' '));
-								substats[substats.length] = args.substring(args.lastIndexOf(' '));
-							}
-							else{
-								substats[k] = message.author + ' ' + args.substring(0,args.lastIndexOf(' '));
-								substats[k + 1] = args.substring(args.lastIndexOf(' '));
-							}
-							message.channel.send('New mod: ' + message.author + ' ' + args.substring(0,args.lastIndexOf(' ')) + ' =' + args.substring(args.lastIndexOf(' ')));
-							var custom = true;
-						break;
 						default:
-							var k = 0;
-							var seen = false;
-							while(k < substats.length && seen == false){
-								if(substats[k].indexOf(args.substring(0,args.lastIndexOf(' '))) != -1 && substats[k].indexOf(message.author) != -1){
-									seen = true;
-								}
-								else{
-									k = k + 2;
-								}
-							}
-							if(seen == false){
-								message.channel.send('Sorry, we couldn\'t find a mod for ' + args.substring(0,args.lastIndexOf(' ')) + ' from ' + message.author + 'in our datbase. Please try starting with the \'new\' declaration next time.');
-							}
-							else{
-								substats[k + 1] = args.substring(args.lastIndexOf(' '));
-							}
-							var custom = true;*/
+							message.channel.send('Specify a stat please!');
 					}
-					//if(custom == false){
-						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-					/*}
-					else{
-						message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
-						console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6] + ', ' + substats[k] + substats[k + 1]);
-					}*/
+					message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
+					console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
 				}
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
@@ -412,21 +362,6 @@ client.on('message', message => {
 								check = check + parseInt(playerStats[i * 7 + 6].substring(5));
 								math = math + '+' + playerStats[i * 7 + 6].substring(5);
 							break;
-							/*default:
-								var i = 0
-								var found = false
-								while(i < substats.length && found == false){
-									if(substats[i] == message.author + ' ' + args){
-										check = check + parseInt(substats[i + 1]);
-										math = math + '+' + substats[i + 1];
-									}
-									else{
-										i = i + 2;
-									}
-								}
-								if(i == substats.length && found == false){
-									message.channel.send('Sorry, we couldn\'t find a mod for ' + args.substring(0,args.lastIndexOf(' ')) + ' from ' + message.author + 'in our datbase. Please try again after using the `%set [new]` command.');
-								}*/
 						}
 					}
 				}
