@@ -12,18 +12,54 @@ const embed = new Discord.RichEmbed()
 	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
-var alchemy = '';
+var alchemy = {input:'',output:''};
+
 
 client.on('ready', () => {
-	console.log('I am ready!');
+	const activated = new Date();
+	console.log('Online at ' + activated);
 });
 
 
 client.on('message', message => {
-	message.content = message.content.toLowerCase()
-	if (message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1/* && message.channel*/){
-		console.log(message.channel.name);
+	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.replace('||','').replace('&&','').replace(' ','') != ''){
+		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
+			message.reply('Sorry, this has already been entered.');
+		}
+		else if(message.indexOf(/bg/i) == -1 && alchemy.input.indexOf(message.author) == -1){
+			if(alchemy.input == ''){
+				alchemy.input = alchemy.input + message.author + ':\n' + message.content;
+			}
+			else{
+				alchemy.input = alchemy.input + '\n' + message.author + ':\n' + message.content;
+			}
+			message.reply('Your alchemy request has been catalogged.');
+		}
+		else if(message.indexOf(/bg/i) != -1 && alchemy.output.indexOf(message.author) == -1){
+			if(alchemy.output == ''){
+				alchemy.output = alchemy.output + message.author + ':\n' + message.content;
+			}
+			else{
+				alchemy.output = alchemy.output + '\n' + message.author + ':\n' + message.content;
+			}
+			message.reply('Your alchemy result has been catalogged.');
+		}
+		else if(message.indexOf(/bg/i) != -1){
+			var hold = alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3)));
+			alchemy.output = alchemy.output.replace(alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3))),'');
+			alchemy.output = alchemy.output + message.content;
+			alchemy.output = alchemy.output.concat('\n',hold);
+			message.reply('Your alchemy result has been catalogged.');
+		}
+		else{
+			var hold = alchemy.input.substring(alchemy.input.substring(alchemy.input.indexOf('<',alchemy.input.indexOf(message.author) + 3)));
+			alchemy.input = alchemy.input.replace(alchemy.input.substring(alchemy.input.substring(alchemy.input.indexOf('<',alchemy.input.indexOf(message.author) + 3))),'');
+			alchemy.input = alchemy.input + message.content;
+			alchemy.input = alchemy.input.concat('\n',hold);
+			message.reply('Your alchemy request has been catalogged.');
+		}
 	}
+	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
 		const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
 		const Player2 = [playerStats[7],playerStats[8],playerStats[9],playerStats[10],playerStats[11],playerStats[12],playerStats[13]];
@@ -154,8 +190,15 @@ client.on('message', message => {
 							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
-			case 'listalchemy':
-				message.channel.send('Current list of alchemy that has yet to be completed:\n' + alchemy);
+			case 'alchemy':
+				switch(args){
+					case 'incomplete':
+						message.channel.send('Current list of alchemy requests since ' + activated + ':\n' + alchemy.input);
+					break;
+					case 'complete':
+						message.channel.send('Current list of completed alchemy requests since ' + activated + ':\n' + alchemy.output);
+					break;
+				}
 			break;
 			case 'resetstats':
 				if(message.author == '<@220176861379035137>'){
