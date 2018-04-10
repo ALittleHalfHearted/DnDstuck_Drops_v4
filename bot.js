@@ -197,14 +197,25 @@ client.on('message', message => {
 			case 'alchemy':
 				switch(args){
 					case 'request':
-						message.channel.send('Current list of alchemy requests since ' + activated + ':\n' + alchemy.input);
+						message.channel.send('Current list of alchemy requests since ' + activated + ':\n\n' + alchemy.input);
 					break;
 					case 'result':
-						message.channel.send('Current list of alchemy results since ' + activated + ':\n' + alchemy.output);
+						message.channel.send('Current list of alchemy results since ' + activated + ':\n\n' + alchemy.output);
 					break;
 					case 'all':
-						message.channel.send('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
+						message.channel.send('**Input:**\n' + alchemy.input + '\n\n**Output:**\n' + alchemy.output);
 					break;
+				}
+			break;
+			case 'clearalchemy':
+				if(message.author == '<@220176861379035137>'){
+					alchemy.input = '';
+					alchemy.output = '';
+					console.log('Alchemy data reset');
+					message.channel.send('Alchemy log reset successfully!');
+				}
+				else{
+					message.channel.send('You don\'t have permission to do that.');
 				}
 			break;
 			case 'resetstats':
@@ -212,7 +223,6 @@ client.on('message', message => {
 					for(var i = 0; i < 84; i++){
 						playerStats[i] = ' ';
 					}
-					//substats = [' ',' '];
 					console.log('Player data reset');
 					message.channel.send('Data reset successfully!');
 				}
