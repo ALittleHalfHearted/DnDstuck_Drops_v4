@@ -77,12 +77,11 @@ client.on('message', message => {
 		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
 		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];
+		const EnemyAC = [5,10,15,20,25,30,35,35];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
-		
-		var EnemyAC = [5,10,15,20,25,30,35,35];
 		
 		var ac = '';
 		var tier = 0;
