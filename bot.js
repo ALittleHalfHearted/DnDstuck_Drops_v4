@@ -1063,20 +1063,20 @@ client.on('message', message => {
 					}
 				
 					//multiplier!!
-					boon = boon * mod
-					build = build * mod
-					t1 = t1 * mod
-					t2 = t2 * mod
-					t3 = t3 * mod
-					t4 = t4 * mod
-					t5 = t5 * mod
-					t6 = t6 * mod
-					t7 = t7 * mod
+					boon = (boon * mod).toFixed(0)
+					build = (build * mod).toFixed(0)
+					t1 = (t1 * mod).toFixed(0)
+					t2 = (t2 * mod).toFixed(0)
+					t3 = (t3 * mod).toFixed(0)
+					t4 = (t4 * mod).toFixed(0)
+					t5 = (t5 * mod).toFixed(0)
+					t6 = (t6 * mod).toFixed(0)
+					t7 = (t7 * mod).toFixed(0)
 				
 					//display
 					message.reply('```for killing ' imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, ' + ', you have obtained:\nBoon = ' + boon + '\nBG = ' + 
-						      build.toFixed(0) + '\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
-						      '\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
+						      build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + t4 +
+						      '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```')
 				}
 			break;
 			case 'custom':
