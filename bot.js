@@ -17,6 +17,7 @@ var alchemy = {input:'',output:''};
 
 
 client.on('ready', () => {
+	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at ' + activated);
 });
 
