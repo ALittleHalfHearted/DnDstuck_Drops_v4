@@ -26,7 +26,7 @@ client.on('message', message => {
 		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
 			message.reply('Sorry, this has already been entered.');
 		}
-		else if(message.indexOf(/bg/i) == -1 && alchemy.input.indexOf(message.author) == -1){
+		else if(message.content.indexOf(/bg/i) == -1 && alchemy.input.indexOf(message.author) == -1){
 			if(alchemy.input == ''){
 				alchemy.input = alchemy.input + message.author + ':\n' + message.content;
 			}
@@ -35,7 +35,7 @@ client.on('message', message => {
 			}
 			message.reply('Your alchemy request has been catalogged.');
 		}
-		else if(message.indexOf(/bg/i) != -1 && alchemy.output.indexOf(message.author) == -1){
+		else if(message.content.indexOf(/bg/i) != -1 && alchemy.output.indexOf(message.author) == -1){
 			if(alchemy.output == ''){
 				alchemy.output = alchemy.output + message.author + ':\n' + message.content;
 			}
@@ -44,7 +44,7 @@ client.on('message', message => {
 			}
 			message.reply('Your alchemy result has been catalogged.');
 		}
-		else if(message.indexOf(/bg/i) != -1){
+		else if(message.content.indexOf(/bg/i) != -1){
 			var hold = alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3)));
 			alchemy.output = alchemy.output.replace(alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3))),'');
 			alchemy.output = alchemy.output + message.content;
