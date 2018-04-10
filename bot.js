@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var d = new Date();
-const activated = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 const embed = new Discord.RichEmbed()
 	.setTitle("__```Commands List```__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -58,6 +58,7 @@ client.on('message', message => {
 			alchemy.input = alchemy.input.concat('\n',hold);
 			message.reply('Your alchemy request has been catalogged.');
 		}
+		console.log('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
 	}
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
