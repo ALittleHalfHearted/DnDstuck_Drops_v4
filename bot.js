@@ -893,42 +893,42 @@ client.on('message', message => {
 			case 'multi':
 				var highest = 0
 				if(args.indexOf('t1') != -1){
-					imps = args.substring(args.indexOf('t1') + 2,args.indexOf('t1') + 4);
+					imps = args.substring(args.indexOf('t1') + 2,args.indexOf('t1') + 5);
 					highest = 1;
 					mod = 1;
 				}
 				if(args.indexOf('t2') != -1){
-					ogres = args.substring(args.indexOf('t2') + 2,args.indexOf('t2') + 4);
+					ogres = args.substring(args.indexOf('t2') + 2,args.indexOf('t2') + 5);
 					highest = 2;
 					mod = 2;
 				}
 				if(args.indexOf('t3') != -1){
-					basilisks = args.substring(args.indexOf('t3') + 2,args.indexOf('t3') + 4);
+					basilisks = args.substring(args.indexOf('t3') + 2,args.indexOf('t3') + 5);
 					highest = 3;
 					mod = 4;
 				}
 				if(args.indexOf('t4') != -1){
-					liches = args.substring(args.indexOf('t4') + 2,args.indexOf('t4') + 4);
+					liches = args.substring(args.indexOf('t4') + 2,args.indexOf('t4') + 5);
 					highest = 4;
 					mod = 8;
 				}
 				if(args.indexOf('t5') != -1){
-					giclopes = args.substring(args.indexOf('t5') + 2,args.indexOf('t5') + 4);
+					giclopes = args.substring(args.indexOf('t5') + 2,args.indexOf('t5') + 5);
 					highest = 5;
 					mod = 16;
 				}
 				if(args.indexOf('t6') != -1){
-					titachnids = args.substring(args.indexOf('t6') + 2,args.indexOf('t6') + 4);
+					titachnids = args.substring(args.indexOf('t6') + 2,args.indexOf('t6') + 5);
 					highest = 6;
 					mod = 32;
 				}
 				if(args.indexOf('t7') != -1){
-					archerons = args.substring(args.indexOf('t7') + 2,args.indexOf('t7') + 4);
+					archerons = args.substring(args.indexOf('t7') + 2,args.indexOf('t7') + 5);
 					highest = 7;
 					mod = 64;
 				}
 				if(args.indexOf('t8') != -1){
-					rooks = args.substring(args.indexOf('t8') + 2,args.indexOf('t8') + 4);
+					rooks = args.substring(args.indexOf('t8') + 2,args.indexOf('t8') + 5);
 					highest = 8;
 					mod = 128;
 				}				
@@ -1074,7 +1074,7 @@ client.on('message', message => {
 					t7 = (t7 * mod).toFixed(0)
 					
 					//display
-					message.reply('```for killing ' + imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, you have obtained:\nBoon = ' + boon + '\nBG = ' + build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```');
+					message.reply('```for killing ' + imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, you have obtained:\nBoon = ' + boon + '\nBG = ' + build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + t4 + '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```');
 				}
 			break;
 			case 'custom':
