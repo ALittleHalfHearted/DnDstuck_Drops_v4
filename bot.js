@@ -22,7 +22,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
-	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.replace('||','').replace('&&','').replace(' ','') != ''){
+	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != ''){
 		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
 			message.reply('Sorry, this has already been entered.');
 		}
