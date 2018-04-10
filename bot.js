@@ -3,14 +3,14 @@ const client = new Discord.Client();
 var d = new Date();
 const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 const embed = new Discord.RichEmbed()
-	.setTitle("__```Commands List```__")
+	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
 	.setColor(65299)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("Storage", "`%register`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	.addBlankField()
-	.addField("```Other Commands```", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
+	.addField("Other Commands", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
 var alchemy = {input:'',output:''};
@@ -940,7 +940,7 @@ client.on('message', message => {
 					//imp drops
 					if(imps > 0){
 						for(var i = 0; i < imps; i++){
-							grist = impGrist(grist);
+							grist = grist + impGrist(grist);
 							boon = impBoon(boon);
 							health = impHealth(health);
 						}
@@ -1074,9 +1074,9 @@ client.on('message', message => {
 					t7 = t7 * mod
 				
 					//display
-					message.reply('```for killing whatever you killed, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
-							'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
-							'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
+					message.reply('```for killing ' imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, ' + ', you have obtained:\nBoon = ' + boon + '\nBG = ' + 
+						      build.toFixed(0) + '\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
+						      '\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
 				}
 			break;
 			case 'custom':
