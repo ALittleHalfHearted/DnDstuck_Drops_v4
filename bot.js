@@ -202,7 +202,7 @@ client.on('message', message => {
 					case 'result':
 						message.channel.send('Current list of alchemy results since ' + activated + ':\n' + alchemy.output);
 					break;
-					case: 'all':
+					case 'all':
 						message.channel.send('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
 					break;
 				}
