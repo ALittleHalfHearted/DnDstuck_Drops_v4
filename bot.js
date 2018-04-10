@@ -1072,9 +1072,10 @@ client.on('message', message => {
 					t5 = (t5 * mod).toFixed(0)
 					t6 = (t6 * mod).toFixed(0)
 					t7 = (t7 * mod).toFixed(0)
-				
+					
+					var result = '```for killing ' imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, ' + ', you have obtained:\nBoon = ' + boon + '\nBG = ' + build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```'
 					//display
-					message.reply('```for killing ' imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, ' + ', you have obtained:\nBoon = ' + boon + '\nBG = ' + build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```');
+					message.reply(result);
 				}
 			break;
 			case 'custom':
