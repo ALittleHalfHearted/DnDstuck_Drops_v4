@@ -10,7 +10,7 @@ const embed = new Discord.RichEmbed()
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("Storage", "`%register`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	.addBlankField()
-	.addField("```Other Commands```", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
+	.addField("```Other Commands```", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
 var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
 var alchemy = {input:'',output:''};
@@ -22,7 +22,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
-	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != ''){
+	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != '' && message.author.bot == false){
 		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
 			message.reply('Sorry, this has already been entered.');
 		}
@@ -185,19 +185,25 @@ client.on('message', message => {
 					case 'check':
 						message.channel.send('**```Makes an exploding d20 check. If you are registered, you can add your set stat for any category. (Currently working on substats and conditional stats.) Also allows for adv/dis rolls.```**\n\n**Format:** `%check [stat][adv/dis/bless/curse]`');
 					break;
+					case 'alchemy':
+						message.channel.send('**```This bot will keep track of all alchemy requests (and it should gather the results too, given they contain the abbreviation \'bg\') in the channel #alchemy. Use this command to access the list.```**\n\n**Format:** `%alchemy [request/result/all]`');
+					break;
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'alchemy':
 				switch(args){
-					case 'incomplete':
+					case 'request':
 						message.channel.send('Current list of alchemy requests since ' + activated + ':\n' + alchemy.input);
 					break;
-					case 'complete':
-						message.channel.send('Current list of completed alchemy requests since ' + activated + ':\n' + alchemy.output);
+					case 'result':
+						message.channel.send('Current list of alchemy results since ' + activated + ':\n' + alchemy.output);
+					break;
+					case: 'all':
+						message.channel.send('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
 					break;
 				}
 			break;
@@ -1359,5 +1365,5 @@ function overload(message){
 	message.reply('Try and slow down a bit ~~ya cheeky dickwaffle~~, my code can only handle so much!');
 }
 
-// THIS  MUST  BE  THIS  WAY
+
 client.login(process.env.BOT_TOKEN);
