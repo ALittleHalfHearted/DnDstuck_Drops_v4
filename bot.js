@@ -384,20 +384,39 @@ client.on('message', message => {
 					args = args.replace("curse","");
 				}
 				math = check.toString();
-				var found = false;
-				var i = 0;
-				while(i < 12 && found == false){
-					if(PlayerNames[i] == message.author){
-						found = true;
+				if(args != ""){
+					var found = false;
+					var i = 0;
+					while(i < 12 && found == false){
+						if(PlayerNames[i] == message.author){
+							found = true;
+						}
+						else{
+							i++;
+						}
 					}
-					else{
-						i++;
+					var modHolder = '';
+					if(args.indexOf('cha') != -1){
+						modHolder = 'cha';
 					}
-				}
-				if(found == true){
-					if(args != ''){
-						args = args.replace(' ','');
-						switch(args){
+					else if(args.indexOf('dex') != -1){
+						modHolder = 'dex';
+					}
+					else if(args.indexOf('str') != -1){
+						modHolder = 'str';
+					}
+					else if(args.indexOf('con') != -1){
+						modHolder = 'con';
+					}
+					else if(args.indexOf('int') != -1){
+						modHolder = 'int';
+					}
+					else if(args.indexOf('wis') != -1){
+						modHolder = 'wis';
+					}
+					if(found == true && modHolder != ''){
+						args = args.replace(modHolder,'');
+						switch(modHolder){
 							case 'cha':
 								check = check + parseInt(playerStats[i * 7 + 1].substring(5));
 								math = math + '+' + playerStats[i * 7 + 1].substring(5);
@@ -424,6 +443,14 @@ client.on('message', message => {
 							break;
 						}
 					}
+					if(isNaN(args.slice(0,1)) == false){
+						var calculate = "=" + math + "+" + args;
+					}
+					else{
+						var calculate = "=" + math + args;
+					}
+					math = calculate.replace("=","");
+					check = modding(calculate);
 				}
 				else{
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
