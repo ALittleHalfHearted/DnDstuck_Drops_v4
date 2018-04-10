@@ -1,5 +1,5 @@
 {
-  "name": "Sburbia-DiceBot",
+  "name": "DnDstuck-V4-DiceBot",
   "description": "Dice and enemy drops",
   "version": "0.0.0",
   "main": "bot.js",
@@ -7,7 +7,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "11.3.2",
+    "discord.js": "11.1.0",
     "request": "2.81.0"
   }
 }
