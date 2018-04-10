@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
+var d = new Date();
+const activated = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 const embed = new Discord.RichEmbed()
 	.setTitle("__```Commands List```__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -16,8 +17,6 @@ var alchemy = {input:'',output:''};
 
 
 client.on('ready', () => {
-	var d = new Date();
-	const activated = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 	console.log('Online at ' + activated);
 });
 
