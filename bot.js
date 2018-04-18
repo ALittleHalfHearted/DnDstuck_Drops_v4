@@ -19,6 +19,7 @@ var alchemy = {input:'',output:''};
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at ' + activated);
+	client.user.setActivity('%drops for help');
 });
 
 
@@ -218,7 +219,7 @@ client.on('message', message => {
 					message.channel.send('You don\'t have permission to do that.');
 				}
 			break;
-			case 'resetstats':
+			case 'clearstats':
 				if(message.author == '<@220176861379035137>'){
 					for(var i = 0; i < 84; i++){
 						playerStats[i] = ' ';
@@ -229,6 +230,22 @@ client.on('message', message => {
 				else{
 					message.channel.send('You don\'t have permission to do that.');
 				}
+			break;
+			case 'save':
+				var storeStats = playerStats;
+				var storeAlchemy = alchemy;
+				console.log('Saving:\n' + storeStats + '\n' + storeAlchemy);
+				if(storeStats == playerStats && storeAlchemy == alchemy){
+					message.channel.send('Saved!');
+				}
+				else{
+					message.channel.send('Sorry, something\'s gone wrong.');
+				}
+			break;
+			case 'load':
+				playerStats = storeStats;
+				alchemy = storeAlchemy;
+				message.channel.send('Loaded!')
 			break;
 			case 'register':
 				var i = 0;
