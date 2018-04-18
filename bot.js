@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var d = new Date();
+const d = new Date();
 const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
@@ -8,7 +8,7 @@ const embed = new Discord.RichEmbed()
 	.setColor(65299)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
-	.addField("Storage", "`%register`\n`%list`\n`%me`\n`%set`\n`%check`", true)
+	.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	.addBlankField()
 	.addField("Other Commands", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
@@ -124,6 +124,7 @@ client.on('message', message => {
 			case 'embed':
 				message.channel.send({embed});
 			break;
+			case 'pointless'
 			case 'drops':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
 				//COPY: message.channel.send('**``` ```**\n\n**Format:** `%`');
@@ -192,7 +193,7 @@ client.on('message', message => {
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
 			case 'alchemy':
@@ -232,8 +233,8 @@ client.on('message', message => {
 				}
 			break;
 			case 'save':
-				var storeStats = playerStats;
-				var storeAlchemy = alchemy;
+				const storeStats = playerStats;
+				const storeAlchemy = alchemy;
 				console.log('Saving:\n' + storeStats + '\n' + storeAlchemy);
 				if(storeStats == playerStats && storeAlchemy == alchemy){
 					message.channel.send('Saved!');
