@@ -124,7 +124,10 @@ client.on('message', message => {
 			case 'embed':
 				message.channel.send({embed});
 			break;
-			case 'pointless'
+			case 'pointless':
+				message.channel.send('@someone :regional_indicator_h::regional_indicator_i:');
+				message.delete(0);
+			break;
 			case 'drops':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
 				//COPY: message.channel.send('**``` ```**\n\n**Format:** `%`');
