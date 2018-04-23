@@ -122,9 +122,10 @@ client.on('message', message => {
 				var blep = Math.floor(Math.random() * 100) + 1;
 				for(var i = 0;i < blep;i++){
 					let meh = '';
-					for(var x = 0;x < 4;x++){
-						var letnum = Math.floor(Math.random() * 2) + 1;
-						if(letnum == 2){
+					var nah = Math.floor(Math.random() * 2) + 4;
+					for(var x = 0;x < nah;x++){
+						var letnum = Math.floor(Math.random() * 2);
+						if(letnum == 1){
 							let letter = Math.floor(Math.random() * 5);
 							meh = meh + UnicodeLetters[letter];
 						}
