@@ -125,7 +125,13 @@ client.on('message', message => {
 				message.channel.send({embed});
 			break;
 			case 'pointless':
-				message.channel.send('@someone :regional_indicator_h::regional_indicator_i:');
+				var message = 'Me';
+				var duh = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0; i < duh; i++){
+					message = message + 'e';
+				}
+				message = message + 'h';
+				message.channel.send(message + ' :regional_indicator_h::regional_indicator_i:');
 				message.delete(0);
 			break;
 			case 'drops':
