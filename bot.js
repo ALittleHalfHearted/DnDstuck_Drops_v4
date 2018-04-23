@@ -115,6 +115,9 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			// Ping Pong
+			case 'test':
+				message.reply('&#8226;');
+			break;
 			case 'ping':
 				message.reply('Pong!');
 			break;
@@ -123,16 +126,6 @@ client.on('message', message => {
 			break;
 			case 'embed':
 				message.channel.send({embed});
-			break;
-			case 'pointless':
-				var message = 'Me';
-				var duh = Math.floor(Math.random() * 100) + 1;
-				for(var i = 0; i < duh; i++){
-					message = message + 'e';
-				}
-				message = message + 'h';
-				message.channel.send(message + ' :regional_indicator_h::regional_indicator_i:');
-				message.delete(0);
 			break;
 			case 'drops':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
