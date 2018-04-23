@@ -8,12 +8,12 @@ const embed = new Discord.RichEmbed()
 	.setColor(65299)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
-	.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
-	.addBlankField()
+	//.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
+	//.addBlankField()
 	.addField("Other Commands", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
 
-var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
-var alchemy = {input:'',output:''};
+//var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
+//var alchemy = {input:'',output:''};
 
 
 client.on('ready', () => {
@@ -24,7 +24,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
-	if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != '' && message.author.bot == false){
+	/*if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != '' && message.author.bot == false){
 		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
 			message.reply('Sorry, this has already been entered.');
 		}
@@ -61,10 +61,10 @@ client.on('message', message => {
 			message.reply('Your alchemy request has been catalogged.');
 		}
 		console.log('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
-	}
+	}*/
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
-		const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
+		/*const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
 		const Player2 = [playerStats[7],playerStats[8],playerStats[9],playerStats[10],playerStats[11],playerStats[12],playerStats[13]];
 		const Player3 = [playerStats[14],playerStats[15],playerStats[16],playerStats[17],playerStats[18],playerStats[19],playerStats[20]];
 		const Player4 = [playerStats[21],playerStats[22],playerStats[23],playerStats[24],playerStats[25],playerStats[26],playerStats[27]];
@@ -77,7 +77,7 @@ client.on('message', message => {
 		const Player11 = [playerStats[70],playerStats[71],playerStats[72],playerStats[73],playerStats[74],playerStats[75],playerStats[76]];
 		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
-		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];
+		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];*/
 		const EnemyAC = [5,10,15,20,25,30,35,35];
 		
 		var args = message.content.substring(1).split(' ');
@@ -181,7 +181,7 @@ client.on('message', message => {
 					case 'percent':
 						message.channel.send('**```Rolls Xd100. You can specify how many times it rolls, but if you don\'t it just rolls until you hit at least 100% total.```**\n\n**Format:** `%damage [turns]`');
 					break;
-					case 'register':
+					/*case 'register':
 						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
 					break;
 					case 'set':
@@ -198,14 +198,14 @@ client.on('message', message => {
 					break;
 					case 'alchemy':
 						message.channel.send('**```This bot will keep track of all alchemy requests (and it should gather the results too, given they contain the abbreviation \'bg\') in the channel #alchemy. Use this command to access the list.```**\n\n**Format:** `%alchemy [request/result/all]`');
-					break;
+					break;*/
 					//normal
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Stored:```\n`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
 				}
 			break;
-			case 'alchemy':
+			/*case 'alchemy':
 				switch(args){
 					case 'request':
 						message.channel.send('Current list of alchemy requests since ' + activated + ':\n\n' + alchemy.input);
@@ -277,13 +277,13 @@ client.on('message', message => {
 					}
 				}
 				if(found == true && dupe == false){
-					/*ID*/ playerStats[i * 7] = message.author;
-					/*CHA*/ playerStats[i * 7 + 1] = 'CHA: 0';
-					/*DEX*/ playerStats[i * 7 + 2] = 'DEX: 0';
-					/*STR*/ playerStats[i * 7 + 3] = 'STR: 0';
-					/*CON*/ playerStats[i * 7 + 4] = 'CON: 0';
-					/*INT*/ playerStats[i * 7 + 5] = 'INT: 0';
-					/*WIS*/ playerStats[i * 7 + 6] = 'WIS: 0';
+					/*ID* playerStats[i * 7] = message.author;
+					/*CHA* playerStats[i * 7 + 1] = 'CHA: 0';
+					/*DEX* playerStats[i * 7 + 2] = 'DEX: 0';
+					/*STR* playerStats[i * 7 + 3] = 'STR: 0';
+					/*CON* playerStats[i * 7 + 4] = 'CON: 0';
+					/*INT* playerStats[i * 7 + 5] = 'INT: 0';
+					/*WIS* playerStats[i * 7 + 6] = 'WIS: 0';
 					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
 					console.log('New Player: ' + playerStats[i * 7]);
 				}
@@ -483,7 +483,7 @@ client.on('message', message => {
 					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
 				}
 				message.reply('Your check resulted in: ' + math + "=" + check);
-			break;
+			break;*/
 			case 'percent':
 				check = Math.floor(Math.random() * 100) + 1;
 				var count = 1;
