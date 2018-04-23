@@ -132,10 +132,10 @@ client.on('message', message => {
 							meh = meh.toString() + Math.floor(Math.random() * 10);
 						}
 					}
-					console.log('\u' + meh);
-					mlem[i] = meh;
+					console.log(meh);
+					mlem[i] = String.fromCharCode(meh);
 				}
-				message.reply("This string contains a code, that looks like this: \u" + mlem.toString().replace(/,/g,'\u'));
+				message.reply("This string contains a code, that looks like this: " + mlem);
 			break;
 			case 'ping':
 				message.reply('Pong!');
