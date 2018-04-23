@@ -119,7 +119,7 @@ client.on('message', message => {
 			case 'test':
 				var mlem = '';
 				var blep = Math.floor(Math.random() * 100) + 1;
-				for(var i = 0;i < blep;i++){
+				//for(var i = 0;i < blep;i++){
 					let meh = 'u';
 					for(var x = 0;x < 4;x++){
 						var letnum = Math.floor(Math.random() * 2) + 1;
@@ -134,8 +134,8 @@ client.on('message', message => {
 					meh = '\\' + meh;
 					console.log(meh);
 					mlem = mlem + meh;
-				}
-				message.reply('\ua5e5');
+				//}
+				message.reply(mlem);
 			break;
 			case 'ping':
 				message.reply('Pong!');
