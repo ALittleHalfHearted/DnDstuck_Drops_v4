@@ -79,6 +79,7 @@ client.on('message', message => {
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
 		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];*/
 		const EnemyAC = [5,10,15,20,25,30,35,35];
+		const UnicodeLetters = ['a','b','c','d','e','f'];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -116,7 +117,23 @@ client.on('message', message => {
 		switch(cmd) {
 			// Ping Pong
 			case 'test':
-				message.reply('\u6ff7');
+				var mlem = '';
+				var blep = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0;i < blep;i++){
+					let meh = 'u';
+					for(var x = 0;x < 4;x++){
+						var letnum = Math.floor(Math.random() * 2) + 1;
+						if(letnum == 2){
+							let letter = Math.floor(Math.random() * 5);
+							meh = meh + UnicodeLetters[letter];
+						}
+						else{
+							meh = meh + Math.floor(Math.random() * 10);
+						}
+					}
+					mlem = mlem + '\\' + meh;
+				}
+				message.reply(mlem);
 			break;
 			case 'ping':
 				message.reply('Pong!');
