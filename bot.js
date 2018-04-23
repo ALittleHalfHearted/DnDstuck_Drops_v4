@@ -116,7 +116,7 @@ client.on('message', message => {
 		switch(cmd) {
 			// Ping Pong
 			case 'test':
-				message.reply('\u03A9');
+				message.reply('\u6ff7');
 			break;
 			case 'ping':
 				message.reply('Pong!');
