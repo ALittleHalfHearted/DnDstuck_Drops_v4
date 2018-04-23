@@ -132,7 +132,7 @@ client.on('message', message => {
 							meh = meh.toString() + Math.floor(Math.random() * 10);
 						}
 					}
-					console.log(meh);
+					console.log('\u' + meh);
 					mlem[i] = meh;
 				}
 				message.reply("This string contains a code, that looks like this: \u" + mlem.toString().replace(/,/g,'\u'));
