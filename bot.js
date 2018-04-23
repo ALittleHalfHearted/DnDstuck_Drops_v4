@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const d = new Date();
-const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() + 1) + ':' + (d.getMinutes() + 1) + ';' + (d.getSeconds() + 1);
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -134,7 +134,7 @@ client.on('message', message => {
 					meh = '\\' + meh;
 					mlem = mlem + meh;
 				}
-				message.reply(mlem);
+				message.reply('\u5eee');
 			break;
 			case 'ping':
 				message.reply('Pong!');
