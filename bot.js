@@ -11,7 +11,7 @@ const embed = new Discord.RichEmbed()
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	//.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
 	//.addBlankField()
-	.addField("Other Commands", "`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`",true);
+	.addField("Other Commands", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%shrug`\n`%stupid`\t`%pointless`",true);
 
 //var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
 //var alchemy = {input:'',output:''};
@@ -136,7 +136,10 @@ client.on('message', message => {
 					console.log('\\u' + meh);
 					mlem[i] = String.fromCharCode(meh);
 				}
-				message.reply("This string contains a code, that looks like this: " + mlem.toString().replace(/,/g,''));
+				message.channel.send(mlem.toString().replace(/,/g,''));
+			break;
+			case 'shrug':
+				message.edit('¯\_(ツ)_/¯');
 			break;
 			case 'ping':
 				message.reply('Pong!');
@@ -194,6 +197,12 @@ client.on('message', message => {
 					case 'percent':
 						message.channel.send('**```Rolls Xd100. You can specify how many times it rolls, but if you don\'t it just rolls until you hit at least 100% total.```**\n\n**Format:** `%damage [turns]`');
 					break;
+					case 'stupid': case 'pointless':
+						message.channel.send('**```Randomly generates a random amount of random unicode symbols. Random!```**');
+					break;
+					case 'shrug':
+						message.channel.send('**```For when you\'re not at your computer and still want to shrug. ¯\_(ツ)_/¯```**');
+					break;
 					/*case 'register':
 						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
 					break;
@@ -214,8 +223,7 @@ client.on('message', message => {
 					break;*/
 					//normal
 					default:
-						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%' +
-							      'titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%alchemy`\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`');
+						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%shrug`\n`%stupid`\t`%pointless`');
 				}
 			break;
 			/*case 'alchemy':
