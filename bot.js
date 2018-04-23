@@ -121,7 +121,7 @@ client.on('message', message => {
 				var mlem = ['',''];
 				var blep = Math.floor(Math.random() * 100) + 1;
 				for(var i = 0;i < blep;i++){
-					let meh = '\\u';
+					let meh = '';
 					for(var x = 0;x < 4;x++){
 						var letnum = Math.floor(Math.random() * 2) + 1;
 						if(letnum == 2){
@@ -129,13 +129,13 @@ client.on('message', message => {
 							meh = meh + UnicodeLetters[letter];
 						}
 						else{
-							meh = meh + Math.floor(Math.random() * 10);
+							meh = meh.toString() + Math.floor(Math.random() * 10);
 						}
 					}
 					console.log(meh);
 					mlem[i] = meh;
 				}
-				message.reply("This string contains a code, that looks like this: " + mlem.toString().replace(',',''));
+				message.reply("This string contains a code, that looks like this: " + mlem.toString().replace(/,/g,'\\u'));
 			break;
 			case 'ping':
 				message.reply('Pong!');
