@@ -19,7 +19,7 @@ const embed = new Discord.RichEmbed()
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online at ' + UTC);
+	console.log('Online ' + UTC);
 	client.user.setActivity('%drops for help');
 });
 
@@ -137,7 +137,7 @@ client.on('message', message => {
 					console.log(meh);
 					mlem = mlem + meh;
 				//}
-				message.reply(mlem);
+				message.reply("This string contains omega, that looks like this: \u03A9");
 			break;
 			case 'ping':
 				message.reply('Pong!');
