@@ -132,12 +132,12 @@ client.on('message', message => {
 							meh = meh + Math.floor(Math.random() * 10);
 						}
 					}
-					meh = '\\' + meh;
+					meh = ' \ ' + meh;
 					meh = meh;
 					console.log(meh);
 					mlem = mlem + meh;
 				//}
-				message.reply("This string contains a code, that looks like this: " + mlem);
+				message.reply("This string contains a code, that looks like this: " + mlem.replace(/ /g,''));
 			break;
 			case 'ping':
 				message.reply('Pong!');
