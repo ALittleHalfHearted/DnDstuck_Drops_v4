@@ -137,7 +137,7 @@ client.on('message', message => {
 					console.log(meh);
 					mlem = mlem + meh;
 				//}
-				message.reply("This string contains omega, that looks like this: \u03A9");
+				message.reply("This string contains omega, that looks like this:\u03A9");
 			break;
 			case 'ping':
 				message.reply('Pong!');
