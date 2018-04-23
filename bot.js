@@ -135,7 +135,7 @@ client.on('message', message => {
 					console.log(meh);
 					mlem[i] = meh;
 				}
-				message.reply("This string contains a code, that looks like this: " + mlem.toString().replace(',','');
+				message.reply("This string contains a code, that looks like this: " + mlem.toString().replace(',',''));
 			break;
 			case 'ping':
 				message.reply('Pong!');
