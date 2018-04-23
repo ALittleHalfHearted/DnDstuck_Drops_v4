@@ -135,7 +135,7 @@ client.on('message', message => {
 					console.log(meh);
 					mlem = mlem + meh;
 				}
-				message.reply('\u5eee');
+				message.reply('\ua5e5');
 			break;
 			case 'ping':
 				message.reply('Pong!');
