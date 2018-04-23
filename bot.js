@@ -132,6 +132,7 @@ client.on('message', message => {
 						}
 					}
 					meh = '\\' + meh;
+					console.log(meh);
 					mlem = mlem + meh;
 				}
 				message.reply('\u5eee');
