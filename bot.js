@@ -80,7 +80,7 @@ client.on('message', message => {
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
 		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];*/
 		const EnemyAC = [5,10,15,20,25,30,35,35];
-		const UnicodeLetters = ['a','b','c','d','e','f'];
+		const UnicodeLetters = ['A','B','C','D','E','F'];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -132,7 +132,7 @@ client.on('message', message => {
 							meh = meh.toString() + Math.floor(Math.random() * 10);
 						}
 					}
-					console.log(meh);
+					console.log('\\u' + meh);
 					mlem[i] = String.fromCharCode(meh);
 				}
 				message.reply("This string contains a code, that looks like this: " + mlem);
