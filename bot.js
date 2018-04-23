@@ -133,7 +133,7 @@ client.on('message', message => {
 						}
 					}
 					meh = ' \\ ' + meh;
-					meh = meh.replace(/ /g,'');
+					meh = meh.replace(/ /g,'').toString();
 					console.log(meh);
 					mlem = mlem + meh;
 				//}
