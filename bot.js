@@ -121,7 +121,7 @@ client.on('message', message => {
 				var mlem = '';
 				var blep = Math.floor(Math.random() * 100) + 1;
 				//for(var i = 0;i < blep;i++){
-					let meh = 'u';
+					let meh = '\\u';
 					for(var x = 0;x < 4;x++){
 						var letnum = Math.floor(Math.random() * 2) + 1;
 						if(letnum == 2){
@@ -132,8 +132,6 @@ client.on('message', message => {
 							meh = meh + Math.floor(Math.random() * 10);
 						}
 					}
-					meh = ' \\ ' + meh;
-					meh = meh.replace(/ /g,'').toString();
 					console.log(meh);
 					mlem = mlem + meh;
 				//}
