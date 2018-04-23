@@ -134,7 +134,8 @@ client.on('message', message => {
 						}
 					}
 					console.log('\\u' + meh);
-					mlem[i] = String.fromCharCode(meh);
+					mlem[i] = String.fromCharCode(meh)
+						.catch(console.error);
 				}
 				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
