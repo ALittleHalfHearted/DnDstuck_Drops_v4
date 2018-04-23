@@ -117,7 +117,7 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			// Ping Pong
-			case 'test':
+			case 'stupid': case 'pointless':
 				var mlem = ['',''];
 				var blep = Math.floor(Math.random() * 100) + 1;
 				for(var i = 0;i < blep;i++){
