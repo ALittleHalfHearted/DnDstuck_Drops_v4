@@ -131,7 +131,8 @@ client.on('message', message => {
 							meh = meh + Math.floor(Math.random() * 10);
 						}
 					}
-					mlem = mlem + ' \\' + meh;
+					meh = '\\' + meh;
+					mlem = mlem + meh;
 				}
 				message.reply(mlem);
 			break;
