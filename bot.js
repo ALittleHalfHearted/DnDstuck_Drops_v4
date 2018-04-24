@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const d = new Date();
-const UTC = new Intl.DateTimeFormat('zh-CN', { timeZone: 'UTC' });
+const d = new Date(Date.CDT());
+const UTC = new Date(Date.UTC());
 //const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() + 1) + ':' + (d.getMinutes() + 1) + ';' + (d.getSeconds() + 1);
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
