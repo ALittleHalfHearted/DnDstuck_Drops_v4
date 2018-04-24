@@ -5,8 +5,11 @@ var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 2
 var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
 var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
-const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
-const embed = new Discord.RichEmbed()
+
+const ENEMYAC = [5,10,15,20,25,30,35,35];
+const UNILET = ['A','B','C','D','E','F'];
+const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
+const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
 	.setColor(65299)
@@ -22,7 +25,7 @@ const embed = new Discord.RichEmbed()
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online at\n-----' + d.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC.toString().replace('+','±'));
+	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
 	client.user.setActivity('%drops for help');
 });
 
@@ -82,8 +85,6 @@ client.on('message', message => {
 		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
 		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
 		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];*/
-		const EnemyAC = [5,10,15,20,25,30,35,35];
-		const UnicodeLetters = ['A','B','C','D','E','F'];
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
@@ -120,31 +121,6 @@ client.on('message', message => {
 		
 		switch(cmd) {
 			// Ping Pong
-			//case 'test':
-			//	var a = 'tést'; Buffer.from(a, 'utf8');
-			//	message.reply(a);
-			//break;
-			case 'stupid': case 'pointless':
-				var mlem = ['',''];
-				var blep = Math.floor(Math.random() * 100) + 1;
-				for(var i = 0;i < blep;i++){
-					let meh = '';
-					var nah = Math.floor(Math.random() * 2) + 4;
-					for(var x = 0;x < nah;x++){
-						var letnum = Math.floor(Math.random() * 2);
-						if(letnum == 1){
-							let letter = Math.floor(Math.random() * 5);
-							meh = meh + UnicodeLetters[letter];
-						}
-						else{
-							meh = meh.toString() + Math.floor(Math.random() * 10);
-						}
-					}
-					console.log('\\u' + meh);
-					mlem[i] = String.fromCharCode(meh);
-				}
-				message.channel.send(mlem.toString().replace(/,/g,''));
-			break;
 			case 'ping':
 				message.reply('Pong!');
 			break;
@@ -152,7 +128,7 @@ client.on('message', message => {
 				message.reply('Ping!');
 			break;
 			case 'embed':
-				message.channel.send({embed});
+				message.channel.send({EMBED});
 			break;
 			case 'drops':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
@@ -226,6 +202,27 @@ client.on('message', message => {
 					default:
 						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
 				}
+			break;
+			case 'stupid': case 'pointless':
+				var mlem = ['',''];
+				var blep = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0;i < blep;i++){
+					let meh = '';
+					var nah = Math.floor(Math.random() * 2) + 4;
+					for(var x = 0;x < nah;x++){
+						var letnum = Math.floor(Math.random() * 2);
+						if(letnum == 1){
+							let letter = Math.floor(Math.random() * 5);
+							meh = meh + UNILET[letter];
+						}
+						else{
+							meh = meh.toString() + Math.floor(Math.random() * 10);
+						}
+					}
+					console.log('\\u' + meh);
+					mlem[i] = String.fromCharCode(meh);
+				}
+				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
 			/*case 'alchemy':
 				switch(args){
@@ -729,7 +726,7 @@ client.on('message', message => {
 				}
 				math = check.toString();
 				if(args.indexOf('e') != -1){
-					ac = EnemyAC[args.substring(args.indexOf('e') + 1,args.indexOf('e') + 2) - 1];
+					ac = ENEMYAC[args.substring(args.indexOf('e') + 1,args.indexOf('e') + 2) - 1];
 					args = args.replace(args.substring(args.indexOf('e'),args.indexOf('e') + 2),'');
 				}
 				else if(args.indexOf('a') != -1){
