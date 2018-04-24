@@ -128,7 +128,7 @@ client.on('message', message => {
 				message.reply('Ping!');
 			break;
 			case 'embed':
-				message.channel.send({EMBED});
+				message.channel.send(EMBED);
 			break;
 			case 'drops':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
