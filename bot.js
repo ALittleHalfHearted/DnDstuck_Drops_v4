@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const d = new Date();
-const UTC = new Date(Date.UTC());
-//const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() + 1) + ':' + (d.getMinutes() + 1) + ';' + (d.getSeconds() + 1);
+const UTC = new Date();
+const d = new Date(UTC.getFullYear(),UTC.getMonth(),UTC.getDate(),((UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 23)),UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -84,7 +83,7 @@ client.on('message', message => {
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
-		args = args.splice(1).toString().replace(/,/g,' ');
+		args = args.splice(0,1).toString().replace(/,/g,' ');
 		
 		var ac = '';
 		var tier = 0;
