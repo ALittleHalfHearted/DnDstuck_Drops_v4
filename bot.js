@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-//const utf8 = require('utf8');
+const utf8 = require('utf8');
 const d = new Date();
 //const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() + 1) + ':' + (d.getMinutes() + 1) + ';' + (d.getSeconds() + 1);
 const UTC = d;
