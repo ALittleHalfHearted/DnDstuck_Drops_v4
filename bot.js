@@ -12,7 +12,7 @@ const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMi
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
-	.setColor(65299)
+	.setColor(65299) //#00FF13
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	//.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
