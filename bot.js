@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const d = new Date();
+const UTC = new Intl.DateTimeFormat('zh-CN', { timeZone: 'UTC' });
 //const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() + 1) + ':' + (d.getMinutes() + 1) + ';' + (d.getSeconds() + 1);
-const UTC = d;
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
@@ -19,7 +19,7 @@ const embed = new Discord.RichEmbed()
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online ' + d.getTimezoneOffset() + '\n' + UTC);
+	console.log('Online ' + d + '\n' + UTC);
 	client.user.setActivity('%drops for help');
 });
 
