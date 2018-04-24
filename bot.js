@@ -19,7 +19,7 @@ const embed = new Discord.RichEmbed()
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online ' + UTC);
+	console.log('Online ' + d.getTimezoneOffset() + '\n' + UTC);
 	client.user.setActivity('%drops for help');
 });
 
