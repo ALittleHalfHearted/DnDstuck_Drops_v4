@@ -5,7 +5,7 @@ var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 2
 var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
 var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
-const d = new Date(Date.CDT(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds()));
+const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 const embed = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `%drops [command]` to get info on a specific command")
