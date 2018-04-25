@@ -2,7 +2,7 @@
   "ownerID": "220176861379035137",
   "name": "DnDstuck-V4-DiceBot",
   "description": "Dice and enemy drops",
-  "version": "0.0.0",
+  "version": "4.3.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
