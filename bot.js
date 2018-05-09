@@ -88,7 +88,7 @@ client.on('message', message => {
 		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
-		args = args.splice(0,1).toString().replace(/,/g,' ');
+		args = args.splice(1).toString().replace(/,/g,' ');
 		
 		var ac = '';
 		var tier = 0;
