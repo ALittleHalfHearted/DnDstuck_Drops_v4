@@ -135,7 +135,7 @@ client.on('message', message => {
 				//COPY: message.channel.send('**``` ```**\n\n**Format:** `%`');
 				switch(args){
 					//%[enemy] [#killed]
-					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'rook':
+					case 'imp': case 'imps': case 'ogre': case 'ogres': case 'basilisk': case 'basilisks': case 'lich': case 'liches': case 'giclops': case 'giclopes': case 'titachnid': case 'titachnids': case 'archeron': case 'archerons': case 'rook': case 'rooks':
 						message.channel.send('**```Use this command to get drops from any number of a single type of enemy. Automatically divides grist ' +
 							      'and applies multipliers.```**\n\n**Format:** `%[enemy name] [# killed]`\n\n**examples:**\n`%ogre 45` gets drops from 45 ' +
 							      'ogres\n`%rook 22` gets drops from 22 rooks.');
@@ -783,7 +783,7 @@ client.on('message', message => {
 					message.reply('You dealt ' + math + '=' + check + ' damage');
 				}
 			break;
-			case 'imp':
+			case 'imp': case 'imps':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1;
 				}
@@ -797,7 +797,7 @@ client.on('message', message => {
 				message.reply('```For killing ' + args + ' imps, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
 					      '\nT1 = ' + t1.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
-			case 'ogre':
+			case 'ogre': case 'ogres':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -813,7 +813,7 @@ client.on('message', message => {
 				message.reply('```For killing ' + args + ' ogres, you have obtained:\nBoon = ' + (boon * 2) + '\nBG = ' + build.toFixed(0) +
 					'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nHealth Gel = ' + health + '\n\nTotal Grist = ' + grist + '```');
 			break;
-			case 'basilisk':
+			case 'basilisk': case 'basilisks':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -837,7 +837,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'lich':
+			case 'lich': case 'liches':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -863,7 +863,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'giclops':
+			case 'giclops': case 'giclopes':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -890,7 +890,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'titachnid':
+			case 'titachnid': case 'titachnids':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -918,7 +918,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'archeron':
+			case 'archeron': case 'archerons':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
@@ -947,7 +947,7 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'rook':
+			case 'rook': case 'rooks':
 				if(args == 0 || isNaN(args) == true) {
 					args = 1
 				}
