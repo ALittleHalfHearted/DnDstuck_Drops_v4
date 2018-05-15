@@ -11,7 +11,7 @@ const UNILET = ['A','B','C','D','E','F'];
 const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
-	.setDescription("use `%drops [command]` to get info on a specific command")
+	.setDescription("use `%help [command]` to get info on a specific command")
 	.setColor(65299) //#00FF13
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
@@ -26,7 +26,7 @@ const EMBED = new Discord.RichEmbed()
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
-	client.user.setActivity('%drops for help');
+	client.user.setActivity('type %help for commands');
 });
 
 
@@ -130,7 +130,7 @@ client.on('message', message => {
 			case 'embed':
 				message.channel.send(EMBED);
 			break;
-			case 'drops':
+			case 'help':
 				//FORMAT: message.channel.send('**```description```**\n\n**Format:** `%cmd (args)`\n\n**Examples:**\n`%cmd (args)` what it does');
 				//COPY: message.channel.send('**``` ```**\n\n**Format:** `%`');
 				switch(args){
@@ -147,6 +147,9 @@ client.on('message', message => {
 						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
 						'necessary)`\n\n**examples:**\n`%multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`%multi t6 20 t2 8` gets drops ' +
 						'from 20 titachnids and 8 ogres.');
+					break;
+					case 'drops':
+						message.channel.send('**```Use this command to get the formula for any enemy type. (WIP)```**\n\n**Format:** `%drops [enemy]`');
 					break;
 					//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
 					case 'custom':
@@ -200,7 +203,16 @@ client.on('message', message => {
 					break;*/
 					//normal
 					default:
-						message.channel.send('use `%drops [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
+						message.channel.send('use `%help [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n`%drops`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
+				}
+			break;
+			case 'drops':
+				switch(args){
+					//case 'imp': case 'imps':
+						
+					//break;
+					default:
+						message.channel.send('The correct usage is: `%drops [enemy]`. Please select an enemy type as follows:\n\n```imp\nogre\nbasilisk\nlich\ngiclops\ntitachnid\narcheron\nrook\n\nmulti```');
 				}
 			break;
 			case 'stupid': case 'pointless':
