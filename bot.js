@@ -32,13 +32,13 @@ client.on('ready', () => {
 
 client.on('guildCreate', guild => {
 	console.log('Joined guild ' + guild.name);
-});
-
-
-client.on('roleCreate', role => {
-	if(role.name == 'Bikini Bank Shot'){
-		role.setColor('#2ECC71');
-	}
+	guild.createRole({
+		name:  'BBS',
+		color: '#2ECC71',
+	});
+	var bbs = guild.roles.find("name", "BBS");
+	var self = guild.member(client.user);
+	self.addRole(bbs);
 });
 
 
