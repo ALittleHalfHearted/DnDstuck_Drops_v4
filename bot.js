@@ -30,7 +30,7 @@ client.on('ready', () => {
 });
 
 
-client.on('guildCreate', guildCreate => {
+client.on('guildCreate', guild => {
 	console.log('Joined guild ' + guild.name);
 });
 
