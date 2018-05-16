@@ -35,7 +35,7 @@ client.on('guildCreate', guild => {
 		name:  'BBS',
 		color: '#2ECC71',
 	});
-	const self = guild.fetchMember(client.user);
+	const self = guild.member(client.user);
 	console.log('Joined guild ' + guild.name + ' as ' + self);
 });
 
