@@ -36,10 +36,9 @@ client.on('guildCreate', guild => {
 		name:  'BBS',
 		color: '#2ECC71',
 	});
-	var role = guild.roles.find("name", "BBS");
 	var self = guild.member(client.user);
-	console.log(role);
-	self.addRole(role).catch(console.error);
+	console.log(guild.roles.find("name", "BBS"));
+	self.addRole(guild.roles.find("name", "BBS")).catch(console.error);
 });
 
 
