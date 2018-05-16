@@ -38,7 +38,8 @@ client.on('guildCreate', guild => {
 	});
 	var role = guild.roles.find("name", "BBS");
 	var self = guild.member(client.user);
-	self.addRole(role).catch(console.error).catch(role.delete);
+	console.log(role);
+	self.addRole(role).catch(console.error);
 });
 
 
