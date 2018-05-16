@@ -40,8 +40,8 @@ client.on('guildCreate', guild => {
 });
 
 client.on('roleCreate', role => {
-	console.log('New role: ' + role + '\n' + role.name + ' ' + role.hexColor);
-	if(role.name == 'BBS' && role.hexColor == '#2ECC71'){
+	console.log('New role: ' + role + '\n' + role.name);
+	if(role.name == 'BBS'){
 		self.addRole(role).catch(console.error);
 	}
 })
