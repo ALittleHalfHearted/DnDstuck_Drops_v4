@@ -36,9 +36,9 @@ client.on('guildCreate', guild => {
 		name:  'BBS',
 		color: '#2ECC71',
 	});
-	var bbs = guild.roles.find("name", "BBS");
+	var role = guild.roles.find("name", "BBS");
 	var self = guild.member(client.user);
-	self.addRole(bbs).catch(console.error).catch(bbs.delete);
+	self.addRole(role).catch(console.error).catch(role.delete);
 });
 
 
