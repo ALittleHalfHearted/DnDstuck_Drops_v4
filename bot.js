@@ -15,12 +15,7 @@ const EMBED = new Discord.RichEmbed()
 	.setColor(65299) //#00FF13
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
-	//.addField("Storage", "`%register`\n`%save`\t`%load`\n`%list`\n`%me`\n`%set`\n`%check`", true)
-	//.addBlankField()
 	.addField("Other Commands", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`",true);
-
-//var playerStats = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
-//var alchemy = {input:'',output:''};
 
 
 client.on('ready', () => {
@@ -48,61 +43,8 @@ client.on('roleCreate', role => {
 
 
 client.on('message', message => {
-	/*if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != '' && message.author.bot == false){
-		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
-			message.reply('Sorry, this has already been entered.');
-		}
-		else if(message.content.indexOf(/bg/i) == -1 && alchemy.input.indexOf(message.author) == -1){
-			if(alchemy.input == ''){
-				alchemy.input = alchemy.input + message.author + ':\n' + message.content;
-			}
-			else{
-				alchemy.input = alchemy.input + '\n' + message.author + ':\n' + message.content;
-			}
-			message.reply('Your alchemy request has been catalogged.');
-		}
-		else if(message.content.indexOf(/bg/i) != -1 && alchemy.output.indexOf(message.author) == -1){
-			if(alchemy.output == ''){
-				alchemy.output = alchemy.output + message.author + ':\n' + message.content;
-			}
-			else{
-				alchemy.output = alchemy.output + '\n' + message.author + ':\n' + message.content;
-			}
-			message.reply('Your alchemy result has been catalogged.');
-		}
-		else if(message.content.indexOf(/bg/i) != -1){
-			var hold = alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3)));
-			alchemy.output = alchemy.output.replace(alchemy.output.substring(alchemy.output.substring(alchemy.output.indexOf('<',alchemy.output.indexOf(message.author) + 3))),'');
-			alchemy.output = alchemy.output + message.content;
-			alchemy.output = alchemy.output.concat('\n',hold);
-			message.reply('Your alchemy result has been catalogged.');
-		}
-		else{
-			var hold = alchemy.input.substring(alchemy.input.substring(alchemy.input.indexOf('<',alchemy.input.indexOf(message.author) + 3)));
-			alchemy.input = alchemy.input.replace(alchemy.input.substring(alchemy.input.substring(alchemy.input.indexOf('<',alchemy.input.indexOf(message.author) + 3))),'');
-			alchemy.input = alchemy.input + message.content;
-			alchemy.input = alchemy.input.concat('\n',hold);
-			message.reply('Your alchemy request has been catalogged.');
-		}
-		console.log('Input:\n' + alchemy.input + '\nOutput:\n' + alchemy.output);
-	}*/
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '%' && message.author.bot == false) {
-		/*const Player1 = [playerStats[0],playerStats[1],playerStats[2],playerStats[3],playerStats[4],playerStats[5],playerStats[6]];
-		const Player2 = [playerStats[7],playerStats[8],playerStats[9],playerStats[10],playerStats[11],playerStats[12],playerStats[13]];
-		const Player3 = [playerStats[14],playerStats[15],playerStats[16],playerStats[17],playerStats[18],playerStats[19],playerStats[20]];
-		const Player4 = [playerStats[21],playerStats[22],playerStats[23],playerStats[24],playerStats[25],playerStats[26],playerStats[27]];
-		const Player5 = [playerStats[28],playerStats[29],playerStats[30],playerStats[31],playerStats[32],playerStats[33],playerStats[34]];
-		const Player6 = [playerStats[35],playerStats[36],playerStats[37],playerStats[38],playerStats[39],playerStats[40],playerStats[41]];
-		const Player7 = [playerStats[42],playerStats[43],playerStats[44],playerStats[45],playerStats[46],playerStats[47],playerStats[48]];
-		const Player8 = [playerStats[49],playerStats[50],playerStats[51],playerStats[52],playerStats[53],playerStats[54],playerStats[55]];
-		const Player9 = [playerStats[56],playerStats[57],playerStats[58],playerStats[59],playerStats[60],playerStats[61],playerStats[62]];
-		const Player10 = [playerStats[63],playerStats[64],playerStats[65],playerStats[66],playerStats[67],playerStats[68],playerStats[69]];
-		const Player11 = [playerStats[70],playerStats[71],playerStats[72],playerStats[73],playerStats[74],playerStats[75],playerStats[76]];
-		const Player12 = [playerStats[77],playerStats[78],playerStats[79],playerStats[80],playerStats[81],playerStats[82],playerStats[83]];
-		const PlayerSort = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11,Player12];
-		const PlayerNames = [Player1[0],Player2[0],Player3[0],Player4[0],Player5[0],Player6[0],Player7[0],Player8[0],Player9[0],Player10[0],Player11[0],Player12[0]];*/
-		
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
@@ -200,24 +142,6 @@ client.on('message', message => {
 					case 'stupid': case 'pointless':
 						message.channel.send('**```Randomly generates a random amount of random unicode symbols. Random!```**');
 					break;
-					/*case 'register':
-						message.channel.send('**```Registers you as a player in the session. Limited to 12 players.```**\n\n**Format:** `%register`');
-					break;
-					case 'set':
-						message.channel.send('**```Allows you to set a stat to modify rolls.```**\n\n**Format:** `%set [stat]`'); //DO NOT DO ANYTHING WITH A "NEW" STAT!
-					break;
-					case 'me':
-						message.channel.send('**```Lets you check your stats.```**\n\n**Format:** `%me`');
-					break;
-					case 'list':
-						message.channel.send('**```Allows you to see a list of everyone registered so far. Add \'stats\' after the command to see everyone and their stats.```**\n\n**Format:** `%list (stats)`');
-					break;
-					case 'check':
-						message.channel.send('**```Makes an exploding d20 check. If you are registered, you can add your set stat for any category. (Currently working on substats and conditional stats.) Also allows for adv/dis rolls.```**\n\n**Format:** `%check [stat][adv/dis/bless/curse]`');
-					break;
-					case 'alchemy':
-						message.channel.send('**```This bot will keep track of all alchemy requests (and it should gather the results too, given they contain the abbreviation \'bg\') in the channel #alchemy. Use this command to access the list.```**\n\n**Format:** `%alchemy [request/result/all]`');
-					break;*/
 					//normal
 					default:
 						message.channel.send('use `%help [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n`%drops`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
@@ -253,285 +177,6 @@ client.on('message', message => {
 				}
 				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
-			/*case 'alchemy':
-				switch(args){
-					case 'request':
-						message.channel.send('Current list of alchemy requests since ' + activated + ':\n\n' + alchemy.input);
-					break;
-					case 'result':
-						message.channel.send('Current list of alchemy results since ' + activated + ':\n\n' + alchemy.output);
-					break;
-					case 'all':
-						message.channel.send('**Input:**\n' + alchemy.input + '\n\n**Output:**\n' + alchemy.output);
-					break;
-				}
-			break;
-			case 'clearalchemy':
-				if(message.author == '<@220176861379035137>'){
-					alchemy.input = '';
-					alchemy.output = '';
-					console.log('Alchemy data reset');
-					message.channel.send('Alchemy log reset successfully!');
-				}
-				else{
-					message.channel.send('You don\'t have permission to do that.');
-				}
-			break;
-			case 'clearstats':
-				if(message.author == '<@220176861379035137>'){
-					for(var i = 0; i < 84; i++){
-						playerStats[i] = ' ';
-					}
-					console.log('Player data reset');
-					message.channel.send('Data reset successfully!');
-				}
-				else{
-					message.channel.send('You don\'t have permission to do that.');
-				}
-			break;
-			case 'save':
-				const storeStats = playerStats;
-				const storeAlchemy = alchemy;
-				console.log('Saving:\n' + storeStats + '\n' + storeAlchemy);
-				if(storeStats == playerStats && storeAlchemy == alchemy){
-					message.channel.send('Saved!');
-				}
-				else{
-					message.channel.send('Sorry, something\'s gone wrong.');
-				}
-			break;
-			case 'load':
-				playerStats = storeStats;
-				alchemy = storeAlchemy;
-				message.channel.send('Loaded!')
-			break;
-			case 'register':
-				var i = 0;
-				var found = false;
-				var dupe = false;
-				console.log(message.author + ' is registering...');
-				while(i < 12 && found == false && dupe == false){
-					if(PlayerNames[i] == ' '){
-						found = true;
-						console.log('Registration successful!');
-					}
-					else if(PlayerNames[i] == message.author){
-						dupe = true;
-						console.log('Player is already in system.');
-					}
-					else{
-						i++;
-						console.log('Space ' + i + ' taken.');
-					}
-				}
-				if(found == true && dupe == false){
-					/*ID* playerStats[i * 7] = message.author;
-					/*CHA* playerStats[i * 7 + 1] = 'CHA: 0';
-					/*DEX* playerStats[i * 7 + 2] = 'DEX: 0';
-					/*STR* playerStats[i * 7 + 3] = 'STR: 0';
-					/*CON* playerStats[i * 7 + 4] = 'CON: 0';
-					/*INT* playerStats[i * 7 + 5] = 'INT: 0';
-					/*WIS* playerStats[i * 7 + 6] = 'WIS: 0';
-					message.reply('You have successfully been registered as player ' + (i + 1) + '. Have a nice day!');
-					console.log('New Player: ' + playerStats[i * 7]);
-				}
-				else{
-					message.reply('Unfortunately, you could not be registered. Either the session is maxed out on players or you already registered.');
-					console.log('Player registration failed.');
-				}
-			break;
-			case 'list':
-				if(args == 'stats'){
-					message.channel.send('All players: ' + PlayerSort);
-				}
-				else{
-					message.channel.send('All players: ' + PlayerNames);
-				}
-			break;
-			case 'me':
-				var others = '';
-				var i = 0;
-				var found = false;
-				while(i < 12 && found == false){
-					if(PlayerNames[i] == message.author){
-						found = true;
-					}
-					else{
-						i++;
-					}
-				}
-				if(found == true){
-					message.channel.send('Player ' + (i + 1) + ' data: ' + PlayerSort[i]);
-				}
-				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
-				}
-			break;
-			case 'set':
-				var stat = args.substring(0,3);
-				args = args.replace(stat,'').replace(' ','');
-				var found = false;
-				var i = 0;
-				while(i < 12 && found == false){
-					if(PlayerNames[i] == message.author){
-						found = true;
-					}
-					else{
-						i++;
-					}
-				}
-				if(found == true){
-					switch(stat){
-						case 'cha':
-							playerStats[i * 7 + 1] = 'CHA: ' + args;
-						break;
-						case 'dex':
-							playerStats[i * 7 + 2] = 'DEX: ' + args;
-						break;
-						case 'str':
-							playerStats[i * 7 + 3] = 'STR: ' + args;
-						break;
-						case 'con':
-							playerStats[i * 7 + 4] = 'CON: ' + args;
-						break;
-						case 'int':
-							playerStats[i * 7 + 5] = 'INT: ' + args;
-						break;
-						case 'wis':
-							playerStats[i * 7 + 6] = 'WIS: ' + args;
-						break;
-						default:
-							message.channel.send('Specify a stat please!');
-					}
-					message.channel.send('Updated player ' + (i + 1) + ' data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-					console.log('Updated player ' + (i + 1) + '(' + playerStats[i * 7] + ') data: ' + playerStats[i * 7 + 1] + ', ' + playerStats[i * 7 + 2] + ', ' + playerStats[i * 7 + 3] + ', ' + playerStats[i * 7 + 4] + ', ' + playerStats[i * 7 + 5] + ', ' + playerStats[i * 7 + 6]);
-				}
-				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
-				}
-			break;
-			case 'check':
-				check = d20();
-				if(message.content.indexOf('adv') != -1){
-					message.channel.send(check);
-					check2 = d20();
-					message.channel.send(check2);
-					if(check2 > check){
-						check = check2;
-					}
-					args = args.replace("adv","");
-				}
-				else if(message.content.indexOf('bless') != -1){
-					message.channel.send(check);
-					check2 = d20();
-					message.channel.send(check2);
-					check3 = d20();
-					message.channel.send(check3);
-					if(check2 > check && check2 > check3){
-						check = check2;
-					}
-					else if(check3 > check && check3 > check2){
-						check = check3;
-					}
-					args = args.replace("bless","");
-				}
-				else if(message.content.indexOf('dis') != -1){
-					message.channel.send(check);
-					check2 = d20();
-					message.channel.send(check2);
-					if(check2 < check){
-						check = check2;
-					}
-					args = args.replace("dis","");
-				}
-				else if(message.content.indexOf('curse') != -1){
-					message.channel.send(check);
-					check2 = d20();
-					message.channel.send(check2);
-					check3 = d20();
-					message.channel.send(check3);
-					if(check2 < check && check2 < check3){
-						check = check2;
-					}
-					else if(check3 < check && check3 < check2){
-						check = check3;
-					}
-					args = args.replace("curse","");
-				}
-				math = check.toString();
-				if(args != ""){
-					var found = false;
-					var i = 0;
-					while(i < 12 && found == false){
-						if(PlayerNames[i] == message.author){
-							found = true;
-						}
-						else{
-							i++;
-						}
-					}
-					var modHolder = '';
-					if(args.indexOf('cha') != -1){
-						modHolder = 'cha';
-					}
-					else if(args.indexOf('dex') != -1){
-						modHolder = 'dex';
-					}
-					else if(args.indexOf('str') != -1){
-						modHolder = 'str';
-					}
-					else if(args.indexOf('con') != -1){
-						modHolder = 'con';
-					}
-					else if(args.indexOf('int') != -1){
-						modHolder = 'int';
-					}
-					else if(args.indexOf('wis') != -1){
-						modHolder = 'wis';
-					}
-					if(found == true && modHolder != ''){
-						args = args.replace(modHolder,'');
-						switch(modHolder){
-							case 'cha':
-								check = check + parseInt(playerStats[i * 7 + 1].substring(5));
-								math = math + '+' + playerStats[i * 7 + 1].substring(5);
-							break;
-							case 'dex':
-								check = check + parseInt(playerStats[i * 7 + 2].substring(5));
-								math = math + '+' + playerStats[i * 7 + 2].substring(5);
-							break;
-							case 'str':
-								check = check + parseInt(playerStats[i * 7 + 3].substring(5));
-								math = math + '+' + playerStats[i * 7 + 3].substring(5);
-							break;
-							case 'con':
-								check = check + parseInt(playerStats[i * 7 + 4].substring(5));
-								math = math + '+' + playerStats[i * 7 + 4].substring(5);
-							break;
-							case 'int':
-								check = check + parseInt(playerStats[i * 7 + 5].substring(5));
-								math = math + '+' + playerStats[i * 7 + 5].substring(5);
-							break;
-							case 'wis':
-								check = check + parseInt(playerStats[i * 7 + 6].substring(5));
-								math = math + '+' + playerStats[i * 7 + 6].substring(5);
-							break;
-						}
-					}
-					if(isNaN(args.slice(0,1)) == false){
-						var calculate = "=" + math + "+" + args;
-					}
-					else{
-						var calculate = "=" + math + args;
-					}
-					math = calculate.replace("=","");
-					check = modding(calculate);
-				}
-				else{
-					message.channel.send('You aren\'t registered yet! If the session isn\'t full yet, please use `%register` to do so.');
-				}
-				message.reply('Your check resulted in: ' + math + "=" + check);
-			break;*/
 			case 'percent':
 				check = Math.floor(Math.random() * 100) + 1;
 				var count = 1;
@@ -992,193 +637,112 @@ client.on('message', message => {
 					overload(message);
 				}
 			break;
-			case 'multi':
-				var highest = 0
-				if(args.indexOf('t1') != -1){
-					imps = args.substring(args.indexOf('t1') + 2,args.indexOf('t1') + 5);
-					highest = 1;
-					mod = 1;
+			case 'custom':
+				//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
+				//%custom 20 9 100d100 100d100
+				var num = message.content.substring(8,10)
+				var tier = message.content.substring(message.content.indexOf('t',9) + 1,message.content.indexOf('t',9) + 2)
+				var boonDieVal = message.content.substring(message.content.indexOf('d') + 1, message.content.indexOf(' ',message.content.indexOf('d')))
+				var boonDieNum = message.content.substring(13,message.content.indexOf('d'))
+				var gristDieVal = message.content.substring(message.content.lastIndexOf('d') + 1)
+				var gristDieNum = message.content.substring(message.content.lastIndexOf(' ') + 1,message.content.lastIndexOf('d'))
+				
+				if(num > 40 || tier > 9 || boonDieVal > 100 || boonDieNum > 1000 || gristDieVal > 100 || gristDieNum > 1000){
+					message.reply('You need to keep this within reason... The most I will work with is:\n`20 t9 1000d100 1000d100`')
 				}
-				if(args.indexOf('t2') != -1){
-					ogres = args.substring(args.indexOf('t2') + 2,args.indexOf('t2') + 5);
-					highest = 2;
-					mod = 2;
+				else if(num == 0 || tier == 0 || boonDieVal == 0 || boonDieNum == 0 || gristDieVal == 0 || gristDieNum == 0){
+					message.reply('Please for the love of god fill everything in.')
 				}
-				if(args.indexOf('t3') != -1){
-					basilisks = args.substring(args.indexOf('t3') + 2,args.indexOf('t3') + 5);
-					highest = 3;
-					mod = 4;
-				}
-				if(args.indexOf('t4') != -1){
-					liches = args.substring(args.indexOf('t4') + 2,args.indexOf('t4') + 5);
-					highest = 4;
-					mod = 8;
-				}
-				if(args.indexOf('t5') != -1){
-					giclopes = args.substring(args.indexOf('t5') + 2,args.indexOf('t5') + 5);
-					highest = 5;
-					mod = 16;
-				}
-				if(args.indexOf('t6') != -1){
-					titachnids = args.substring(args.indexOf('t6') + 2,args.indexOf('t6') + 5);
-					highest = 6;
-					mod = 32;
-				}
-				if(args.indexOf('t7') != -1){
-					archerons = args.substring(args.indexOf('t7') + 2,args.indexOf('t7') + 5);
-					highest = 7;
-					mod = 64;
-				}
-				if(args.indexOf('t8') != -1){
-					rooks = args.substring(args.indexOf('t8') + 2,args.indexOf('t8') + 5);
-					highest = 8;
-					mod = 128;
-				}				
-				//don't run if there's no input
-				if(highest == 0){
-					message.reply('why don\'t you have input ~~you little shit~~');
+				else if(tier > 8){
+					message.reply('Your tier is undefined. Please wait until my creator has figured this out.')
 				}
 				else{
-					//imp drops
-					if(imps > 0){
-						for(var i = 0; i < imps; i++){
-							grist = grist + impGrist(grist);
-							boon = impBoon(boon);
-							health = impHealth(health);
+					for(var i = 0; i < num; i++){
+						for(var z = 0; z < gristDieNum; z++){
+							grist = grist + Math.floor(Math.random() * gristDieVal) + 1;
 						}
-						build = build + (grist * 0.8);
-						t1 = t1 + (grist * 0.2);
-						grist = 0;
-						
-					}
-				
-					//ogre drops
-					if(ogres > 0){
-						for(var i = 0; i < ogres; i++){
-							grist = ogreGrist(grist);
-							boon = ogreBoon(boon);
-							health = ogreHealth(health);
+						for(var y = 0; y < boonDieNum; y++){
+							boon = boon + Math.floor(Math.random() * boonDieNum) + 1;
 						}
-						build = build + (grist * 0.6)
-						t1 = t1 + (grist * 0.3)
-						t2 = t2 + (grist * 0.1)
-						grist = 0
-					}
-				
-					//basilisk drops
-					if(basilisks > 0){
-						for(var i = 0; i < basilisks; i++){
-							//5d100
-							grist = basiliskGrist(grist);
-							//1d100
-							boon = basiliskBoon(boon);
-							health = basiliskHealth(health);
-						}
-						build = build + (grist * 0.4); 
-						t1 = t1 + (grist * 0.3)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.1)
-						grist = 0
-					}
-				
-					//lich drops
-					if(liches > 0){
-						for(var i = 0; i < liches; i++){
-							//10d100
-							grist = lichGrist(grist);
-							//2d100
-							boon = lichBoon(boon);
-							health = lichHealth(health);
-						}
-						build = build + (grist * 0.3)
-						t1 = t1 + (grist * 0.2)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.2)
-						t4 = t4 + (grist * 0.1)
-						grist = 0
-					}
-				
-					//giclops drops
-					if(giclopes > 0){
-						for(var i = 0; i < giclopes; i++){
-							//15d100
-							grist = giclopsGrist(grist);
-							//4d100
-							boon = giclopsBoon(boon);
-							health = giclopsHealth(health);
-						}
-						build = build + (grist * 0.25)
-						t1 = t1 + (grist * 0.20)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.1)
-						t5 = t5 + (grist * 0.05)
-						grist = 0
 					}
 					
-					//titachnid drops
-					if(titachnids > 0){
-						for(var i = 0; i < titachnids; i++){
-							//25d100
-							grist = titachnidGrist(grist);
-							//10d100
-							boon = titachnidBoon(boon);
-							health = titachnidHealth(health);
-						}
-						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.2)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.15)
-						t5 = t5 + (grist * 0.15)
-						t6 = t6 + (grist * 0.15)
-						grist = 0
+					//20% T0 10% t1 10% T2 10% T3 10% T4 10% T5 10% T6 10% T7 10% T8 
+					if(tier == 8){
+						var build = (grist * 128) * 0.2
+						var t1 = (grist * 128) * 0.1
+						var t2 = (grist * 128) * 0.1
+						var t3 = (grist * 128) * 0.1
+						var t4 = (grist * 128) * 0.1
+						var t5 = (grist * 128) * 0.1
+						var t6 = (grist * 128) * 0.1
+						var t7 = (grist * 128) * 0.1
+						var t8 = (grist * 128) * 0.1
+					}
+					if(tier == 7){
+						var build = (grist * 64) * 0.2
+						var t1 = (grist * 64) * 0.15
+						var t2 = (grist * 64) * 0.15
+						var t3 = (grist * 64) * 0.1
+						var t4 = (grist * 64) * 0.1
+						var t5 = (grist * 64) * 0.1
+						var t6 = (grist * 64) * 0.1
+						var t7 = (grist * 64) * 0.1
+						var boon = boon * 64
+					}
+					if(tier == 6){
+						var build = (grist * 32) * 0.2
+						var t1 = (grist * 32) * 0.2
+						var t2 = (grist * 32) * 0.15
+						var t3 = (grist * 32) * 0.15
+						var t4 = (grist * 32) * 0.15
+						var t5 = (grist * 32) * 0.15
+						var t6 = (grist * 32) * 0.15
+						boon = boon * 32
+					}
+					if(tier == 5){
+						var build = (grist * 16) * 0.25
+						var t1 = (grist * 16) * 0.20
+						var t2 = (grist * 16) * 0.15
+						var t3 = (grist * 16) * 0.15
+						var t4 = (grist * 16) * 0.1
+						var t5 = (grist * 16) * 0.05
+						boon = boon * 16
+					}
+					if(tier == 4){
+						var build = (grist * 8) * 0.3
+						var t1 = (grist * 8) * 0.2
+						var t2 = (grist * 8) * 0.2
+						var t3 = (grist * 8) * 0.2
+						var t4 = (grist * 8) * 0.1
+						boon = boon * 8
+					}
+					if(tier == 3){
+						var build = (grist * 4) * 0.4; 
+						var t1 = (grist * 4) * 0.3
+						var t2 = (grist * 4) * 0.2
+						var t3 = (grist * 4) * 0.1
+						boon = boon * 4
+					}
+					if(tier == 2){
+						var build = (grist * 2) * 0.6
+						var t1 = (grist * 2) * 0.3
+						var t2 = (grist * 2) * 0.1
+						boon = boon * 2
+					}
+					if(tier == 1){
+						var build = grist * 0.8
+						var t1 = grist * 0.2
 					}
 					
-					//archeron drops
-					if(archerons > 0){
-						for(var i = 0; i < archerons; i++){
-							//40d100
-							grist = archeronGrist(boon);
-							//20d100
-							boon = archeronBoon(boon);
-							health = archeronHealth(health);
-						}
-						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.15)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.1)
-						t4 = t4 + (grist * 0.1)
-						t5 = t5 + (grist * 0.1)
-						t6 = t6 + (grist * 0.1)
-						t7 = t7 + (grist * 0.1)
-						grist = 0
-					}
-					
-					//rook drops
-					if(rooks > 0){
-						for(var i = 0; i < rooks; i++){
-							//50d100
-							boon = rookBoon(boon);
-							health = rookHealth(health);
-						}
-					}
-				
-					//multiplier!!
-					boon = (boon * mod).toFixed(0)
-					build = (build * mod).toFixed(0)
-					t1 = (t1 * mod).toFixed(0)
-					t2 = (t2 * mod).toFixed(0)
-					t3 = (t3 * mod).toFixed(0)
-					t4 = (t4 * mod).toFixed(0)
-					t5 = (t5 * mod).toFixed(0)
-					t6 = (t6 * mod).toFixed(0)
-					t7 = (t7 * mod).toFixed(0)
-					
-					//display
-					message.reply('```for killing ' + imps + ' imps, ' + ogres + ' ogres, ' + basilisks + ' basilisks, ' + liches + ' liches, ' + giclopes + ' giclopes, ' + titachnids + ' titachnids, ' + archerons + ' archerons, and ' + rooks + ' rooks, you have obtained:\nBoon = ' + boon + '\nBG = ' + build + '\nT1 = ' + t1 + '\nT2 = ' + t2 + '\nT3 = ' + t3 + '\nT4 = ' + t4 + '\nT5 = ' + t5 + '\nT6 = ' + t6 + '\nT7 = ' + t7 + '\nHealth Gel = ' + health + '```');
+					message.reply('```for killing ' + num + ' enemies of tier ' + tier + ', dropping a total of' + boonDieNum + 'd' + boonDieVal + ' ' +
+						'boon and ' + gristDieNum + 'd' + gristDieVal + ' grist per enemy, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
+						'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) + '\nT5 = ' +
+						t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nT8 = ' + t8.toFixed(0) + '\nT9 = ' + t9.toFixed(0) + '```');
 				}
 			break;
+			default:
+				message.reply('Use an actual command ~~ya gosh darned cunt~~');
+		}
 			case 'custom':
 				//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
 				//%custom 20 9 100d100 100d100
