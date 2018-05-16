@@ -25,7 +25,7 @@ client.on('ready', () => {
 });
 
 
-client.on('guildCreate', guild => {
+/*client.on('guildCreate', guild => {
 	guild.createRole({
 		name:  'BBS',
 		color: '#2ECC71',
@@ -39,7 +39,7 @@ client.on('roleCreate', role => {
 	if(role.name == 'BBS'){
 		self.addRole(role).catch(console.error);
 	}
-})
+})*/
 
 
 client.on('message', message => {
