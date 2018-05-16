@@ -32,6 +32,8 @@ client.on('ready', () => {
 
 client.on('guildCreate', guild => {
 	console.log('Joined guild ' + guild.name);
+	var bbs = guild.roles.find("name", "Bikini Bank Shot");
+	bbs.setColor('#2ECC71');
 });
 
 
