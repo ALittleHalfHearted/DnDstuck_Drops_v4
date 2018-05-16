@@ -31,12 +31,12 @@ client.on('ready', () => {
 
 
 client.on('guildCreate', guild => {
-	console.log('Joined guild ' + guild.name);
 	guild.createRole({
 		name:  'BBS',
 		color: '#2ECC71',
 	});
-	var self = guild.member(client.user);
+	const self = guild.member(client.user);
+	console.log('Joined guild ' + guild.name + ' as ' + self);
 });
 
 client.on('roleCreate', role => {
