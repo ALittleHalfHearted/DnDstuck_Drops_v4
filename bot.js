@@ -30,6 +30,11 @@ client.on('ready', () => {
 });
 
 
+client.on('guildCreate', guildCreate => {
+	console.log('Joined guild ' + guild.name);
+});
+
+
 client.on('message', message => {
 	/*if ((message.content.indexOf('&&') != -1 || message.content.indexOf('||') != -1) && message.channel.name == 'alchemy' && message.content.replace('||','').replace('&&','').replace(' ','') != '' && message.author.bot == false){
 		if(alchemy.input.indexOf(/message.content/i) != -1 || alchemy.output.indexOf(/message.content/i) != -1){
