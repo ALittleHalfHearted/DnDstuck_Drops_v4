@@ -67,14 +67,7 @@ client.on('message', message => {
 		var t8 = 0;
 		var t9 = 0;
 		var boon = 0;
-		var imps = 0;
-		var ogres = 0;
-		var basilisks = 0;
-		var liches = 0;
-		var giclopes = 0;
-		var titachnids = 0;
-		var archerons = 0;
-		var rooks = 0;
+		var multi = {num1: 0, num2: 0, num3: 0, num4: 0, num5: 0, num6: 0, num7: 0, num8: 0};
 		var grist = 0;
 		var health = 0;
 		
@@ -638,55 +631,46 @@ client.on('message', message => {
 				}
 			break;
 			case 'multi':
-				var highest = 0
-				if(message.content.indexOf('t1') != -1){
-					imps = message.content.substring(message.content.indexOf('t1') + 2,message.content.indexOf('t1') + 4);
-					highest = 1;
+				if(args.indexOf('t1') != -1){
 					mod = 1;
+					multi.num1 = parseFloat(args.slice(args.indexOf('t1') + 2, args.indexOf('t', args.indexOf('t1') + 3)));
 				}
-				if(message.content.indexOf('t2') != -1){
-					ogres = message.content.substring(message.content.indexOf('t2') + 2,message.content.indexOf('t2') + 4);
-					highest = 2;
+				if(args.indexOf('t2') != -1){
 					mod = 2;
+					multi.num2 = parseFloat(args.slice(args.indexOf('t2') + 2, args.indexOf('t', args.indexOf('t2') + 3)));
 				}
-				if(message.content.indexOf('t3') != -1){
-					basilisks = message.content.substring(message.content.indexOf('t3') + 2,message.content.indexOf('t3') + 4);
-					highest = 3;
+				if(args.indexOf('t3') != -1){
 					mod = 4;
+					multi.num3 = parseFloat(args.slice(args.indexOf('t3') + 2, args.indexOf('t', args.indexOf('t3') + 3)));
 				}
-				if(message.content.indexOf('t4') != -1){
-					liches = message.content.substring(message.content.indexOf('t4') + 2,message.content.indexOf('t4') + 4);
-					highest = 4;
+				if(args.indexOf('t4') != -1){
 					mod = 8;
+					multi.num4 = parseFloat(args.slice(args.indexOf('t4') + 2, args.indexOf('t', args.indexOf('t4') + 3)));
 				}
-				if(message.content.indexOf('t5') != -1){
-					giclopes = message.content.substring(message.content.indexOf('t5') + 2,message.content.indexOf('t5') + 4);
-					highest = 5;
+				if(args.indexOf('t5') != -1){
 					mod = 16;
+					multi.num5 = parseFloat(args.slice(args.indexOf('t5') + 2, args.indexOf('t', args.indexOf('t5') + 3)));
 				}
-				if(message.content.indexOf('t6') != -1){
-					titachnids = message.content.substring(message.content.indexOf('t6') + 2,message.content.indexOf('t6') + 4);
-					highest = 6;
+				if(args.indexOf('t6') != -1){
 					mod = 32;
+					multi.num6 = parseFloat(args.slice(args.indexOf('t6') + 2, args.indexOf('t', args.indexOf('t6') + 3)));
 				}
-				if(message.content.indexOf('t7') != -1){
-					archerons = message.content.substring(message.content.indexOf('t7') + 2,message.content.indexOf('t7') + 4);
-					highest = 7;
+				if(args.indexOf('t7') != -1){
 					mod = 64;
+					multi.num7 = parseFloat(args.slice(args.indexOf('t7') + 2, args.indexOf('t', args.indexOf('t7') + 3)));
 				}
-				if(message.content.indexOf('t8') != -1){
-					rooks = message.content.substring(message.content.indexOf('t8') + 2,message.content.indexOf('t8') + 4);
-					highest = 8;
+				if(args.indexOf('t8') != -1){
 					mod = 128;
+					multi.num8 = parseFloat(args.slice(args.indexOf('t8') + 2, args.indexOf('t', args.indexOf('t8') + 3)));
 				}				
 				//don't run if there's no input
-				if(highest == 0){
+				if(mod == 0){
 					message.reply('why don\'t you have input ~~you little shit~~');
 				}
 				else{
 					//imp drops
-					if(imps > 0){
-						for(var i = 0; i < imps; i++){
+					if(multi.num1 > 0){
+						for(var i = 0; i < multi.num1; i++){
 							grist = impGrist(grist);
 							boon = impBoon(boon);
 							health = impHealth(health);
@@ -698,8 +682,8 @@ client.on('message', message => {
 					}
 				
 					//ogre drops
-					if(ogres > 0){
-						for(var i = 0; i < ogres; i++){
+					if(multi.num2 > 0){
+						for(var i = 0; i < multi.num2; i++){
 							grist = ogreGrist(grist);
 							boon = ogreBoon(boon);
 							health = ogreHealth(health);
@@ -711,8 +695,8 @@ client.on('message', message => {
 					}
 				
 					//basilisk drops
-					if(basilisks > 0){
-						for(var i = 0; i < basilisks; i++){
+					if(multi.num3 > 0){
+						for(var i = 0; i < multi.num3; i++){
 							//5d100
 							grist = basiliskGrist(grist);
 							//1d100
@@ -727,8 +711,8 @@ client.on('message', message => {
 					}
 				
 					//lich drops
-					if(liches > 0){
-						for(var i = 0; i < liches; i++){
+					if(multi.num4 > 0){
+						for(var i = 0; i < multi.num4; i++){
 							//10d100
 							grist = lichGrist(grist);
 							//2d100
@@ -744,8 +728,8 @@ client.on('message', message => {
 					}
 				
 					//giclops drops
-					if(giclopes > 0){
-						for(var i = 0; i < giclopes; i++){
+					if(multi.num5 > 0){
+						for(var i = 0; i < multi.num5; i++){
 							//15d100
 							grist = giclopsGrist(grist);
 							//4d100
@@ -762,8 +746,8 @@ client.on('message', message => {
 					}
 					
 					//titachnid drops
-					if(titachnids > 0){
-						for(var i = 0; i < titachnids; i++){
+					if(multi.num6 > 0){
+						for(var i = 0; i < multi.num6; i++){
 							//25d100
 							grist = titachnidGrist(grist);
 							//10d100
@@ -771,18 +755,18 @@ client.on('message', message => {
 							health = titachnidHealth(health);
 						}
 						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.2)
+						t1 = t1 + (grist * 0.15)
 						t2 = t2 + (grist * 0.15)
 						t3 = t3 + (grist * 0.15)
 						t4 = t4 + (grist * 0.15)
-						t5 = t5 + (grist * 0.15)
-						t6 = t6 + (grist * 0.15)
+						t5 = t5 + (grist * 0.1)
+						t6 = t6 + (grist * 0.1)
 						grist = 0
 					}
 					
 					//archeron drops
-					if(archerons > 0){
-						for(var i = 0; i < archerons; i++){
+					if(multi.num7 > 0){
+						for(var i = 0; i < multi.num7; i++){
 							//40d100
 							grist = archeronGrist(boon);
 							//20d100
@@ -801,8 +785,8 @@ client.on('message', message => {
 					}
 					
 					//rook drops
-					if(rooks > 0){
-						for(var i = 0; i < rooks; i++){
+					if(multi.num8 > 0){
+						for(var i = 0; i < multi.num8; i++){
 							//50d100
 							boon = rookBoon(boon);
 							health = rookHealth(health);
@@ -821,7 +805,7 @@ client.on('message', message => {
 					t7 = t7 * mod
 				
 					//display
-					message.reply('```for killing whatever you killed, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
+					message.reply('```for killing ${multi}, you have obtained:\nBoon = ' + boon + '\nBG = ' + build.toFixed(0) +
 							'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 							'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
 				}
