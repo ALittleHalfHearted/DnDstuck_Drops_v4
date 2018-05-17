@@ -805,7 +805,7 @@ client.on('message', message => {
 					t7 = t7 * mod
 				
 					//display
-					message.reply(`\`\`\`for killing ${multi}, you have obtained:\nBoon = ` + boon + '\nBG = ' + build.toFixed(0) +
+					message.reply(`\`\`\`for killing ${multi.num1} imps, ${multi.num2} ogres, ${multi.num3} basilisks, ${multi.num4} liches, ${multi.num5} giclopes, ${multi.num6} titachnids, ${multi.num7} archerons, and ${multi.num8} rooks, you have obtained:\nBoon = ` + boon + '\nBG = ' + build.toFixed(0) +
 							'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
 							'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
 				}
