@@ -96,9 +96,9 @@ client.on('message', message => {
 					case 'multi':
 						message.channel.send('**```Use this command to get drops from any number of any amount of enemy types. Automatically divides ' +
 						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
-						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi t[tier #] [#killed] t[tier #] [# killed](Repeat as ' +
-						'necessary)`\n\n**examples:**\n`%multi t3 54 t8 3` gets drops from 54 basilisks and 3 rooks\n`%multi t6 20 t2 8` gets drops ' +
-						'from 20 titachnids and 8 ogres.');
+						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi [#]t[x] [#]t[x] (Repeat as ' +
+						'necessary)\nYou can also separate input with commas, and you can use [#]t[x]t[x] to get drops for the same amount of two different enemy tiers.`\n\n**examples:**\n`%multi 54t3 3t8` gets drops from 54 basilisks and 3 rooks\n`%multi 20t6,8t2` gets drops ' +
+						'from 20 titachnids and 8 ogres.\n`%multi 55t1t5 8t4` gets drops for 55 imps, 55 giclopes, and 8 archerons.');
 					break;
 					case 'drops':
 						message.channel.send('**```Use this command to get the formula for any enemy type. (WIP)```**\n\n**Format:** `%drops [enemy]`');
