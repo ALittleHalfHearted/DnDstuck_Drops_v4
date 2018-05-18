@@ -16,7 +16,11 @@ const EMBED = new Discord.RichEmbed()
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
 	.addField("Other Commands", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`",true);
-
+const IMPS = new Discord.RichEmbed()
+	.setTitle("__IMPS__")
+	.setThumbnail("http://images1.wikia.nocookie.net/__cb20100509160242/mspaintadventures/images/0/0b/Shaleimp.png")
+	.addField("STATS","HP = `d4+4`\nDamage = `d3+1`\nArmor = `5`")
+	.addField("DROPS","Boon = `d10`\nGrist = `d100`\nBuild = `80%`\nt1 = `20%`\nHealth = `2d2`");
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -98,10 +102,10 @@ client.on('message', message => {
 						'grist and applies multipliers.```**\n```Tier #s\nt1 = imp\nt2 = ogre\nt3 = basilisk\nt4 = lich\nt5 = giclops\nt6 ' +
 						'= titachnid\nt7 = archeron\nt8 = rook/D.A.```\n\n**Format:** `%multi [#]t[x] [#]t[x] (Repeat as ' +
 						'necessary)\nYou can also separate input with commas, and you can use [#]t[x]t[x] to get drops for the same amount of two different enemy tiers.`\n\n**examples:**\n`%multi 54t3 3t8` gets drops from 54 basilisks and 3 rooks\n`%multi 20t6,8t2` gets drops ' +
-						'from 20 titachnids and 8 ogres.\n`%multi 55t1t5 8t4` gets drops for 55 imps, 55 giclopes, and 8 archerons.');
+						'from 20 titachnids and 8 ogres.\n`%multi 55t1t5 8t4` gets drops for 55 imps, 55 giclopes, and 8 liches.');
 					break;
-					case 'drops':
-						message.channel.send('**```Use this command to get the formula for any enemy type. (WIP)```**\n\n**Format:** `%drops [enemy]`');
+					case 'stats':
+						message.channel.send('**```Use this command to get the details for any enemy type. (WIP)```**\n\n**Format:** `%stats [enemy]`');
 					break;
 					//%custom [# killed] [Tier] [# of boon dice]d[dice value] [# of grist dice]d[dice value]
 					case 'custom':
@@ -142,9 +146,33 @@ client.on('message', message => {
 			break;
 			case 'drops':
 				switch(args){
-					//case 'imp': case 'imps':
-						
-					//break;
+					case 'imp': case 'imps':
+						message.channel.send(IMPS);
+					break;
+					case 'ogre': case 'ogres':
+						message.channel.send('**```OGRE DROPS```\n\nBOON = `d50`\nGRIST = `2d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'basilisk': case 'basilisks':
+						message.channel.send('**```BASILISK DROPS```\n\nBOON = `d100`\nGRIST = `5d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'lich': case 'liches':
+						message.channel.send('**```LICH DROPS```\n\nBOON = `2d100`\nGRIST = `10d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'giclops': case 'giclopes':
+						message.channel.send('**```GICLOPS DROPS```\n\nBOON = `4d100`\nGRIST = `15d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'titachnid': case 'titachnids':
+						message.channel.send('**```TITACHNID DROPS```\n\nBOON = `10d100`\nGRIST = `25d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'archeron': case 'archerons':
+						message.channel.send('**```ARCHERON DROPS```\n\nBOON = `20d100`\nGRIST = `40d100`**\nt1 = `%`\n**HEALTH = `d`**');
+					break;
+					case 'rook': case 'rooks':
+						message.channel.send('**```ROOK DROPS```\n\nBOON = `50d100`\nHEALTH = `d`**');
+					break;
+					case 'multi':
+						message.channel.send('**```MULTI DROPS```\n\nRolls all drops for each enemy in a single strife without individual modifiers. Instead, it uses the modifier for the highest tier of enemy present.**');
+					break;
 					default:
 						message.channel.send('The correct usage is: `%drops [enemy]`. Please select an enemy type as follows:\n\n```imp\nogre\nbasilisk\nlich\ngiclops\ntitachnid\narcheron\nrook\n\nmulti```');
 				}
