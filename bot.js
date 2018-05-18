@@ -639,8 +639,9 @@ client.on('message', message => {
 					args = args.replace(/ /g,',');
 					args = args.split(',');
 					for(var i = 0; i < args.length; i++){
-						console.log(args.toString())
-						grist = 0
+						console.log(args.toString());
+						console.log(mod);
+						grist = 0;
 						if(args[i].indexOf('t1') > -1){
 							if(mod <= 1){
 								mod = 1;
