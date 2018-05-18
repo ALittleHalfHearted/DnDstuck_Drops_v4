@@ -649,7 +649,7 @@ client.on('message', message => {
 								multi.num1 += num = 1;
 							}
 							else{
-								multi.num1 += num = args[i].slice(0,args[i].indexOf('t1'));
+								multi.num1 += num = parseFloat(args[i].slice(0,args[i].indexOf('t1')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = impGrist(grist);
@@ -667,7 +667,7 @@ client.on('message', message => {
 								multi.num2 += num = 1;
 							}
 							else{
-								multi.num2 += num = args[i].slice(0,args[i].indexOf('t2'));
+								multi.num2 += num = parseFloat(args[i].slice(0,args[i].indexOf('t2')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = ogreGrist(grist);
@@ -686,7 +686,7 @@ client.on('message', message => {
 								multi.num3 += num = 1;
 							}
 							else{
-								multi.num3 += num = args[i].slice(0,args[i].indexOf('t3'));
+								multi.num3 += num = parseFloat(args[i].slice(0,args[i].indexOf('t3')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = basiliskGrist(grist);
@@ -706,7 +706,7 @@ client.on('message', message => {
 								multi.num4 += num = 1;
 							}
 							else{
-								multi.num4 += num = args[i].slice(0,args[i].indexOf('t4'));
+								multi.num4 += num = parseFloat(args[i].slice(0,args[i].indexOf('t4')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = lichGrist(grist);
@@ -727,7 +727,7 @@ client.on('message', message => {
 								multi.num5 += num = 1;
 							}
 							else{
-								multi.num5 += num = args[i].slice(0,args[i].indexOf('t5'));
+								multi.num5 += num = parseFloat(args[i].slice(0,args[i].indexOf('t5')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = giclopsGrist(grist);
@@ -749,7 +749,7 @@ client.on('message', message => {
 								multi.num6 += num = 1;
 							}
 							else{
-								multi.num6 += num = args[i].slice(0,args[i].indexOf('t6'));
+								multi.num6 += num = parseFloat(args[i].slice(0,args[i].indexOf('t6')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = titachnidGrist(grist);
@@ -772,7 +772,7 @@ client.on('message', message => {
 								multi.num7 += num = 1;
 							}
 							else{
-								multi.num7 += num = args[i].slice(0,args[i].indexOf('t7'));
+								multi.num7 += num = parseFloat(args[i].slice(0,args[i].indexOf('t7')));
 							}
 							for(var x = 0; x < num; x++){
 								grist = archeronGrist(grist);
@@ -796,7 +796,7 @@ client.on('message', message => {
 								multi.num8 += num = 1;
 							}
 							else{
-								multi.num8 += num = args[i].slice(0,args[i].indexOf('t8'));
+								multi.num8 += num = parseFloat(args[i].slice(0,args[i].indexOf('t8')));
 							}
 							for(var x = 0; x < num; x++){
 								boon = rookBoon(boon);
