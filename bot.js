@@ -631,183 +631,193 @@ client.on('message', message => {
 				}
 			break;
 			case 'multi':
-				if(args.indexOf('t1') != -1){
-					mod = 1;
-					multi.num1 = parseFloat(args.slice(args.indexOf('t1') + 2, args.indexOf('t', args.indexOf('t1') + 3)));
-				}
-				if(args.indexOf('t2') != -1){
-					mod = 2;
-					multi.num2 = parseFloat(args.slice(args.indexOf('t2') + 2, args.indexOf('t', args.indexOf('t2') + 3)));
-				}
-				if(args.indexOf('t3') != -1){
-					mod = 4;
-					multi.num3 = parseFloat(args.slice(args.indexOf('t3') + 2, args.indexOf('t', args.indexOf('t3') + 3)));
-				}
-				if(args.indexOf('t4') != -1){
-					mod = 8;
-					multi.num4 = parseFloat(args.slice(args.indexOf('t4') + 2, args.indexOf('t', args.indexOf('t4') + 3)));
-				}
-				if(args.indexOf('t5') != -1){
-					mod = 16;
-					multi.num5 = parseFloat(args.slice(args.indexOf('t5') + 2, args.indexOf('t', args.indexOf('t5') + 3)));
-				}
-				if(args.indexOf('t6') != -1){
-					mod = 32;
-					multi.num6 = parseFloat(args.slice(args.indexOf('t6') + 2, args.indexOf('t', args.indexOf('t6') + 3)));
-				}
-				if(args.indexOf('t7') != -1){
-					mod = 64;
-					multi.num7 = parseFloat(args.slice(args.indexOf('t7') + 2, args.indexOf('t', args.indexOf('t7') + 3)));
-				}
-				if(args.indexOf('t8') != -1){
-					mod = 128;
-					multi.num8 = parseFloat(args.slice(args.indexOf('t8') + 2, args.indexOf('t', args.indexOf('t8') + 3)));
-				}				
-				//don't run if there's no input
-				if(mod == 0){
-					message.reply('why don\'t you have input ~~you little shit~~');
+				if(args.indexOf('t') == -1){
+					message.reply('Sorry, no input found! Please try again.');
 				}
 				else{
-					//imp drops
-					if(multi.num1 > 0){
-						for(var i = 0; i < multi.num1; i++){
-							grist = impGrist(grist);
-							boon = impBoon(boon);
-							health = impHealth(health);
-						}
-						build = build + (grist * 0.8);
-						t1 = t1 + (grist * 0.2);
-						grist = 0;
-						
-					}
-				
-					//ogre drops
-					if(multi.num2 > 0){
-						for(var i = 0; i < multi.num2; i++){
-							grist = ogreGrist(grist);
-							boon = ogreBoon(boon);
-							health = ogreHealth(health);
-						}
-						build = build + (grist * 0.6)
-						t1 = t1 + (grist * 0.3)
-						t2 = t2 + (grist * 0.1)
+					//NEW FORMAT: 54t3 or 54 t3, separate with commas
+					args.replace(/ /g,'').split(',')
+					for(var i = 0; i < args.length; i++){
 						grist = 0
-					}
-				
-					//basilisk drops
-					if(multi.num3 > 0){
-						for(var i = 0; i < multi.num3; i++){
-							//5d100
-							grist = basiliskGrist(grist);
-							//1d100
-							boon = basiliskBoon(boon);
-							health = basiliskHealth(health);
+						if(args[i].indexOf('t1') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t1') == 0){
+								multi.num1 += num = 1;
+							}
+							else{
+								multi.num1 += num = args[i].slice(0,args[i].indexOf('t1'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = impGrist(grist);
+								boon = impBoon(boon);
+								health = impHealth(health);
+							}
+							build += grist * 0.8;
+							t1 += grist * 0.2;
 						}
-						build = build + (grist * 0.4); 
-						t1 = t1 + (grist * 0.3)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.1)
-						grist = 0
-					}
-				
-					//lich drops
-					if(multi.num4 > 0){
-						for(var i = 0; i < multi.num4; i++){
-							//10d100
-							grist = lichGrist(grist);
-							//2d100
-							boon = lichBoon(boon);
-							health = lichHealth(health);
+						if(args[i].indexOf('t2') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t2') == 0){
+								multi.num2 += num = 1;
+							}
+							else{
+								multi.num2 += num = args[i].slice(0,args[i].indexOf('t2'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = ogreGrist(grist);
+								boon = ogreBoon(boon);
+								health = ogreHealth(health);
+							}
+							build += grist * 0.6;
+							t1 += grist * 0.3;
+							t2 += grist * 0.1;
 						}
-						build = build + (grist * 0.3)
-						t1 = t1 + (grist * 0.2)
-						t2 = t2 + (grist * 0.2)
-						t3 = t3 + (grist * 0.2)
-						t4 = t4 + (grist * 0.1)
-						grist = 0
-					}
-				
-					//giclops drops
-					if(multi.num5 > 0){
-						for(var i = 0; i < multi.num5; i++){
-							//15d100
-							grist = giclopsGrist(grist);
-							//4d100
-							boon = giclopsBoon(boon);
-							health = giclopsHealth(health);
+						if(args[i].indexOf('t3') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t3') == 0){
+								multi.num3 += num = 1;
+							}
+							else{
+								multi.num3 += num = args[i].slice(0,args[i].indexOf('t3'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = basiliskGrist(grist);
+								boon = basiliskBoon(boon);
+								health = basiliskHealth(health);
+							}
+							build += grist * 0.4; 
+							t1 += grist * 0.3;
+							t2 += grist * 0.2;
+							t3 += grist * 0.1;
 						}
-						build = build + (grist * 0.25)
-						t1 = t1 + (grist * 0.20)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.1)
-						t5 = t5 + (grist * 0.05)
-						grist = 0
+						if(args[i].indexOf('t4') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t4') == 0){
+								multi.num4 += num = 1;
+							}
+							else{
+								multi.num4 += num = args[i].slice(0,args[i].indexOf('t4'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = lichGrist(grist);
+								boon = lichBoon(boon);
+								health = lichHealth(health);
+							}
+							build += grist * 0.3;
+							t1 += grist * 0.2;
+							t2 += grist * 0.2;
+							t3 += grist * 0.2;
+							t4 += grist * 0.1;
+						}
+						if(args[i].indexOf('t5') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t5') == 0){
+								multi.num5 += num = 1;
+							}
+							else{
+								multi.num5 += num = args[i].slice(0,args[i].indexOf('t5'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = giclopsGrist(grist);
+								boon = giclopsBoon(boon);
+								health = giclopsHealth(health);
+							}
+							build += grist * 0.25;
+							t1 += grist * 0.20;
+							t2 += grist * 0.15;
+							t3 += grist * 0.15;
+							t4 += grist * 0.1;
+							t5 += grist * 0.05;
+						}
+						if(args[i].indexOf('t6') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t6') == 0){
+								multi.num6 += num = 1;
+							}
+							else{
+								multi.num6 += num = args[i].slice(0,args[i].indexOf('t6'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = titachnidGrist(grist);
+								boon = titachnidBoon(boon);
+								health = titachnidHealth(health);
+							}
+							build += grist * 0.2;
+							t1 += grist * 0.15;
+							t2 += grist * 0.15;
+							t3 += grist * 0.15;
+							t4 += grist * 0.15;
+							t5 += grist * 0.1;
+							t6 += grist * 0.1;
+						}
+						if(args[i].indexOf('t7') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t7') == 0){
+								multi.num7 += num = 1;
+							}
+							else{
+								multi.num7 += num = args[i].slice(0,args[i].indexOf('t7'));
+							}
+							for(var x = 0; x < num; x++){
+								grist = archeronGrist(grist);
+								boon = archeronBoon(boon);
+								health = archeronHealth(health);
+							}
+							build += grist * 0.2
+							t1 += grist * 0.15
+							t2 += grist * 0.15
+							t3 += grist * 0.1
+							t4 += grist * 0.1
+							t5 += grist * 0.1
+							t6 += grist * 0.1
+							t7 += grist * 0.1
+						}
+						if(args[i].indexOf('t8') > -1){
+							if(mod <= 1){
+								mod = 1;
+							}
+							if(args[i].indexOf('t8') == 0){
+								multi.num8 += num = 1;
+							}
+							else{
+								multi.num8 += num = args[i].slice(0,args[i].indexOf('t8'));
+							}
+							for(var x = 0; x < num; x++){
+								boon = rookBoon(boon);
+								health = rookHealth(health);
+							}
+						}
 					}
 					
-					//titachnid drops
-					if(multi.num6 > 0){
-						for(var i = 0; i < multi.num6; i++){
-							//25d100
-							grist = titachnidGrist(grist);
-							//10d100
-							boon = titachnidBoon(boon);
-							health = titachnidHealth(health);
-						}
-						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.15)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.15)
-						t4 = t4 + (grist * 0.15)
-						t5 = t5 + (grist * 0.1)
-						t6 = t6 + (grist * 0.1)
-						grist = 0
-					}
-					
-					//archeron drops
-					if(multi.num7 > 0){
-						for(var i = 0; i < multi.num7; i++){
-							//40d100
-							grist = archeronGrist(boon);
-							//20d100
-							boon = archeronBoon(boon);
-							health = archeronHealth(health);
-						}
-						build = build + (grist * 0.2)
-						t1 = t1 + (grist * 0.15)
-						t2 = t2 + (grist * 0.15)
-						t3 = t3 + (grist * 0.1)
-						t4 = t4 + (grist * 0.1)
-						t5 = t5 + (grist * 0.1)
-						t6 = t6 + (grist * 0.1)
-						t7 = t7 + (grist * 0.1)
-						grist = 0
-					}
-					
-					//rook drops
-					if(multi.num8 > 0){
-						for(var i = 0; i < multi.num8; i++){
-							//50d100
-							boon = rookBoon(boon);
-							health = rookHealth(health);
-						}
-					}
-				
 					//multiplier!!
-					boon = boon * mod
-					build = build * mod
-					t1 = t1 * mod
-					t2 = t2 * mod
-					t3 = t3 * mod
-					t4 = t4 * mod
-					t5 = t5 * mod
-					t6 = t6 * mod
-					t7 = t7 * mod
+					boon *= mod
+					build *= mod
+					t1 *= mod
+					t2 *= mod
+					t3 *= mod
+					t4 *= mod
+					t5 *= mod
+					t6 *= mod
+					t7 *= mod
 				
 					//display
 					message.reply(`\`\`\`for killing ${multi.num1} imps, ${multi.num2} ogres, ${multi.num3} basilisks, ${multi.num4} liches, ${multi.num5} giclopes, ${multi.num6} titachnids, ${multi.num7} archerons, and ${multi.num8} rooks, you have obtained:\nBoon = ` + boon + '\nBG = ' + build.toFixed(0) +
-							'\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
-							'\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```')
+						      '\nT1 = ' + t1.toFixed(0) + '\nT2 = ' + t2.toFixed(0) + '\nT3 = ' + t3.toFixed(0) + '\nT4 = ' + t4.toFixed(0) +
+						      '\nT5 = ' + t5.toFixed(0) + '\nT6 = ' + t6.toFixed(0) + '\nT7 = ' + t7.toFixed(0) + '\nHealth Gel = ' + health + '```');
 				}
 			break;
 			case 'custom':
