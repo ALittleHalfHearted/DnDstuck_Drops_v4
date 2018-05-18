@@ -636,8 +636,10 @@ client.on('message', message => {
 				}
 				else{
 					//NEW FORMAT: 54t3 or 54 t3, separate with commas
-					args.replace(/ /g,'').split(',')
+					args.replace(/ /g,',');
+					args.split(',');
 					for(var i = 0; i < args.length; i++){
+						console.log(args.toString())
 						grist = 0
 						if(args[i].indexOf('t1') > -1){
 							if(mod <= 1){
