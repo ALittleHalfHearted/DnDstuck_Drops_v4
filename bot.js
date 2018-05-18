@@ -14,7 +14,7 @@ const EMBED = new Discord.RichEmbed()
 	.setDescription("use `%help [command]` to get info on a specific command")
 	.setColor(65299) //#00FF13
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
-	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`", true)
+	.addField("Enemy Drops", "`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n`%stats`", true)
 	.addField("Other Commands", "`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`",true);
 const IMPS = new Discord.RichEmbed()
 	.setTitle("__IMPS__")
@@ -141,7 +141,7 @@ client.on('message', message => {
 					break;
 					//normal
 					default:
-						message.channel.send('use `%help [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n`%drops`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
+						message.channel.send('use `%help [command]` to get info on a specific command\n`(You can also use %embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`%imp`\n`%ogre`\n`%basilisk`\n`%lich`\n`%giclops`\n`%titachnid`\n`%archeron`\n`%rook`\n`%multi`\n`%custom`\n`%stats`\n\n```Other:```\n`%death`\n`%d10`\t`%d20`\n`%percent`\n`%tohit`\n`%damage`\n`%ping`\t`%pong`\n`%stupid`\t`%pointless`');
 				}
 			break;
 			case 'drops':
