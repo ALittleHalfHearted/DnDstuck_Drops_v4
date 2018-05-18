@@ -661,8 +661,8 @@ client.on('message', message => {
 							t1 += grist * 0.2;
 						}
 						if(args[i].indexOf('t2') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 2){
+								mod = 2;
 							}
 							if(args[i].indexOf('t2') == 0){
 								multi.num2 += num = 1;
@@ -680,8 +680,8 @@ client.on('message', message => {
 							t2 += grist * 0.1;
 						}
 						if(args[i].indexOf('t3') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 4){
+								mod = 4;
 							}
 							if(args[i].indexOf('t3') == 0){
 								multi.num3 += num = 1;
@@ -700,8 +700,8 @@ client.on('message', message => {
 							t3 += grist * 0.1;
 						}
 						if(args[i].indexOf('t4') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 8){
+								mod = 8;
 							}
 							if(args[i].indexOf('t4') == 0){
 								multi.num4 += num = 1;
@@ -721,8 +721,8 @@ client.on('message', message => {
 							t4 += grist * 0.1;
 						}
 						if(args[i].indexOf('t5') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 16){
+								mod = 16;
 							}
 							if(args[i].indexOf('t5') == 0){
 								multi.num5 += num = 1;
@@ -743,8 +743,8 @@ client.on('message', message => {
 							t5 += grist * 0.05;
 						}
 						if(args[i].indexOf('t6') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 32){
+								mod = 32;
 							}
 							if(args[i].indexOf('t6') == 0){
 								multi.num6 += num = 1;
@@ -766,8 +766,8 @@ client.on('message', message => {
 							t6 += grist * 0.1;
 						}
 						if(args[i].indexOf('t7') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 64){
+								mod = 64;
 							}
 							if(args[i].indexOf('t7') == 0){
 								multi.num7 += num = 1;
@@ -790,8 +790,8 @@ client.on('message', message => {
 							t7 += grist * 0.1
 						}
 						if(args[i].indexOf('t8') > -1){
-							if(mod <= 1){
-								mod = 1;
+							if(mod <= 128){
+								mod = 128;
 							}
 							if(args[i].indexOf('t8') == 0){
 								multi.num8 += num = 1;
