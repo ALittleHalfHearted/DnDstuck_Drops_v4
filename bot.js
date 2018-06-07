@@ -652,7 +652,7 @@ client.on('message', message => {
 						boon = rookBoon(boon);
 						health = rookHealth(health);
 					}
-					message.reply('```For killing ' + args + ' rooks and/or D.A.s, you have obtained:\nBoon = ' + (boon * 128) + '\nHealth Gel = ' + health + '```');
+					message.reply('```For killing ' + args + ' rooks, you have obtained:\nBoon = ' + (boon * 128) + '\nHealth Gel = ' + health + '```');
 				}
 				else{
 					overload(message);
