@@ -647,7 +647,7 @@ client.on('message', message => {
 					args = 1
 				}
 				if(args < 100){
-					for(var i = 0; i < rooks; i++){
+					for(var i = 0; i < args; i++){
 						//50d100
 						boon = rookBoon(boon);
 						health = rookHealth(health);
